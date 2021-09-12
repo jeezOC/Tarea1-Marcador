@@ -10,7 +10,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 
 public class BaseViewController extends Controller implements Initializable {
 
@@ -61,6 +66,75 @@ public class BaseViewController extends Controller implements Initializable {
 
     public String nFolio = "";
     public int tFolio = 0;
+     
+       JFXButton  aux2 = new JFXButton(),aux3 = new JFXButton(),aux4 = new JFXButton();
+    
+    private void SetearBtn(JFXButton aux, String val, int x, int y){
+    
+        aux = new JFXButton();
+        aux.setText(val);
+        grdClock.add(aux,x,y);
+        
+      }
+    
+      private void Reloj(){
+          Date date = new Date();  
+          SimpleDateFormat formatter;   
+          JFXButton aux = new JFXButton();
+          String divd="/",divh=":";
+          
+          SetearBtn(aux, divd,1,0);
+          SetearBtn(aux, divd,3,0);
+          
+            SetearBtn(aux, divh,1,1);
+          SetearBtn(aux, divh,3,1);
+              
+          //dia
+          formatter = new SimpleDateFormat("dd");  
+          String strDate= formatter.format(date);
+          SetearBtn(aux,strDate,0,0);
+              
+          
+          //mes
+          formatter = new SimpleDateFormat("MM");  
+          strDate= formatter.format(date);
+          SetearBtn(aux,strDate,2,0);
+          
+          //año
+          formatter = new SimpleDateFormat("yyy");  
+          strDate= formatter.format(date);
+         SetearBtn(aux,strDate,4,0);
+              
+        new Thread(new Runnable() {
+              @Override
+              public void run() {
+                  while (true){
+                      Calendar cal = new GregorianCalendar();
+                      int hour = cal.get(Calendar.HOUR);
+                      int minute = cal.get(Calendar.MINUTE);
+                      int seconds = cal.get(Calendar.SECOND);
+                      String realTime = Integer.toString(hour) + " : " + Integer.toString(minute) + " : " + Integer.toString(seconds);
+                      
+                      System.out.println(realTime);
+
+                           Platform.runLater(()->{
+                         aux2.setText(String.valueOf(seconds));
+                         aux3.setText(String.valueOf(minute));
+                        aux4.setText(String.valueOf(hour));
+                               grdClock.add(aux2,4,1);
+                               grdClock.add(aux3,2,1);
+                               grdClock.add(aux4,0,1);                       
+                           });  
+                          
+                      try {
+                          Thread.sleep(1000);
+                      } catch (Exception ex) {
+                          ex.getStackTrace();
+                      }
+                  } }
+          }).start();
+    }
+    
 
     @FXML
     void onAction_btnBorrar(ActionEvent event) {
@@ -149,6 +223,7 @@ public class BaseViewController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Reloj();
         txtFolio.setFocusTraversable(false);
 
     }
