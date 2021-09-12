@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans_Bold.ttf');
+}
+/*
+COLORES:
+FONDO OSCURO PRIM: 40444F
+FONDO OSCURO SEC: 515A67
+FONDO CLARO PRIM: 7497A7
+FONDO CLARO SEC: 698594;
+TUTULOS CLARO: E0EEF6
+TITULOS OSCURO: 8FADBB
+FONDO VERDE: 3A7361
+TEXTO VERDE C9E4DB
+FONDO ROJO: 7C2034
+TEXTO ROJO: F2CED7
+*/
+.darkMainWindow{
+    -fx-background-color: #40444F;
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 1000px;
+    -fx-pref-width: 1366px;
+}
+.emptyCard{
+    -fx-alignment: 'TOP-CENTER';
+    -fx-spacing: 15px;
+    -fx-pref-height: 1000px;
+    -fx-pref-width: 1366px;
+}
+.numpadCard{
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 400px;
+    -fx-pref-width: 300px;
+}
+
+.clearCard{
+    -fx-background-color: #7497A7;
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 300px;
+    -fx-pref-width: 500px;
+}
+
+.clearHeading1{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 60px;
+    -fx-text-fill: #E0EEF6;
+}
+.darkHeading1{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 60px;
+    -fx-text-fill: #8FADBB;
+}
+
+.darkTextField{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER';
+    -fx-background-color: #515A67;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 300px;
+}
+.darkTextField:default{
+    -fx-text-fill: #E0EEF6;
+
+}
+.darkTextField:focused{
+    -fx-focus-color: red;
+    -fx-faint-focus-color: #E0EEF6;
+}
+
+
+.primaryButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #515A67;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 500px;
+}
+.numberButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #515A67;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 70px;
+    -fx-pref-width: 70px;
+}
+.numberButtonLarge{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #515A67;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 70px;
+    -fx-pref-width: 155px;
+}
+
+.confirmButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #C9E4DB;
+
+    -fx-background-color: #3A7361;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 500px;
+}
+
+.cancelButton{
+    -fx-font-family:'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #F2CED7;
+    -fx-alignment: 'CENTER';
+    -fx-background-color: #7C2034;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 500px;
+}
+
+.clock{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-background-color: #515A67;
+    -fx-alignment: 'CENTER';
+    -fx-spacing: 10px;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 200px;
+    -fx-pref-width: 750px;
+    /*-fx-padding: 0 200px 2000px 0;*/
+}
+
