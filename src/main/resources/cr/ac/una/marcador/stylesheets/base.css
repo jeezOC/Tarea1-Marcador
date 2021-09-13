@@ -136,7 +136,8 @@ TEXTO ROJO: F2CED7
     -fx-spacing: 10px;
     -fx-background-radius: 25px;
     -fx-pref-height: 200px;
-    -fx-pref-width: 750px;
+    -fx-pref-width: 550px;
+    -fx-column-halignment: "CENTER";
     /*-fx-padding: 0 200px 2000px 0;*/
 }
 
