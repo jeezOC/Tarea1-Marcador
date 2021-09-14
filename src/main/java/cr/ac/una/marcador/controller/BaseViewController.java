@@ -143,7 +143,12 @@ public class BaseViewController extends Controller implements Initializable {
                               aux3.setText(String.valueOf(minute));
 
                           }
-                          aux4.setText(String.valueOf(hour));
+                          if(hour==0) {
+                              aux4.setText("12");
+                          }else{
+                              aux4.setText(String.valueOf(hour));
+                          }
+//                          aux4.setText(String.valueOf(hour));
                           grdClock.add(aux2,4,1);
                           grdClock.add(aux3,2,1);
                           grdClock.add(aux4,0,1);

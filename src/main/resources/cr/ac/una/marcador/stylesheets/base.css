@@ -23,14 +23,14 @@ TEXTO ROJO: F2CED7
 }
 .emptyCard{
     -fx-alignment: 'TOP-CENTER';
-    -fx-spacing: 15px;
+    -fx-spacing: 25px;
     -fx-pref-height: 1000px;
     -fx-pref-width: 1366px;
 }
 .numpadCard{
     -fx-alignment: 'CENTER';
-    -fx-pref-height: 400px;
     -fx-pref-width: 300px;
+    -fx-pref-height: 300px;
 }
 
 .clearCard{
