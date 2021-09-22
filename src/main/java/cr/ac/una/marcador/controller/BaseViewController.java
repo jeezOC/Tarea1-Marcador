@@ -18,8 +18,12 @@ import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.scene.text.TextAlignment;
+import cr.ac.una.wstarea.HelloResponse;
+import cr.ac.una.wstarea.Hello;
+import cr.ac.una.wstarea.ObjectFactory;
+import cr.ac.una.wstarea.WSTarea_Service;
 
-public class BaseViewController extends Controller implements Initializable {
+public class BaseViewController extends Controller implements Initializable{
 
     @FXML
     private BorderPane root;
@@ -237,11 +241,36 @@ public class BaseViewController extends Controller implements Initializable {
         txtFolio.setText(nFolio);
 
     }
+    
+    
+    private static void GetHello(String nFolio){
+       // Call Web Service Operation
+  WSTarea_Service service = new WSTarea_Service();
+    cr.ac.una.wstarea.WSTarea port = service.getWSTareaPort();
+    // TODO initialize WS operation arguments here
+   String name = nFolio;
+    // TODO process result here
+    String result;
+    result = port.hello(name);
+    System.out.println("Result = "+result);
+
+    }
+    
+    
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
+//        Hello hi = new Hello();
+//        ObjectFactory send = new ObjectFactory();
+//       
+//        hi.setName(nFolio);
+//        send.createHello(hi);
+//        HelloResponse gotit = send.createHelloResponse();
+//        String result =  hi.getName();
+//       // System.out.println(result);
+//        System.out.println(gotit.getReturn());
+        GetHello(nFolio);
         nFolio="";
         txtFolio.setText("");
-//check db
     }
 
 

@@ -6,6 +6,7 @@ module cr.ac.una.marcador {
     requires java.logging;
     requires com.jfoenix;
     requires javaee.web.api;
+    exports cr.ac.una.wstarea;
     
     opens cr.ac.una.marcador.controller to javafx.fxml;
     exports cr.ac.una.marcador;

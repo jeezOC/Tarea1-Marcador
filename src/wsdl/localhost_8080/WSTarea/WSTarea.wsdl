@@ -4,21 +4,78 @@
 <xsd:import namespace="http://wstarea.una.ac.cr/" schemaLocation="http://localhost:8080/WSTarea/WSTarea?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="ValidarAdmin">
+<part name="parameters" element="tns:ValidarAdmin"/>
+</message>
+<message name="ValidarAdminResponse">
+<part name="parameters" element="tns:ValidarAdminResponse"/>
+</message>
+<message name="GetUltimaMarca">
+<part name="parameters" element="tns:GetUltimaMarca"/>
+</message>
+<message name="GetUltimaMarcaResponse">
+<part name="parameters" element="tns:GetUltimaMarcaResponse"/>
+</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
+<message name="validar">
+<part name="parameters" element="tns:validar"/>
+</message>
+<message name="validarResponse">
+<part name="parameters" element="tns:validarResponse"/>
+</message>
 <portType name="WSTarea">
+<operation name="ValidarAdmin">
+<input wsam:Action="http://wstarea.una.ac.cr/WSTarea/ValidarAdminRequest" message="tns:ValidarAdmin"/>
+<output wsam:Action="http://wstarea.una.ac.cr/WSTarea/ValidarAdminResponse" message="tns:ValidarAdminResponse"/>
+</operation>
+<operation name="GetUltimaMarca">
+<input wsam:Action="http://wstarea.una.ac.cr/WSTarea/GetUltimaMarcaRequest" message="tns:GetUltimaMarca"/>
+<output wsam:Action="http://wstarea.una.ac.cr/WSTarea/GetUltimaMarcaResponse" message="tns:GetUltimaMarcaResponse"/>
+</operation>
 <operation name="hello">
 <input wsam:Action="http://wstarea.una.ac.cr/WSTarea/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://wstarea.una.ac.cr/WSTarea/helloResponse" message="tns:helloResponse"/>
 </operation>
+<operation name="validar">
+<input wsam:Action="http://wstarea.una.ac.cr/WSTarea/validarRequest" message="tns:validar"/>
+<output wsam:Action="http://wstarea.una.ac.cr/WSTarea/validarResponse" message="tns:validarResponse"/>
+</operation>
 </portType>
 <binding name="WSTareaPortBinding" type="tns:WSTarea">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="ValidarAdmin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="GetUltimaMarca">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validar">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
