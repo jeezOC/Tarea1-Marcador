@@ -256,23 +256,6 @@ public class BaseViewController extends Controller implements Initializable{
 
     }
     
-    private void Validar(){
-        
-//        try { // Call Web Service Operation
-//            cr.ac.una.wstarea.WSTarea_Service service = new cr.ac.una.wstarea.WSTarea_Service();
-//            cr.ac.una.wstarea.WSTarea port = service.getWSTareaPort();
-//            // TODO initialize WS operation arguments here
-//            java.lang.String folio = "";
-//            // TODO process result here
-//            java.lang.String result = port.validar(folio);
-//            System.out.println("Result = "+result);
-//        } catch (Exception ex) {
-//            // TODO handle custom exceptions here
-//        }
-
-    }
-    
-    
     
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
