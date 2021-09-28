@@ -1,0 +1,278 @@
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans_Bold.ttf');
+}
+*{
+    /*COLORES:*/
+    -FONDO-OSCURO-PRIM: #40444F;
+    -FONDO-OSCURO-SEC: #515A67;
+    -FONDO-CLARO-PRIM: #7497A7;
+    -FONDO-CLARO-SEC: #698594;
+    -TUTULOS_CLARO: #E0EEF6;
+    -TITULOS-OSCURO: #8FADBB;
+    -FONDO-VERDE: #3A7361;
+    -TEXTO-VERDE: #C9E4DB;
+    -FONDO-ROJO: #7C2034;
+    -TEXTO-ROJO: #F2CED7;
+}
+
+.darkMainWindow{
+    -fx-background-color: #40444F;
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 700px;
+    -fx-pref-width: 1300px;
+}
+.leftPanelClear{
+
+    -fx-background-color: #515A67;
+    -fx-alignment: 'CENTER-LEFT';
+    -fx-spacing: 15px;
+
+    /*-fx-pref-height: 300px;*/
+    -fx-pref-width: 200px;
+    -fx-background-radius: 0 25px 25px  0;
+}
+.emptyBGCard{
+    -fx-background-color: #40444F;
+    -fx-alignment: 'TOP-CENTER';
+    /*-fx-spacing: 15px;*/
+    -fx-pref-height: 700px;
+    -fx-pref-width: 1100px;
+}
+.numpadCard{
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 400px;
+    -fx-pref-width: 300px;
+}
+
+.clearCard{
+    -fx-background-color: #7497A7;
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 300px;
+    -fx-pref-width: 500px;
+}
+.photoView{
+    -fx-background-color:  -FONDO-OSCURO-SEC;
+    -fx-alignment: 'CENTER';
+
+    -fx-pref-height: 200px;
+    -fx-pref-width: 200px;
+    -fx-background-radius: 15;
+
+}
+.ImageView .image{
+    -fx-background-color:  -FONDO-OSCURO-SEC;
+    -fx-alignment: 'CENTER';
+
+    -fx-pref-height: 200px;
+    -fx-pref-width: 200px;
+    -fx-background-radius: 15px ;
+    -fx-border-radius: 15px ;
+    -fx-border-width: 5;
+    -fx-border-color:-FONDO-OSCURO-SEC;
+}
+
+.clearHeading1{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 60px;
+    -fx-text-fill: #E0EEF6;
+}
+.clearHeading2{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 25px;
+    -fx-text-fill: #E0EEF6;
+}
+.darkHeading1{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 60px;
+    -fx-text-fill: #8FADBB;
+}
+
+.darkTextField{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER';
+    -fx-background-color: #515A67;
+    -fx-background-radius:  0 15 15 0 ;
+    -fx-pref-height: 40px;
+    /*-fx-pref-width: ;*/
+}
+.darkLabel{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    /*-fx-alignment: 'CENTER';*/
+    -fx-pref-height: 40px;
+}
+.darkBoxLabel{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER-RIGHT';
+    -fx-background-color: #515A67;
+    -fx-background-radius: 15px 0 0 15;
+    -fx-pref-height: 40px;
+    /*-fx-pref-width: 1rem;*/
+    -fx-background-insets: 0 0 0 -15px;
+}
+.darkBoxLabel2{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER-RIGHT';
+    -fx-background-color: #515A67;
+    -fx-background-radius: 15px 0 0 15;
+    -fx-pref-height: 50px;
+    /*-fx-pref-width: 1rem;*/
+    -fx-background-insets: 0 0 0 -15px;
+}
+.darkSearchTextField{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER';
+    -fx-background-color: #515A67;
+    -fx-background-radius: 0;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 200px;
+}
+.darkTextField:default{
+    -fx-text-fill: #E0EEF6;
+
+}
+.darkTextField:focused{
+    -fx-background-color: #515A70;
+}
+
+.darkSearchTextField:default{
+    -fx-text-fill: #E0EEF6;
+
+}
+.darkSearchTextField:focused{
+    -fx-background-color: #515A70;
+}
+
+
+.primaryButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TUTULOS_CLARO;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 40px;
+    /*-fx-pref-width: 100px;*/
+}
+.searchButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER';
+    -fx-background-color: #515A67;
+    -fx-background-radius:  0 15 15 0;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 60px;
+}
+.numberButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #515A67;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 70px;
+    -fx-pref-width: 70px;
+}
+.clearButtonLarge{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #515A67;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 70px;
+    -fx-pref-width: 155px;
+}
+.darkButtonLeft{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: #40444F;
+
+    -fx-background-color: #8FADBB;
+    -fx-background-radius: 0 10px 10 0;
+    -fx-min-height: 60px;
+    -fx-pref-width: 185px;
+}
+.redButtonLeft{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: #F2CED7;
+
+    -fx-background-color: #7C2034;
+    -fx-background-radius: 0 10px 10 0;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 185px;
+}
+
+.confirmButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TEXTO-VERDE;
+
+    -fx-background-color: -FONDO-VERDE;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 40px;
+}
+
+.cancelButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TEXTO-ROJO;
+
+    -fx-background-color: -FONDO-ROJO;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 40px;
+}
+
+.clock{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-background-color: #515A67;
+    -fx-alignment: 'CENTER';
+    -fx-spacing: 10px;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 200px;
+    -fx-pref-width: 550px;
+    -fx-column-halignment: "CENTER";
+    /*-fx-padding: 0 200px 2000px 0;*/
+}
+
+.camera{
+    /*-fx-font-family: 'Fira Sans';*/
+    /*-fx-font-size: 30px;*/
+    /*-fx-text-fill: #E0EEF6;*/
+
+    -fx-background-color: #515A67;
+    -fx-alignment: 'CENTER';
+    -fx-spacing: 10px;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 300px;
+    -fx-pref-width: 300px;
+    -fx-column-halignment: "CENTER";
+    /*-fx-padding: 0 200px 2000px 0;*/
+}

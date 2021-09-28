@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -68,7 +69,7 @@ public class FlowController {
             synchronized (FlowController.class) {
                 if (loader == null) {
                     try {
-                        loader = new FXMLLoader(App.class.getResource("view/" + name + ".fxml"), this.idioma);
+                        loader = new FXMLLoader(App.class.getResource("/cr/ac/una/marcador/views/" + name + ".fxml"), this.idioma);
                         loader.load();
                         loaders.put(name, loader);
                     } catch (Exception ex) {
@@ -86,10 +87,29 @@ public class FlowController {
 
     public void goMain() {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/marcador/views/baseView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/marcador/views/menuPrincipal.fxml"), this.idioma)));
             this.mainStage.initStyle(StageStyle.UNDECORATED);
 //            this.mainStage.centerOnScreen();
+
+            this.mainStage.show();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
+        }
+    }
+    public void goMarcas() {
+        try {
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/marcador/views/baseView.fxml"), this.idioma)));
+//            this.mainStage.getS;
             this.mainStage.setFullScreen(true);
+            this.mainStage.show();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
+        }
+    }
+    public void goMantenimiento() {
+        try {
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/marcador/views/baseContainer.fxml"), this.idioma)));
+//            this.mainStage.getS;
             this.mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
@@ -132,7 +152,8 @@ public class FlowController {
         }
     }
 
-    public void goViewInStage(String viewName, Stage stage) {
+    public void goViewInStage(String viewName) {
+        Stage stage = new Stage();
         FXMLLoader loader = getLoader(viewName);
         Controller controller = loader.getController();
         controller.setStage(stage);
@@ -145,7 +166,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = new Stage();
 //        stage.getIcons().add(new Image(App.class.getResourceAsStream("/cr/ac/una/unaplanilla/resources/Usuario-48.png")));
-        stage.setTitle("UNA PLANILLA");
+//        stage.setTitle("UNA PLANILLA");
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
@@ -155,9 +176,11 @@ public class FlowController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.centerOnScreen();
+        this.mainStage = stage;
         stage.show();
+
     }
-    
+
     public void goLogInWindowModal(Boolean resizable) {
         goViewInWindowModal("LogIng2", this.controller.getStage(), resizable);
     }
@@ -167,7 +190,7 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-//        stage.getIcons().add(new Image(App.class.getResourceAsStream("/cr/ac/una/unaplanilla/resources/Usuario-48.png")));
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/cr/ac/una/unaplanilla/resources/Usuario-48.png")));
         stage.setTitle("UNA PLANILLA");
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
@@ -192,7 +215,7 @@ public class FlowController {
     public static void setIdioma(ResourceBundle idioma) {
         FlowController.idioma = idioma;
     }
-    
+
     public void initialize() {
         this.loaders.clear();
     }
@@ -200,5 +223,9 @@ public class FlowController {
     public void salir() {
         this.mainStage.close();
     }
+    public void hide() {
+        this.mainStage.hide();
+    }
+
 
 }

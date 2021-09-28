@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" styleClass="mainWindow" stylesheets="@../stylesheets/menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.menuPrincipalController">
+   <children>
+      <VBox alignment="CENTER" layoutX="270.0" layoutY="162.0" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="700.0">
+               <children>
+                  <Label styleClass="clearHeading2" text="RELOJ UNA" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" spacing="25.0">
+               <children>
+                  <JFXButton fx:id="btnMarcas" onAction="#onAction_btnMarcas" styleClass="menuButton" text="MARCAS" />
+                  <JFXButton fx:id="btnMantenimiento" onAction="#onAction_btnMantenimiento" styleClass="menuButton" text="MANTENIMIENTO" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="700.0">
+               <children>
+                  <JFXButton fx:id="btnSalir" onAction="#onAction_btnSalir" styleClass="salir" text="SALIR" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

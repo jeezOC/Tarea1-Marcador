@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans_Bold.ttf');
+}
+
+.date-picker {
+    -fx-text-alignment: 'CENTER';
+    -fx-alignment: 'CENTER';
+    -fx-base: #515A67;
+    -fx-background:-FONDO-OSCURO-SEC ;
+    /*-fx-background-radius: 11px;*/
+
+    -fx-pref-height: 20px;
+    -fx-pref-width: 200px;
+    -fx-control-inner-background: -FONDO-OSCURO-SEC;
+    -fx-control-inner-background-alt: derive(-fx-control-inner-background, 10.5%);
+
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TUTULOS_CLARO;
+}
+
+.date-picker .cell {
+    -fx-border-color: #515A67;
+}
+.date-picker .text-field {
+    -fx-text-alignment: 'CENTER';
+    -fx-alignment: 'CENTER';
+    /*-fx-highlight-text-fill: TRANSPARENT;*/
+
+    -fx-background-radius: 10 0 0 10;
+}
+.jfx-date-picker .input-unfocused-line{
+    -fx-pref-height: 0px;
+}
+.jfx-date-picker .input-focused-line{
+    -fx-pref-height: 0px;
+}
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: -TUTULOS_CLARO;
+}
+.date-picker .arrow-button {
+    -fx-background-color: -FONDO-CLARO-PRIM;
+    -fx-background-radius: 0 10 10 0;
+}
+.date-picker .arrow-button .arrow {
+    -fx-background-color:  -TUTULOS_CLARO;
+}
+/*.date-picker .default-color {*/
+/*    -fx-background-color:  -FONDO-OSCURO-PRIM;*/
+/*}*/

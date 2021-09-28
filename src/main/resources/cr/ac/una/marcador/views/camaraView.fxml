@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="root" spacing="50.0" styleClass="darkMainWindow" stylesheets="@../stylesheets/mantenimientoStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.camaraTestController">
+   <children>
+      <AnchorPane fx:id="paneCamera" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="camera" stylesheets="@../stylesheets/reloj.css">
+         <children>
+            <ImageView fx:id="wcView" fitHeight="200.0" fitWidth="200.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="25.0" styleClass="numpadCard">
+         <children>
+            <JFXButton fx:id="btnInitCamera" onAction="#onAction_btnInitCamera" styleClass="primaryButton" text="INICIAR" />
+            <JFXButton fx:id="btnReintentar" onAction="#onAction_btnReintentar" styleClass="primaryButton" text="CAPTURAR" />
+            <JFXButton fx:id="btnConfirmar" onAction="#onAction_btnConfirmar" styleClass="confirmButton" text="CONFIRMAR" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

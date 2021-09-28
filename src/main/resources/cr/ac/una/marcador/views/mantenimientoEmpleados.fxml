@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.mantEmpleadosController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
+         <children>
+            <Label styleClass="clearHeading2" text="MANTENIMIENTO EMPLEADOS" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1100.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
+                     <children>
+                        <Label styleClass="clearHeading2" text="DATOS:" />
+                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="FOLIO:" />
+                              <TextField fx:id="txtFolio" styleClass="darkTextField" />
+                           </children>
+                        </HBox>
+                        <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="primaryButton" text="BUSCAR" />
+                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="NOMBRE:" />
+                              <TextField fx:id="txtNombre" prefWidth="250.0" styleClass="darkTextField" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="APELLIDO:" />
+                              <TextField fx:id="txtApellido" prefWidth="300.0" styleClass="darkTextField" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="CEDULA:" />
+                              <TextField fx:id="txtCedula" styleClass="darkTextField" />
+                           </children>
+                        </HBox>
+                        <JFXToggleButton fx:id="tggEsAdministrador" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkLabel" text="ADMINISTRADOR" toggleColor="#7497a7" toggleLineColor="#698594" />
+                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="FECHA DE NACIMIENTO:" />
+                              <JFXDatePicker fx:id="dpFechaNacimiento" defaultColor="#7497a7" styleClass="darkTextField" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="500.0" spacing="15.0">
+               <children>
+                  <Label fx:id="lblFolio" styleClass="clearHeading2" text="FOLIO:" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="photoView">
+                     <children>
+                        <ImageView fx:id="imgFotoEmpleado" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="photoView" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="lblNombre" styleClass="clearHeading2" text="NOMBRE:" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="500.0" spacing="30.0">
+                     <children>
+                        <JFXButton fx:id="btnCambiarFoto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCambiarFoto" styleClass="primaryButton" text="CAMBIAR FOTO" />
+                     </children>
+                  </HBox>
+               </children></VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="700.0" spacing="30.0">
+         <children>
+            <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="cancelButton" text="BORRAR" />
+            <JFXButton fx:id="btnEditar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnEditar" styleClass="primaryButton" text="EDITAR" />
+            <JFXButton fx:id="btnLimpiar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnLimpiar" styleClass="primaryButton" text="LIMPIAR" />
+            <JFXButton fx:id="btnNuevo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnNuevo" styleClass="confirmButton" text="NUEVO" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../stylesheets/datePicker2.css" />
+      <URL value="@../stylesheets/mantenimientoStyle.css" />
+   </stylesheets>
+</VBox>

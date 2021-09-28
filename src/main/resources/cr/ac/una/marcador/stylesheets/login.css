@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans_Bold.ttf');
+}
+*{
+    /*COLORES:*/
+    -FONDO-OSCURO-PRIM: #40444F;
+    -FONDO-OSCURO-SEC: #515A67;
+    -FONDO-CLARO-PRIM: #7497A7;
+    -FONDO-CLARO-SEC: #698594;
+    -TUTULOS-CLARO: #E0EEF6;
+    -TITULOS-OSCURO: #8FADBB;
+    -FONDO-VERDE: #3A7361;
+    -TEXTO-VERDE: #C9E4DB;
+    -FONDO-ROJO: #7C2034;
+    -TEXTO-ROJO: #F2CED7;
+}
+.darkLoginWindow{
+    -fx-background-color: -FONDO-OSCURO-PRIM;
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 500px;
+    -fx-pref-width: 500px;
+}
+
+.darkTextField{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER';
+    -fx-background-color: #515A67;
+    -fx-background-radius:  0 15 15 0 ;
+    -fx-pref-height: 40px;
+    /*-fx-pref-width: ;*/
+}
+.darkLabel{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: -FONDO-CLARO-PRIM;
+
+    /*-fx-alignment: 'CENTER';*/
+    -fx-pref-height: 40px;
+}
+.darkBoxLabel{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-alignment: 'CENTER-RIGHT';
+    -fx-background-color: #515A67;
+    -fx-background-radius: 15px 0 0 15;
+    -fx-pref-height: 40px;
+    /*-fx-pref-width: 1rem;*/
+    -fx-background-insets: 0 0 0 -15px;
+}
+
+.primaryButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TUTULOS-CLARO;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 40px;
+    /*-fx-pref-width: 100px;*/
+}
+.confirmButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TEXTO-VERDE;
+
+    -fx-background-color: -FONDO-VERDE;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 45px;
+}
+
+.cancelButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: -TEXTO-ROJO;
+
+    -fx-background-color: -FONDO-ROJO;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 45px;
+}

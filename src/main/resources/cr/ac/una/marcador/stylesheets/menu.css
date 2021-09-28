@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans_Bold.ttf');
+}
+*{
+    /*COLORES:*/
+    -FONDO-OSCURO-PRIM: #40444F;
+    -FONDO-OSCURO-SEC: #515A67;
+    -FONDO-CLARO-PRIM: #7497A7;
+    -FONDO-CLARO-SEC: #698594;
+    -TUTULOS_CLARO: #E0EEF6;
+    -TITULOS-OSCURO: #8FADBB;
+    -FONDO-VERDE: #3A7361;
+    -TEXTO-VERDE: #C9E4DB;
+    -FONDO-ROJO: #7C2034;
+    -TEXTO-ROJO: #F2CED7;
+}
+.mainWindow{
+    -fx-background-color: #40444F;
+    -fx-alignment: 'CENTER';
+    -fx-pref-height: 600px;
+    -fx-pref-width: 700px;
+}
+
+.clearHeading2{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 35px;
+    -fx-text-fill: #E0EEF6;
+}
+.txtLabel{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 20px;
+    -fx-text-fill: #E0EEF6;
+    -fx-pref-height: 40px;
+}
+.menuButton{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: #E0EEF6;
+
+    -fx-background-color: #7497A7;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 300px;
+    -fx-pref-width: 300px;
+    /*-fx-pref-width: 100px;*/
+}
+.salir{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-text-fill: -TEXTO-ROJO;
+    -fx-background-color: -FONDO-ROJO;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 50px;
+}

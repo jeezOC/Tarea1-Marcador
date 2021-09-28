@@ -6,12 +6,15 @@ module cr.ac.una.marcador {
     requires java.logging;
     requires com.jfoenix;
     requires javaee.web.api;
-    
-    opens cr.ac.una.marcador.controller to javafx.fxml;
-    exports cr.ac.una.marcador;
-//   exports cr.ac.una.marcador.controller;
     requires java.xml.ws;
     requires java.jws;
-   
-  
+    requires webcam.capture;
+    requires java.desktop;
+
+
+    opens cr.ac.una.marcador to javafx.fxml, javafx.graphics;
+    opens cr.ac.una.marcador.controller to javafx.fxml, javafx.controls, com.jfoenix;
+    exports cr.ac.una.marcador;
+
+
 }

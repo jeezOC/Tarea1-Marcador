@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="darkMainWindow" stylesheets="@../stylesheets/mantenimientoStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.baseContController">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="leftPanelClear" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="btnMantEmp" onAction="#onAction_btnMantEmp" styleClass="darkButtonLeft" text="MANTENIMIENTO&#10;DE EMPLEADOS" textAlignment="CENTER" />
+            <JFXButton fx:id="btnManMarc" onAction="#onAction_btnManMarc" styleClass="darkButtonLeft" text="MANTENIMIENTO &#10;DE MARCAS" textAlignment="CENTER" />
+            <JFXButton fx:id="btnReportes" onAction="#onAtion_btnReportes" styleClass="darkButtonLeft" text="REPORTES" textAlignment="CENTER" />
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="btnSalir" onAction="#onAction_btnSalir" styleClass="redButtonLeft" text="SALIR" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox fx:id="centerVBox" alignment="CENTER" prefHeight="700.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="clearHeading1" text="BIENVENIDO!" />
+         </children></VBox>
+   </center>
+</BorderPane>
