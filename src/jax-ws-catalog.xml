@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/WSTarea/WSTarea?wsdl" uri="wsdl/localhost_8080/WSTarea/WSTarea.wsdl"/>
     <system systemId="http://localhost:8080/WSTarea/WSTarea?xsd=1" uri="wsdl/localhost_8080/WSTarea/WSTarea.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/relojunaWS/relojunaWS?wsdl" uri="wsdl/localhost_8080/relojunaWS/relojunaWS.wsdl"/>
+    <system systemId="http://localhost:8080/relojunaWS/relojunaWS?xsd=1" uri="wsdl/localhost_8080/relojunaWS/relojunaWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WS/relojunaws?wsdl" uri="wsdl/localhost_8080/WS/relojunaws.wsdl"/>
+    <system systemId="http://localhost:8080/WS/relojunaws?xsd=1" uri="wsdl/localhost_8080/WS/relojunaws.xsd_1.xsd"/>
 </catalog>

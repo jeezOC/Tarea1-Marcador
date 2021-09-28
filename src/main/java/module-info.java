@@ -9,8 +9,9 @@ module cr.ac.una.marcador {
     
     opens cr.ac.una.marcador.controller to javafx.fxml;
     exports cr.ac.una.marcador;
-//    exports cr.ac.una.marcador.controller;
+//   exports cr.ac.una.marcador.controller;
     requires java.xml.ws;
     requires java.jws;
+   
   
 }

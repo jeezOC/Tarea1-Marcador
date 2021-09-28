@@ -239,6 +239,7 @@ public class BaseViewController extends Controller implements Initializable {
     }
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
+        
         nFolio="";
         txtFolio.setText("");
 //check db
