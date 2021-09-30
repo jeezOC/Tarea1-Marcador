@@ -18,25 +18,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        //Elimina advertencia, al realizar consultas al soap. https://github.com/javaee/metro-jax-ws/issues/1237
+        System.setProperty("javax.xml.soap.SAAJMetaFactory", "com.sun.xml.messaging.saaj.soap.SAAJMetaFactoryImpl");
+ //       
 //        scene = new Scene(loadFXML("primary"), 640, 480);
 //        stage.setScene(scene);
 //        stage.show();
-
         FlowController.getInstance().InitializeFlow(stage, null);
 
         FlowController.getInstance().goMain();
 
 //        FlowController.getInstance().goView("baseView");
     }
-//
-//    static void setRoot(String fxml) throws IOException {
-//        scene.setRoot(loadFXML(fxml));
-//    }
-//
-//    private static Parent loadFXML(String fxml) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-//        return fxmlLoader.load();
-//    }
 
     public static void main(String[] args) {
         launch();

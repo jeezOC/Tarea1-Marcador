@@ -13,6 +13,6 @@ You can copy and paste the single properties, into the pom.xml file and the IDE 
 That way multiple projects can share the same settings (useful for formatting rules for example).
 Any value defined here will override the pom.xml file value but is only applicable to the current project.
 -->
-        <org-netbeans-modules-maven-jaxws._5f_C_5f_relojunaws>http://localhost:8080/WS/relojunaws?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_relojunaws>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_WS>http://localhost:8080/relojunaWS/WS?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_WS>
     </properties>
 </project-shared-configuration>

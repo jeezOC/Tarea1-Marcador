@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 public class loginController extends Controller implements Initializable {
 
     @FXML
@@ -31,12 +30,23 @@ public class loginController extends Controller implements Initializable {
 
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
-        if(txtID.getText().equals("una") && txtContra.getText().equals("una")){
-            FlowController.getInstance().hide();
-            FlowController.getInstance().goViewInWindow("baseContainer");
-        }else{
-            System.out.print("error");
-
+        
+        try { // Call Web Service Operation
+            cr.ac.una.relojunaws.WS service = new cr.ac.una.relojunaws.WS();
+            cr.ac.una.relojunaws.Relojunaws port = service.getRelojunawsPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String folio = txtID.getText();
+            java.lang.String psswrd = txtContra.getText();
+            // TODO process result here
+            cr.ac.una.relojunaws.Respuesta result = port.login(folio, psswrd);
+            if(result.isEstado()){
+                System.out.println("Felicidades, haz conseguido consultar el WS-SOAP");
+                System.out.println("SIUUUUUUUUUUUUUUUUUUUUUUUU");
+                FlowController.getInstance().hide();
+                FlowController.getInstance().goViewInWindow("baseContainer");
+            }
+        } catch (Exception ex) {
+            System.out.println("Result = "+ex);
         }
     }
 

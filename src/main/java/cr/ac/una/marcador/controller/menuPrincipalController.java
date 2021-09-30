@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3.payara-p5 (2.4.3.payara-maintenance-5307578; 2021-04-22T12:36:46+0100) JAXWS-RI/2.3.2.payara-p4 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://relojunaws.una.ac.cr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://relojunaws.una.ac.cr/">
+
+<xs:element name="buscarEmpleadoFolio" type="tns:buscarEmpleadoFolio"/>
+
+<xs:element name="buscarEmpleadoFolioResponse" type="tns:buscarEmpleadoFolioResponse"/>
+
+<xs:element name="crearReporte" type="tns:crearReporte"/>
+
+<xs:element name="crearReporteResponse" type="tns:crearReporteResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="login" type="tns:login"/>
+
+<xs:element name="loginResponse" type="tns:loginResponse"/>
+
+<xs:complexType name="login">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="psswrd" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="respuesta">
+<xs:sequence>
+<xs:element name="codigoRespuesta" type="tns:codigoRespuesta" minOccurs="0"/>
+<xs:element name="estado" type="xs:boolean" minOccurs="0"/>
+<xs:element name="mensaje" type="xs:string" minOccurs="0"/>
+<xs:element name="mensajeInterno" type="xs:string" minOccurs="0"/>
+<xs:element name="resultado" type="xs:anyType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearReporte">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="crearReporteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarEmpleadoFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarEmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleadoDto">
+<xs:sequence>
+<xs:element name="admin" type="xs:boolean"/>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="lastname" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="psswr" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="codigoRespuesta">
+<xs:restriction base="xs:string">
+<xs:enumeration value="CORRECTO"/>
+<xs:enumeration value="ERROR_ACCESO"/>
+<xs:enumeration value="ERROR_PERMISOS"/>
+<xs:enumeration value="ERROR_NOENCONTRADO"/>
+<xs:enumeration value="ERROR_CLIENTE"/>
+<xs:enumeration value="ERROR_INTERNO"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
