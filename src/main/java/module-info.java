@@ -16,6 +16,7 @@ module cr.ac.una.marcador {
     opens cr.ac.una.relojunaws;
     opens cr.ac.una.marcador to javafx.fxml, javafx.graphics;
     opens cr.ac.una.marcador.controller to javafx.fxml, javafx.controls, com.jfoenix;
+    
     exports cr.ac.una.marcador;
 
 

@@ -2,6 +2,7 @@ package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.marcador.util.FlowController;
+import cr.ac.una.marcador.util.wsConsumer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,15 +32,12 @@ public class loginController extends Controller implements Initializable {
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
         
-        try { // Call Web Service Operation
-            cr.ac.una.relojunaws.WS service = new cr.ac.una.relojunaws.WS();
-            cr.ac.una.relojunaws.Relojunaws port = service.getRelojunawsPort();
-            // TODO initialize WS operation arguments here
-            java.lang.String folio = txtID.getText();
-            java.lang.String psswrd = txtContra.getText();
-            // TODO process result here
-            cr.ac.una.relojunaws.Respuesta result = port.login(folio, psswrd);
-            if(result.isEstado()){
+        try {
+            String folio = txtID.getText();
+            String psswrd = txtContra.getText();
+            
+            boolean isAmind = wsConsumer.getInstance().login(folio, psswrd);
+            if(wsConsumer.getInstance().login(folio, psswrd)){
                 System.out.println("Felicidades, haz conseguido consultar el WS-SOAP");
                 System.out.println("SIUUUUUUUUUUUUUUUUUUUUUUUU");
                 FlowController.getInstance().hide();

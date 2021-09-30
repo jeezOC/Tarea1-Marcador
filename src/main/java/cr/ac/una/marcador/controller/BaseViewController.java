@@ -240,18 +240,18 @@ public class BaseViewController extends Controller implements Initializable {
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
         
-        try { // Call Web Service Operation
-
-            cr.ac.una.relojunaws.WS service = new cr.ac.una.relojunaws.WS();
-            cr.ac.una.relojunaws.Relojunaws port = service.getRelojunawsPort();
-            // TODO initialize WS operation arguments here
-            java.lang.String name = txtFolio.getText().toString();
-            // TODO process result here
-            java.lang.String result = port.hello(name);
-            System.out.println("Result = "+result);
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
+//        try { // Call Web Service Operation
+//
+//            cr.ac.una.relojunaws.WS service = new cr.ac.una.relojunaws.WS();
+//            cr.ac.una.relojunaws.Relojunaws port = service.getRelojunawsPort();
+//            // TODO initialize WS operation arguments here
+//            java.lang.String name = txtFolio.getText().toString();
+//            // TODO process result here
+//            java.lang.String result = port.hello(name);
+//            System.out.println("Result = "+result);
+//        } catch (Exception ex) {
+//            System.out.println(ex.toString());
+//        }
 
         nFolio="";
         txtFolio.setText("");
