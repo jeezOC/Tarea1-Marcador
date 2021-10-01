@@ -1,11 +1,15 @@
 package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.marcador.util.Mensaje;
+import cr.ac.una.marcador.util.Respuesta;
+import cr.ac.una.marcador.util.wsConsumer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -152,8 +156,6 @@ public class BaseViewController extends Controller implements Initializable {
                           grdClock.add(aux2,4,1);
                           grdClock.add(aux3,2,1);
                           grdClock.add(aux4,0,1);
-
-
                       });
 
                       try {
@@ -239,19 +241,15 @@ public class BaseViewController extends Controller implements Initializable {
     }
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
-        
-//        try { // Call Web Service Operation
-//
-//            cr.ac.una.relojunaws.WS service = new cr.ac.una.relojunaws.WS();
-//            cr.ac.una.relojunaws.Relojunaws port = service.getRelojunawsPort();
-//            // TODO initialize WS operation arguments here
-//            java.lang.String name = txtFolio.getText().toString();
-//            // TODO process result here
-//            java.lang.String result = port.hello(name);
-//            System.out.println("Result = "+result);
-//        } catch (Exception ex) {
-//            System.out.println(ex.toString());
-//        }
+        String folio = txtFolio.getText().toString();
+        wsConsumer.getInstance().existeEmpleado(folio);
+
+        if(wsConsumer.getInstance().getRespuesta().isEstado()){
+//            wsConsumer.getInstance().crearMarca(folio);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), "Marca realizada correctamente");
+        }else{
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
+        }
 
         nFolio="";
         txtFolio.setText("");

@@ -18,14 +18,14 @@ TEXTO ROJO: F2CED7
 .darkMainWindow{
     -fx-background-color: #40444F;
     -fx-alignment: 'CENTER';
-    -fx-pref-height: 1000px;
-    -fx-pref-width: 1366px;
+    -fx-pref-height: 800px;
+    -fx-pref-width: 1100px;
 }
 .emptyCard{
     -fx-alignment: 'TOP-CENTER';
-    -fx-spacing: 25px;
-    -fx-pref-height: 1000px;
-    -fx-pref-width: 1366px;
+    -fx-spacing: 0px;
+    -fx-pref-height: 800px;
+    -fx-pref-width: 1100px;
 }
 .numpadCard{
     -fx-alignment: 'CENTER';
@@ -112,7 +112,7 @@ TEXTO ROJO: F2CED7
     -fx-background-color: #3A7361;
     -fx-background-radius: 25px;
     -fx-pref-height: 100px;
-    -fx-pref-width: 500px;
+    -fx-pref-width: 350px;
 }
 
 .cancelButton{

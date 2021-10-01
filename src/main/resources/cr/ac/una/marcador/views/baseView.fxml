@@ -16,57 +16,69 @@
          <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="emptyCard">
                <children>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1366.0" spacing="15.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
                      <children>
-                        <Label styleClass="clearHeading1" text="Sistema de control de horas" />
-                        <GridPane fx:id="grdClock" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="clock">
-                          <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="5.0" prefWidth="3.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="65.0" prefWidth="65.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="3.0" prefWidth="3.0" />
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="150.0" prefWidth="150.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
+                        <Label styleClass="clearHeading1" text="RELOJ UNA" />
                      </children>
-                  </VBox>
-                  <TextField fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Folio" styleClass="darkTextField" />
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="100.0" styleClass="numpadCard">
+                  </HBox>
+                  <HBox>
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="650.0" spacing="15.0">
                            <children>
-                              <JFXButton fx:id="btnUno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnUno" styleClass="numberButton" text="1" />
-                              <JFXButton fx:id="btnDos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnDos" styleClass="numberButton" text="2" />
-                              <JFXButton fx:id="btnTres" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnTres" styleClass="numberButton" text="3" />
+                              <GridPane fx:id="grdClock" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="clock">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="5.0" prefWidth="3.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="65.0" prefWidth="65.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="3.0" prefWidth="3.0" />
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="150.0" prefWidth="150.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" spacing="30.0">
                            <children>
-                              <JFXButton fx:id="btnCuatro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCuatro" styleClass="numberButton" text="4" />
-                              <JFXButton fx:id="btnCinco" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCinco" styleClass="numberButton" text="5" />
-                              <JFXButton fx:id="btnSeis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnSeis" styleClass="numberButton" text="6" />
+                              <TextField fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Folio" styleClass="darkTextField" />
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="100.0" styleClass="numpadCard">
+                                 <children>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
+                                       <children>
+                                          <JFXButton fx:id="btnUno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnUno" styleClass="numberButton" text="1" />
+                                          <JFXButton fx:id="btnDos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnDos" styleClass="numberButton" text="2" />
+                                          <JFXButton fx:id="btnTres" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnTres" styleClass="numberButton" text="3" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
+                                       <children>
+                                          <JFXButton fx:id="btnCuatro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCuatro" styleClass="numberButton" text="4" />
+                                          <JFXButton fx:id="btnCinco" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCinco" styleClass="numberButton" text="5" />
+                                          <JFXButton fx:id="btnSeis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnSeis" styleClass="numberButton" text="6" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
+                                       <children>
+                                          <JFXButton fx:id="btnSiete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnSiete" styleClass="numberButton" text="7" />
+                                          <JFXButton fx:id="btnOcho" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnOcho" styleClass="numberButton" text="8" />
+                                          <JFXButton fx:id="Nueve" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnNueve" styleClass="numberButton" text="9" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
+                                       <children>
+                                          <JFXButton fx:id="btnCero" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCero" styleClass="numberButton" text="0" />
+                                          <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="numberButtonLarge" text="BORRAR" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <JFXButton fx:id="btnConfirmar" onAction="#onAction_btnConfirmar" styleClass="confirmButton" text="Confirmar" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
-                           <children>
-                              <JFXButton fx:id="btnSiete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnSiete" styleClass="numberButton" text="7" />
-                              <JFXButton fx:id="btnOcho" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnOcho" styleClass="numberButton" text="8" />
-                              <JFXButton fx:id="Nueve" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnNueve" styleClass="numberButton" text="9" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="270.0" spacing="15.0">
-                           <children>
-                              <JFXButton fx:id="btnCero" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnCero" styleClass="numberButton" text="0" />
-                              <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="numberButtonLarge" text="BORRAR" />
-                           </children>
-                        </HBox>
+                        </VBox>
                      </children>
-                  </VBox>
-                  <JFXButton fx:id="btnConfirmar" onAction="#onAction_btnConfirmar" styleClass="confirmButton" text="Confirmar" />
+                  </HBox>
                </children>
             </VBox>
          </children>

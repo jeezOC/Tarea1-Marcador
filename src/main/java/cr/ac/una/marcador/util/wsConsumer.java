@@ -28,15 +28,23 @@ public class wsConsumer {
         return INSTANCE;
     }
 
+    public Respuesta getRespuesta(){
+        return respuesta;
+    }
     public cr.ac.una.relojunaws.Relojunaws getPort(){
         return port;
     };
 
-    // TODO initialize WS operation arguments here
-
-    // TODO process result here
-    public Boolean login(String folio,String psswrd){
+    public Boolean validarFolioContrasena(String folio,String psswrd){
         respuesta = port.login(folio, psswrd);
         return respuesta.isEstado();
     }
+    public Respuesta existeEmpleado(String folio){
+        respuesta = port.existeEmpleado(folio);
+        return respuesta;
+    }
+//    public Boolean crearMarca(String folio ){
+////        respuesta = port.login(folio);
+//        return respuesta.isEstado();
+//    }
 }

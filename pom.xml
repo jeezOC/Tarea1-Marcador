@@ -140,7 +140,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>    
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
@@ -158,7 +158,7 @@
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
-                            <wsdlLocation>http://localhost:8080/relojunaWS/WS?WSDL</wsdlLocation>
+                            <wsdlLocation>http://localhost:8080/relojunaWS/WS?wsdl</wsdlLocation>
                             <staleFile>${project.build.directory}/jaxws/stale/WS.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-WS</id>

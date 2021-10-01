@@ -4,11 +4,11 @@
 <xsd:import namespace="http://relojunaws.una.ac.cr/" schemaLocation="http://localhost:8080/relojunaWS/WS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="buscarEmpleadoFolio">
-<part name="parameters" element="tns:buscarEmpleadoFolio"/>
+<message name="existeEmpleado">
+<part name="parameters" element="tns:existeEmpleado"/>
 </message>
-<message name="buscarEmpleadoFolioResponse">
-<part name="parameters" element="tns:buscarEmpleadoFolioResponse"/>
+<message name="existeEmpleadoResponse">
+<part name="parameters" element="tns:existeEmpleadoResponse"/>
 </message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
@@ -28,10 +28,16 @@
 <message name="crearReporteResponse">
 <part name="parameters" element="tns:crearReporteResponse"/>
 </message>
+<message name="buscarEmpleadoFolio">
+<part name="parameters" element="tns:buscarEmpleadoFolio"/>
+</message>
+<message name="buscarEmpleadoFolioResponse">
+<part name="parameters" element="tns:buscarEmpleadoFolioResponse"/>
+</message>
 <portType name="relojunaws">
-<operation name="buscarEmpleadoFolio">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioRequest" message="tns:buscarEmpleadoFolio"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioResponse" message="tns:buscarEmpleadoFolioResponse"/>
+<operation name="existeEmpleado">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
 </operation>
 <operation name="login">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginRequest" message="tns:login"/>
@@ -45,10 +51,14 @@
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearReporteRequest" message="tns:crearReporte"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearReporteResponse" message="tns:crearReporteResponse"/>
 </operation>
+<operation name="buscarEmpleadoFolio">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioRequest" message="tns:buscarEmpleadoFolio"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioResponse" message="tns:buscarEmpleadoFolioResponse"/>
+</operation>
 </portType>
 <binding name="relojunawsPortBinding" type="tns:relojunaws">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="buscarEmpleadoFolio">
+<operation name="existeEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -76,6 +86,15 @@
 </output>
 </operation>
 <operation name="crearReporte">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="buscarEmpleadoFolio">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

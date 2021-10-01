@@ -36,10 +36,8 @@ public class loginController extends Controller implements Initializable {
             String folio = txtID.getText();
             String psswrd = txtContra.getText();
             
-            boolean isAmind = wsConsumer.getInstance().login(folio, psswrd);
-            if(wsConsumer.getInstance().login(folio, psswrd)){
-                System.out.println("Felicidades, haz conseguido consultar el WS-SOAP");
-                System.out.println("SIUUUUUUUUUUUUUUUUUUUUUUUU");
+            boolean isAmind = wsConsumer.getInstance().validarFolioContrasena(folio, psswrd);
+            if(isAmind){
                 FlowController.getInstance().hide();
                 FlowController.getInstance().goViewInWindow("baseContainer");
             }

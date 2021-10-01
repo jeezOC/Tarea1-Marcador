@@ -7,5 +7,6 @@
     <system systemId="http://localhost:8080/WS/relojunaws?wsdl" uri="wsdl/localhost_8080/WS/relojunaws.wsdl"/>
     <system systemId="http://localhost:8080/WS/relojunaws?xsd=1" uri="wsdl/localhost_8080/WS/relojunaws.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/relojunaWS/WS?WSDL" uri="wsdl/localhost_8080/relojunaWS/WS.wsdl"/>
+    <system systemId="http://localhost:8080/relojunaWS/WS?wsdl" uri="wsdl/localhost_8080/relojunaWS/WS.wsdl"/>
     <system systemId="http://localhost:8080/relojunaWS/WS?xsd=1" uri="wsdl/localhost_8080/relojunaWS/WS.xsd_1.xsd"/>
 </catalog>

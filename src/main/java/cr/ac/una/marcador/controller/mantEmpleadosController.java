@@ -41,6 +41,9 @@ public class mantEmpleadosController extends Controller implements Initializable
     private JFXDatePicker dpFechaNacimiento;
 
     @FXML
+    private TextField txtContra;
+
+    @FXML
     private Label lblFolio;
 
     @FXML
@@ -81,26 +84,20 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @FXML
     void onAction_btnLimpiar(ActionEvent event) {
-
+        clearAll();
+        disableAll(true);
     }
 
     @FXML
     void onAction_btnNuevo(ActionEvent event) {
         if(isNuevo){
-            txtFolio.setText("");
-            txtFolio.setDisable(true);
-            txtCedula.setDisable(false);
-            txtNombre.setDisable(false);
-            txtApellido.setDisable(false);
-            dpFechaNacimiento.setDisable(false);
+            clearAll();
+            disableAll(false);
             btnNuevo.setText("GUARDAR");
             isNuevo = false;
         }else{
-            txtFolio.setDisable(false);
-            txtCedula.setDisable(true);
-            txtNombre.setDisable(true);
-            txtApellido.setDisable(true);
-            dpFechaNacimiento.setDisable(true);
+//            clearAll();
+            disableAll(true);
             btnNuevo.setText("NUEVO");
             isNuevo = true;
         }
@@ -118,11 +115,29 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        isNuevo = true;
-        txtFolio.setDisable(false);
-        txtCedula.setDisable(true);
-        txtNombre.setDisable(true);
-        txtApellido.setDisable(true);
-        dpFechaNacimiento.setDisable(true);
+        disableAll(true);
+    }
+
+
+
+    void disableAll(boolean disable){
+        txtFolio.setText("");
+        txtFolio.setDisable(!disable);
+        txtCedula.setDisable(disable);
+        txtNombre.setDisable(disable);
+        txtApellido.setDisable(disable);
+        dpFechaNacimiento.setDisable(disable);
+        txtContra.setDisable(disable);
+    }
+    void clearAll(){
+        txtFolio.setText("");
+        txtFolio.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        dpFechaNacimiento.setPromptText("");
+        txtContra.setText("");
     }
 }
+
+

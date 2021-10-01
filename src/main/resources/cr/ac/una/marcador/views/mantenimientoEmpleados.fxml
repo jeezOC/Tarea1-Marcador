@@ -94,6 +94,14 @@
                      <padding>
                         <Insets left="30.0" />
                      </padding>
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="CONTRASEÑA:" />
+                              <TextField fx:id="txtContra" styleClass="darkTextField" />
+                           </children>
+                        </HBox>
+                     </children>
                   </HBox>
                </children>
             </VBox>
