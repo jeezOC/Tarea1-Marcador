@@ -12,6 +12,7 @@
             <JFXButton fx:id="btnMantEmp" onAction="#onAction_btnMantEmp" styleClass="darkButtonLeft" text="MANTENIMIENTO&#10;DE EMPLEADOS" textAlignment="CENTER" />
             <JFXButton fx:id="btnManMarc" onAction="#onAction_btnManMarc" styleClass="darkButtonLeft" text="MANTENIMIENTO &#10;DE MARCAS" textAlignment="CENTER" />
             <JFXButton fx:id="btnReportes" onAction="#onAtion_btnReportes" styleClass="darkButtonLeft" text="REPORTES" textAlignment="CENTER" />
+            <JFXButton fx:id="btnMarcador" onAction="#onAtion_btnMarcador" styleClass="darkButtonLeft" text="MARCADOR" textAlignment="CENTER" />
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <JFXButton fx:id="btnSalir" onAction="#onAction_btnSalir" styleClass="redButtonLeft" text="SALIR" textAlignment="CENTER" />

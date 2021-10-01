@@ -32,6 +32,9 @@ public class baseContController extends Controller implements Initializable {
     private JFXButton btnReportes;
 
     @FXML
+    private JFXButton btnMarcador;
+
+    @FXML
     private JFXButton btnSalir;
 
 
@@ -91,7 +94,6 @@ public class baseContController extends Controller implements Initializable {
                 FlowController.getInstance().goView("mantenimientoEmpleados");
                 centerVBox.setVisible(true);
                 showCenter.play();
-
             }
         });
         hideCenter.play();
@@ -105,7 +107,11 @@ public class baseContController extends Controller implements Initializable {
 
     @FXML
     void onAtion_btnReportes(ActionEvent event) {
-
+       FlowController.getInstance().goView("reportesView");
+    }
+    @FXML
+    void onAtion_btnMarcador(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("baseView");
     }
 
     @Override
