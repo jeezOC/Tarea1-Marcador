@@ -1,5 +1,6 @@
 package cr.ac.una.marcador.util;
 
+import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.relojunaws.Respuesta;
 
 public class wsConsumer {
@@ -43,8 +44,18 @@ public class wsConsumer {
         respuesta = port.existeEmpleado(folio);
         return respuesta;
     }
-//    public Boolean crearMarca(String folio ){
-////        respuesta = port.login(folio);
-//        return respuesta.isEstado();
-//    }
+    public Boolean crearMarca(String folio ){
+//        respuesta = port.login(folio);
+        return respuesta.isEstado();
+    }
+
+    
+    public EmpleadoDto buscarEmpleadoFolio(String folio){
+        cr.ac.una.relojunaws.EmpleadoDto empleadoWebService =  port.buscarEmpleadoFolio(folio);
+        EmpleadoDto empleado = new EmpleadoDto();
+        empleado.cargarDatos(empleadoWebService);
+        return empleado; 
+    }
+    
+    
 }
