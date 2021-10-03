@@ -7,11 +7,12 @@ module cr.ac.una.marcador {
     requires com.jfoenix;
     requires webcam.capture;
     requires java.desktop;
-     
+    requires AnimateFX;
     //ws
     requires javax.jws;
     requires java.xml.ws;
     requires java.xml.bind;
+    requires java.base;
     
     opens cr.ac.una.relojunaws;
     opens cr.ac.una.marcador to javafx.fxml, javafx.graphics;

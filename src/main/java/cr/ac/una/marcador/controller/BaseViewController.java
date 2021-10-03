@@ -1,9 +1,11 @@
 package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.marcador.util.FlowController;
 import cr.ac.una.marcador.util.Mensaje;
 import cr.ac.una.marcador.util.Respuesta;
 import cr.ac.una.marcador.util.wsConsumer;
+import cr.ac.una.relojunaws.EmpleadoDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -224,16 +226,29 @@ public class BaseViewController extends Controller implements Initializable {
     void onAction_btnConfirmar(ActionEvent event) {
         String folio = txtFolio.getText().toString();
         wsConsumer.getInstance().existeEmpleado(folio);
+        EmpleadoDto aux = null;
         if(wsConsumer.getInstance().getRespuesta().isEstado()){
 //            wsConsumer.getInstance().crearMarca(folio);
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), "Marca realizada correctamente");
+              aux = (EmpleadoDto)wsConsumer.getInstance().getRespuesta().getResultado();
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Marcar", getStage(), "Marca realizada correctamente");
         }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
         }
+        Date date= new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH);
+        int today = cal.get(Calendar.DAY_OF_MONTH);
+        if(aux != null){
+            System.out.println(aux.getNacimiento().toString());
+            if(aux.getNacimiento().getDay() == today &&  aux.getNacimiento().getMonth() == month) { FlowController.getInstance().goViewInWindowModal("birthday", this.getStage(), Boolean.TRUE);}
+         }
+        
         nFolio="";
         txtFolio.setText("");
     }
 
+    @Override
     public void initialize() {
     }
 
