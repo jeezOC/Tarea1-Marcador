@@ -240,12 +240,12 @@ public class BaseViewController extends Controller implements Initializable {
 //            wsConsumer.getInstance().crearMarca(folio);
               aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
               System.out.println(aux.getNacimiento().toString());
+               new Mensaje().showModal(Alert.AlertType.INFORMATION, "Marcar", getStage(), "Marca realizada correctamente");
             if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
                 FlowController.getInstance().goViewInWindow("birthday");
-        }else{
-         new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Marcar", getStage(), "Marca realizada correctamente");
         }
-        }else{
+        }
+        else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
         }
         

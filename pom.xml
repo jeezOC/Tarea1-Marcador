@@ -50,6 +50,19 @@
             <version>0.3.12</version>
         </dependency>
         <!--Camara-->
+        <!--EXCEL-->
+           <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>4.1.2</version>
+            <type>jar</type>
+        </dependency>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>4.1.2</version>
+    </dependency>
+        <!--EXCEL-->
         <dependency>
             <groupId>io.github.typhon0</groupId>
             <artifactId>AnimateFX</artifactId>
