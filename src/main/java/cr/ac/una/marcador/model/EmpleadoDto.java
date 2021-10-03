@@ -25,11 +25,13 @@ public class EmpleadoDto {
     public ObjectProperty<LocalDate> nacimiento;
     public SimpleStringProperty psswr;
     public ObjectProperty<byte[]> foto;
+    public Long id;
     
     public Boolean modificado = false;
     
     public EmpleadoDto(){
         this.modificado = false;
+        this.id = null;
         this.name = new SimpleStringProperty();
         this.psswr = new SimpleStringProperty();
         this.lastname = new SimpleStringProperty();
@@ -37,17 +39,19 @@ public class EmpleadoDto {
         this.folio = new SimpleStringProperty();
         this.admin = new SimpleBooleanProperty(false);
         this.nacimiento = new SimpleObjectProperty();
+        this.foto = new SimpleObjectProperty();
         
     }
     public void cargarDatos(cr.ac.una.relojunaws.EmpleadoDto empleado){
         this.folio.set(empleado.getFolio());
+        this.id = empleado.getId();
         this.name.set(empleado.getNombre());
         this.cedula.set(empleado.getCedula());
         this.lastname.set(empleado.getApellido());
         this.admin.setValue(empleado.isAdmin());
         this.nacimiento.set(empleado.getNacimiento().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         this.psswr.set(empleado.getPsswr());
-//        this.foto.setValue(empleado.getFoto());
+        this.foto.setValue(empleado.getFoto().getBytes());
 //        this.marc = (List<MarcaDto>) new MarcaDto ((Marca) empleado.getMarca());
     }    
     
