@@ -103,4 +103,35 @@ public class wsConsumer {
         
         return empleadoDtoServidor;
     }
+    
+    
+    public cr.ac.una.marcador.util.Respuesta eliminarEmpleadoFolio(String folio){
+        respuesta = port.eliminarEmpleadoFolio(folio);
+        return new cr.ac.una.marcador.util.Respuesta(respuesta.isEstado(), convertirCodigos(respuesta),respuesta.getMensaje(),respuesta.getMensajeInterno());
+    }
+    
+    private cr.ac.una.marcador.util.CodigoRespuesta convertirCodigos(Respuesta r){
+        CodigoRespuesta cr = CodigoRespuesta.CORRECTO;
+        switch(r.getCodigoRespuesta().value()){
+            case "CORRECTO":
+                cr = CodigoRespuesta.CORRECTO;
+                break;
+            case "ERROR_ACCESO":
+                cr= CodigoRespuesta.ERROR_ACCESO;
+                 break;
+            case "ERROR_CLIENTE":
+                cr= CodigoRespuesta.ERROR_CLIENTE;
+                 break;
+            case "ERROR_INTERNO":
+                cr= CodigoRespuesta.ERROR_INTERNO;
+                 break;
+            case "ERROR_NOENCONTRADO":
+                cr= CodigoRespuesta.ERROR_NOENCONTRADO;
+                 break;
+            case "ERROR_PERMISOS":
+                cr= CodigoRespuesta.ERROR_PERMISOS;
+                 break;
+        }
+        return cr;
+    }
 }

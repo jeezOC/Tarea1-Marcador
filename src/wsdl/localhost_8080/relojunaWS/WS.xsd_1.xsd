@@ -8,6 +8,10 @@
 
 <xs:element name="crearReporteResponse" type="tns:crearReporteResponse"/>
 
+<xs:element name="eliminarEmpleadoFolio" type="tns:eliminarEmpleadoFolio"/>
+
+<xs:element name="eliminarEmpleadoFolioResponse" type="tns:eliminarEmpleadoFolioResponse"/>
+
 <xs:element name="existeEmpleado" type="tns:existeEmpleado"/>
 
 <xs:element name="existeEmpleadoResponse" type="tns:existeEmpleadoResponse"/>
@@ -68,6 +72,18 @@
 <xs:complexType name="helloResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

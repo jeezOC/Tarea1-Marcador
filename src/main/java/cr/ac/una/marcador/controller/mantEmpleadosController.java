@@ -42,8 +42,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
-import javax.imageio.ImageIO;
 
 public class mantEmpleadosController extends Controller implements Initializable {
 
@@ -100,7 +98,25 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @FXML
     void onAction_btnBorrar(ActionEvent event) throws IOException {
-        imageToByte();
+//        imageToByte();
+
+        try {
+            if (empleado.getFolio()== null) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar empleado", getStage(), "Debe cargar el empleado que desea eliminar.");
+            } else {
+                Respuesta respuesta = wsConsumer.getInstance().eliminarEmpleadoFolio(empleado.getFolio());
+                if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar empleado", getStage(), respuesta.getMensaje());
+                } else {
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar empleado", getStage(), "Empleado eliminado correctamente.");
+                    nuevoEmpleado();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, "Error eliminando el empleado.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar empleado", getStage(), "Ocurrio un error eliminando el empleado.");
+        }
+
     }
 
     @FXML
