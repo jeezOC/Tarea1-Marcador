@@ -109,7 +109,8 @@ public class mantEmpleadosController extends Controller implements Initializable
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnGuardar;
-
+    
+    Image image = new Image("file:/cr/ac/una/mantenimiento/icons/USER.png");
     @FXML
     void onAction_btnBorrar(ActionEvent event) throws IOException {
 //        imageToByte();
@@ -184,6 +185,8 @@ public class mantEmpleadosController extends Controller implements Initializable
         txtApellido.setDisable(false);
         txtContra.setDisable(true);
         dpFechaNacimiento.setDisable(false);
+        
+//        imgFotoEmpleado.setImage((Image)  AppContext.getInstance().get("imagen"));
     }
 
     @Override
@@ -193,7 +196,9 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        imgFotoEmpleado.setImage(image);
         AppContext.getInstance().set("ViewImagePrincipal",imgFotoEmpleado);
+//        imgFotoEmpleado.setImage((Image)  AppContext.getInstance().get("imagen"));
         disableAll(true);
     }
 
@@ -242,6 +247,7 @@ public class mantEmpleadosController extends Controller implements Initializable
         if (respuesta.getEstado()) {
             unbindEmpleado();
             empleado = (EmpleadoDto) respuesta.getResultado("Empleado");
+            System.out.print("llego: " + Arrays.toString(empleado.getFoto()));
             bindEmpleado(false);
             validarAdministrador();
             validarRequeridos();
@@ -258,6 +264,7 @@ private byte[] convertToBytes(Object object) throws IOException {
         }
     }
     private void unbindEmpleado() {
+        imgFotoEmpleado.setImage(image);
         txtFolio.textProperty().unbind();
         txtCedula.textProperty().unbindBidirectional(empleado.cedula);
         txtNombre.textProperty().unbindBidirectional(empleado.name);
@@ -265,7 +272,7 @@ private byte[] convertToBytes(Object object) throws IOException {
         txtContra.textProperty().unbindBidirectional(empleado.psswr);        
         dpFechaNacimiento.valueProperty().unbindBidirectional(empleado.nacimiento);
         tggEsAdministrador.selectedProperty().unbindBidirectional(empleado.admin);
-        imgFotoEmpleado.setImage(null);
+        
     }
     
 
@@ -293,7 +300,10 @@ private byte[] convertToBytes(Object object) throws IOException {
 //                } catch (IOException e) {
 //                    e.printStackTrace();
 //                }
-            try {
+//            try {
+//                  javafx.scene.image.Image ima = (Image)  AppContext.getInstance().get("imagen");
+
+//                javafx.scene.image.Image ima= new Image(new ByteArrayInputStream(empleado.foto));
                 //                String fn = new String("c:\\mkyong-new.png");
 //                InputStream is = new ByteArrayInputStream(empleado.foto);
 //                BufferedImage newBi = ImageIO.read(is);
@@ -301,12 +311,13 @@ private byte[] convertToBytes(Object object) throws IOException {
 //                 } catch (IOException e) {
 //                    e.printStackTrace();
 //                }
+//                imgFotoEmpleado.setImage(ima);
 
-convert( empleado.foto);
- System.out.println(empleado.foto);
-            } catch (IOException ex) {
-                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//convert( empleado.foto);
+// System.out.println(empleado.foto);
+//            } catch (IOException ex) {
+//                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             
         }
         
@@ -411,6 +422,7 @@ convert( empleado.foto);
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar empleado", getStage(), invalidos);
             } else { 
                 imageToByte();
+                Thread.sleep(2000);
                 Respuesta respuesta = wsConsumer.getInstance().guardarEmpleado(empleado);
                 if (!respuesta.getEstado()) {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar empleado", getStage(), respuesta.getMensaje());
@@ -431,26 +443,30 @@ convert( empleado.foto);
     
     
     private void imageToByte() throws IOException{
+           
        
     File file = (File) AppContext.getInstance().get("fileImage");
+    foto = new byte[Files.readAllBytes(file.toPath()).length];
     foto = Files.readAllBytes(file.toPath());
 //    foto = Base64.getEncoder().encodeToString(bytes);
+    System.out.println("BUFFER: " + (Arrays.toString(foto)));   
     empleado.setFoto(foto);
     
-//    Image  img = (Image)AppContext.getInstance().get("imagen");
+//    Image img = (Image)AppContext.getInstance().get("imagen");
 //    int w = (int)img.getWidth();
 //    int h = (int)img.getHeight();
 //
 //// Create a new Byte Buffer, but we'll use BGRA (1 byte for each channel) //
 //
-//    byte[] buf = new byte[w * h * 4];
+//    byte[] buf = new byte[(w * h * 4)];
 //
 ///* Since you can get the output in whatever format with a WritablePixelFormat,
 //   we'll use an already created one for ease-of-use. */
-//
+//    System.out.println("BUFFER: " + buf.toString());   
 //    img.getPixelReader().getPixels(0, 0, w, h, PixelFormat.getByteBgraInstance(), buf, 0, w * 4);
+//    
 //    empleado.setFoto(buf);
-//    System.out.println(buf);
+    
     
     
     }

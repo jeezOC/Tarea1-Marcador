@@ -7,6 +7,8 @@ package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import cr.ac.una.marcador.model.EmpleadoDto;
+import cr.ac.una.marcador.model.MarcaDto;
 import cr.ac.una.marcador.util.Mensaje;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -35,8 +37,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Kendall
  */
 public class mantMarcasController extends Controller implements Initializable {
-
-
+    EmpleadoDto empleado;
+    MarcaDto marca;
     @FXML
     private VBox root;
     @FXML
@@ -115,5 +117,5 @@ public class mantMarcasController extends Controller implements Initializable {
     public Node getRoot() {
        return root;
     }
-
+    
 }
