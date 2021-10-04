@@ -24,7 +24,7 @@ public class EmpleadoDto {
     public SimpleBooleanProperty admin;
     public ObjectProperty<LocalDate> nacimiento;
     public SimpleStringProperty psswr;
-    public ObjectProperty<byte[]> foto;
+    public byte[] foto;
     public Long id;
     
     public Boolean modificado = false;
@@ -39,19 +39,19 @@ public class EmpleadoDto {
         this.folio = new SimpleStringProperty();
         this.admin = new SimpleBooleanProperty(false);
         this.nacimiento = new SimpleObjectProperty();
-        this.foto = new SimpleObjectProperty();
+//        this.foto = new SimpleObjectProperty();
         
     }
     public void cargarDatos(cr.ac.una.relojunaws.EmpleadoDto empleado){
-        this.folio.set(empleado.getFolio());
-        this.id = empleado.getId();
-        this.name.set(empleado.getNombre());
-        this.cedula.set(empleado.getCedula());
-        this.lastname.set(empleado.getApellido());
-        this.admin.setValue(empleado.isAdmin());
-        this.nacimiento.set(empleado.getNacimiento().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        this.psswr.set(empleado.getPsswr());
-        this.foto.setValue(empleado.getFoto().getBytes());
+        this.folio.set(empleado.getEmpleadoFolio());
+        this.id = empleado.getEmpleadoId();
+        this.name.set(empleado.getEmpleadoNombre());
+        this.cedula.set(empleado.getEmpleadoCedula());
+        this.lastname.set(empleado.getEmpleadoApellido());
+        this.admin.setValue(empleado.isEmpleadoAdmin());
+        this.nacimiento.set(empleado.getEmpleadoFechaNacimiento().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        this.psswr.set(empleado.getEmpleadoPassword());
+        this.foto = empleado.getEmpleadoFoto().getBytes();
 //        this.marc = (List<MarcaDto>) new MarcaDto ((Marca) empleado.getMarca());
     }    
     
@@ -121,10 +121,10 @@ public class EmpleadoDto {
         this.nacimiento.set(fechaNac);
     }
     public byte[] getFoto() {
-        return foto.get();
+        return foto;
     }
     public void setFoto(byte[] fotoByte) {
-        this.foto.set(fotoByte);
+        this.foto=(fotoByte);
     }
     
         public Boolean getModificado() {

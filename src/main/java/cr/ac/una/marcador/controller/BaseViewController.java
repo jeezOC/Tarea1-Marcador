@@ -252,9 +252,11 @@ public class BaseViewController extends Controller implements Initializable {
       
         
         
-        if(aux != null){
-  
-         }
+//        if(aux != null){
+//            System.out.println(aux.getEmpleadoFechaNacimiento().toString());
+//            if(aux.getEmpleadoFechaNacimiento().getDay() == today &&  aux.getEmpleadoFechaNacimiento().getMonth() == month) { FlowController.getInstance().goViewInWindowModal("birthday", this.getStage(), Boolean.TRUE);}
+//
+//         }
         
         nFolio="";
         txtFolio.setText("");

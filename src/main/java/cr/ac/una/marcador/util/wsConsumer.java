@@ -86,20 +86,20 @@ public class wsConsumer {
     
     private cr.ac.una.relojunaws.EmpleadoDto empDtoClientToServer(EmpleadoDto empleado) throws DatatypeConfigurationException{
         cr.ac.una.relojunaws.EmpleadoDto empleadoDtoServidor = new cr.ac.una.relojunaws.EmpleadoDto();
-        empleadoDtoServidor.setId(empleado.id);
-        empleadoDtoServidor.setAdmin(empleado.admin.getValue());
-        empleadoDtoServidor.setApellido(empleado.lastname.getValue());
-        empleadoDtoServidor.setCedula(empleado.cedula.getValue());
-        empleadoDtoServidor.setFolio(empleado.folio.getValue());
-        empleadoDtoServidor.setFoto(Base64.getEncoder().encodeToString(empleado.getFoto()));
+        empleadoDtoServidor.setEmpleadoId(empleado.id);
+        empleadoDtoServidor.setEmpleadoAdmin(empleado.admin.getValue());
+        empleadoDtoServidor.setEmpleadoApellido(empleado.lastname.getValue());
+        empleadoDtoServidor.setEmpleadoCedula(empleado.cedula.getValue());
+        empleadoDtoServidor.setEmpleadoFolio(empleado.folio.getValue());
+        empleadoDtoServidor.setEmpleadoFoto(Base64.getEncoder().encodeToString(empleado.getFoto()));
         
         //Conversion de fecha---
         GregorianCalendar gcal = GregorianCalendar.from(empleado.getNacimiento().atStartOfDay(ZoneId.systemDefault()));
         XMLGregorianCalendar xcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
         //----
-        empleadoDtoServidor.setNacimiento(xcal);
-        empleadoDtoServidor.setNombre(empleado.name.getValue());
-        empleadoDtoServidor.setPsswr(empleado.psswr.getValue());
+        empleadoDtoServidor.setEmpleadoFechaNacimiento(xcal);
+        empleadoDtoServidor.setEmpleadoNombre(empleado.name.getValue());
+        empleadoDtoServidor.setEmpleadoPassword(empleado.psswr.getValue());
         
         return empleadoDtoServidor;
     }

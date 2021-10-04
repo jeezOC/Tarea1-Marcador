@@ -30,8 +30,8 @@
 
 <xs:complexType name="login">
 <xs:sequence>
-<xs:element name="folio" type="xs:string" minOccurs="0"/>
-<xs:element name="psswrd" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadopassword" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -77,7 +77,7 @@
 
 <xs:complexType name="eliminarEmpleadoFolio">
 <xs:sequence>
-<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -105,15 +105,15 @@
 
 <xs:complexType name="empleadoDto">
 <xs:sequence>
-<xs:element name="admin" type="xs:boolean"/>
-<xs:element name="apellido" type="xs:string" minOccurs="0"/>
-<xs:element name="cedula" type="xs:string" minOccurs="0"/>
-<xs:element name="folio" type="xs:string" minOccurs="0"/>
-<xs:element name="foto" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="nacimiento" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="psswr" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoAdmin" type="xs:boolean"/>
+<xs:element name="empleadoApellido" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoCedula" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoFechaNacimiento" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="empleadoFolio" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoFoto" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoId" type="xs:long" minOccurs="0"/>
+<xs:element name="empleadoNombre" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoPassword" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

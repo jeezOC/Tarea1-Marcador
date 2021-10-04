@@ -15,13 +15,17 @@ import cr.ac.una.marcador.util.Mensaje;
 import cr.ac.una.marcador.util.Respuesta;
 
 import cr.ac.una.marcador.util.wsConsumer;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
+import java.awt.image.DataBufferByte;
+import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -42,6 +46,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 public class mantEmpleadosController extends Controller implements Initializable {
 
@@ -246,11 +252,11 @@ clearAll();
     private void bindEmpleado(boolean nuevo) {
         if (!nuevo) {
             txtFolio.textProperty().bind(empleado.folio);
-            try {
-                byteToFile();
-            } catch (IOException ex) {
-                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+////                byteToFile();
+//            } catch (IOException ex) {
+//                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
         txtCedula.textProperty().bindBidirectional(empleado.cedula);
         txtNombre.textProperty().bindBidirectional(empleado.name);
@@ -367,18 +373,67 @@ clearAll();
     
     private byte[] foto;
     
-    private void byteToFile() throws IOException{
-//    ByteArrayInputStream bais = new ByteArrayInputStream(empleado.getFoto());
-//    BufferedImage bi = ImageIO.read(bais);
-//    File archivoGenerado = new File("tempImage.jpg");
-//    ImageIO.write(bi, "jpg", archivoGenerado);
-//    
-//    
-//    AppContext.getInstance().set("fileImage", archivoGenerado);
-//    Image img = new Image(archivoGenerado.toURI().toString());
-//    AppContext.getInstance().set("imagen", img);
-//        AppContext.getInstance().actualizarViewImagen();
-    
-    }
+//    private void byteToFile() throws IOException{
+////    ByteArrayInputStream bais = new ByteArrayInputStream(empleado.getFoto());
+////    BufferedImage bi = ImageIO.read(bais);
+////    File archivoGenerado = new File("tempImage.png");
+////    System.out.println(empleado.getFoto());
+////    ImageIO.write(bi, "jpg", archivoGenerado);
+////    
+////    
+////    AppContext.getInstance().set("fileImage", archivoGenerado);
+////    Image img = new Image(archivoGenerado.toURI().toString());
+////    AppContext.getInstance().set("imagen", img);
+////        AppContext.getInstance().actualizarViewImagen();
+//
+//
+//        ByteArrayInputStream in = new ByteArrayInputStream(empleado.foto);
+//
+//
+//
+//
+//
+//
+//        ImageIO.setUseCache(false);
+//        BufferedImage image = ImageIO.read(in);
+//        Image imagen = javafx.embed.swing.SwingFXUtils.toFXImage(image, null);
+//        imgFotoEmpleado.setImage(imagen);
+//        
+////        InputStream in = new ByteArrayInputStream(empleado.getFoto());
+////        ImageIO.setUseCache(false);
+////        image = ImageIO.read(in);
+////
+////        File outputfile = new File("nuevoNombre.png");
+////        ImageIO.setUseCache(false);
+////        ImageIO.write(image, "png", outputfile);
+//
+//
+//
+//
+////                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//
+//                    //ImageIO.setUseCache(false);
+////                    ImageIO.write(image.getSubimage(0, 0, 0, 0), "jpg", outputStream);
+//
+////                    byte[] imageBytes = ((DataBufferByte)image.getData().getDataBuffer()).getData();
+//
+//                    
+//
+//
+////
+////
+////            BufferedImage img = createImageFromBytes(empleado.getFoto());
+////            img.setData(Raster.createRaster(img.getSampleModel(), new DataBufferByte(img, img.length), new Point() ) );
+//
+//
+//    }
+//    private BufferedImage createImageFromBytes(byte[] imageData) {
+//    ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
+//    try {
+//        return ImageIO.read(bais);
+//    } catch (IOException e) {
+//        throw new RuntimeException(e);
+//    }
+//}
     
 }
