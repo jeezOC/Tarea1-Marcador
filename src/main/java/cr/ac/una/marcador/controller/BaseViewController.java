@@ -1,9 +1,12 @@
 package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.marcador.util.FlowController;
 import cr.ac.una.marcador.util.Mensaje;
 import cr.ac.una.marcador.util.Respuesta;
 import cr.ac.una.marcador.util.wsConsumer;
+//import cr.ac.una.relojunaws.EmpleadoDto;
+import cr.ac.una.marcador.model.EmpleadoDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -222,18 +225,42 @@ public class BaseViewController extends Controller implements Initializable {
 
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
-        String folio = txtFolio.getText().toString();
+        String folio = txtFolio.getText();
         wsConsumer.getInstance().existeEmpleado(folio);
+        EmpleadoDto aux = new EmpleadoDto();
+     //   aux =  wsConsumer.getInstance().buscarEmpleadoFolio(folio);
         if(wsConsumer.getInstance().getRespuesta().isEstado()){
+            
+              Date date= new Date();
+               Calendar cal = Calendar.getInstance();
+                 cal.setTime(date);
+            int month = cal.get(Calendar.MONTH)+1;
+             int today = cal.get(Calendar.DAY_OF_MONTH);
+            System.out.println(month+"-"+today);
 //            wsConsumer.getInstance().crearMarca(folio);
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), "Marca realizada correctamente");
-        }else{
+              aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
+              System.out.println(aux.getNacimiento().toString());
+               new Mensaje().showModal(Alert.AlertType.INFORMATION, "Marcar", getStage(), "Marca realizada correctamente");
+            if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
+                FlowController.getInstance().goViewInWindow("birthday");
+        }
+        }
+        else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
         }
+        
+      
+        
+        
+        if(aux != null){
+  
+         }
+        
         nFolio="";
         txtFolio.setText("");
     }
 
+    @Override
     public void initialize() {
     }
 

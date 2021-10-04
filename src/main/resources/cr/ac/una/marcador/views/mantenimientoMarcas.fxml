@@ -39,7 +39,7 @@
       </HBox>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0">
          <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
                <children>
                   <Label styleClass="darkBoxLabel2" text="FOLIO:" />
                   <TextField fx:id="txtBuscar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkSearchTextField" />
@@ -52,6 +52,12 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
+                  <ImageView fitHeight="33.0" fitWidth="34.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false" translateX="100.0">
+                     <image>
+                        <Image url="@../icons/excel2.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="BtnExcel" buttonType="RAISED" onAction="#BtnExcel" prefHeight="32.0" prefWidth="138.0" style="-fx-background-color: #1D6F42;" text="Reporte en excel" translateX="100.0" />
                </children>
             </HBox>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1100.0">

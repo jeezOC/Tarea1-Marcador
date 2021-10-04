@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 public class AppContext {
@@ -14,7 +16,7 @@ public class AppContext {
     private static HashMap<String, Object> context = new HashMap<>();
      
     private AppContext() {
-        cargarPropiedades();
+//        cargarPropiedades();
     }
 
     private static void createInstance() {
@@ -34,23 +36,23 @@ public class AppContext {
         return INSTANCE;
     }
     
-    private void cargarPropiedades(){
-        try {
-            FileInputStream configFile;
-            configFile = new FileInputStream("config/properties.ini");
-            Properties appProperties = new Properties();
-            appProperties.load(configFile);
-            configFile.close();
-//            if (appProperties.getProperty("propiedades.rutalog") != null) {
-//                this.set("rutalog",appProperties.getProperty("propiedades.rutalog"));
+//    private void cargarPropiedades(){
+//        try {
+//            FileInputStream configFile;
+//            configFile = new FileInputStream("config/properties.ini");
+//            Properties appProperties = new Properties();
+//            appProperties.load(configFile);
+//            configFile.close();
+////            if (appProperties.getProperty("propiedades.rutalog") != null) {
+////                this.set("rutalog",appProperties.getProperty("propiedades.rutalog"));
+////            }
+//            if (appProperties.getProperty("propiedades.resturl") != null) {
+//                this.set("resturl",appProperties.getProperty("propiedades.resturl"));
 //            }
-            if (appProperties.getProperty("propiedades.resturl") != null) {
-                this.set("resturl",appProperties.getProperty("propiedades.resturl"));
-            }
-        } catch (IOException io) {
-            System.out.println("Archivo de configuración no encontrado.");
-        }
-    }
+//        } catch (IOException io) {
+//            System.out.println("Archivo de configuración no encontrado.");
+//        }
+//    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -67,6 +69,14 @@ public class AppContext {
 
     public void delete(String parameter) {
         context.put(parameter, null);
+    }
+
+    public void actualizarViewImagen() {
+    
+        ImageView name = (ImageView) AppContext.getInstance().get("ViewImagePrincipal");
+        Image img = (Image) AppContext.getInstance().get("imagen");
+        name.setImage(img);
+        
     }
 
 }

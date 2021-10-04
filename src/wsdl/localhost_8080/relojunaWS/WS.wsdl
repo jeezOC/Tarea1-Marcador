@@ -4,17 +4,11 @@
 <xsd:import namespace="http://relojunaws.una.ac.cr/" schemaLocation="http://localhost:8080/relojunaWS/WS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="login">
-<part name="parameters" element="tns:login"/>
+<message name="guardarEmpleado">
+<part name="parameters" element="tns:guardarEmpleado"/>
 </message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
-</message>
-<message name="existeEmpleado">
-<part name="parameters" element="tns:existeEmpleado"/>
-</message>
-<message name="existeEmpleadoResponse">
-<part name="parameters" element="tns:existeEmpleadoResponse"/>
+<message name="guardarEmpleadoResponse">
+<part name="parameters" element="tns:guardarEmpleadoResponse"/>
 </message>
 <message name="crearReporte">
 <part name="parameters" element="tns:crearReporte"/>
@@ -28,26 +22,34 @@
 <message name="buscarEmpleadoFolioResponse">
 <part name="parameters" element="tns:buscarEmpleadoFolioResponse"/>
 </message>
+<message name="login">
+<part name="parameters" element="tns:login"/>
+</message>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
+</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
-<message name="guardarEmpleado">
-<part name="parameters" element="tns:guardarEmpleado"/>
+<message name="eliminarEmpleadoFolio">
+<part name="parameters" element="tns:eliminarEmpleadoFolio"/>
 </message>
-<message name="guardarEmpleadoResponse">
-<part name="parameters" element="tns:guardarEmpleadoResponse"/>
+<message name="eliminarEmpleadoFolioResponse">
+<part name="parameters" element="tns:eliminarEmpleadoFolioResponse"/>
+</message>
+<message name="existeEmpleado">
+<part name="parameters" element="tns:existeEmpleado"/>
+</message>
+<message name="existeEmpleadoResponse">
+<part name="parameters" element="tns:existeEmpleadoResponse"/>
 </message>
 <portType name="relojunaws">
-<operation name="login">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginRequest" message="tns:login"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginResponse" message="tns:loginResponse"/>
-</operation>
-<operation name="existeEmpleado">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
+<operation name="guardarEmpleado">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoRequest" message="tns:guardarEmpleado"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoResponse" message="tns:guardarEmpleadoResponse"/>
 </operation>
 <operation name="crearReporte">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearReporteRequest" message="tns:crearReporte"/>
@@ -57,27 +59,26 @@
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioRequest" message="tns:buscarEmpleadoFolio"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioResponse" message="tns:buscarEmpleadoFolioResponse"/>
 </operation>
+<operation name="login">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginRequest" message="tns:login"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginResponse" message="tns:loginResponse"/>
+</operation>
 <operation name="hello">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloResponse" message="tns:helloResponse"/>
 </operation>
-<operation name="guardarEmpleado">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoRequest" message="tns:guardarEmpleado"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoResponse" message="tns:guardarEmpleadoResponse"/>
+<operation name="eliminarEmpleadoFolio">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarEmpleadoFolioRequest" message="tns:eliminarEmpleadoFolio"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarEmpleadoFolioResponse" message="tns:eliminarEmpleadoFolioResponse"/>
+</operation>
+<operation name="existeEmpleado">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
 </operation>
 </portType>
 <binding name="relojunawsPortBinding" type="tns:relojunaws">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="login">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="existeEmpleado">
+<operation name="guardarEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -104,6 +105,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="login">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="hello">
 <soap:operation soapAction=""/>
 <input>
@@ -113,7 +123,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="guardarEmpleado">
+<operation name="eliminarEmpleadoFolio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="existeEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

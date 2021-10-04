@@ -2,7 +2,6 @@ package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.marcador.util.FlowController;
-import cr.ac.una.marcador.util.wsConsumer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,18 +31,18 @@ public class loginController extends Controller implements Initializable {
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
         
-        try {
-            String folio = txtID.getText();
-            String psswrd = txtContra.getText();
-            
-            boolean isAmind = wsConsumer.getInstance().validarFolioContrasena(folio, psswrd);
-            if(isAmind){
+//        try {
+//            String folio = txtID.getText();
+//            String psswrd = txtContra.getText();
+//            
+//            boolean isAdmin = wsConsumer.getInstance().validarFolioContrasena(folio, psswrd);
+//            if(isAdmin){
                 FlowController.getInstance().hide();
                 FlowController.getInstance().goViewInWindow("baseContainer");
-            }
-        } catch (Exception ex) {
-            System.out.println("Result = "+ex);
-        }
+//            }
+//        } catch (Exception ex) {
+//            System.out.println("Result = "+ex);
+//        }
     }
 
     @FXML

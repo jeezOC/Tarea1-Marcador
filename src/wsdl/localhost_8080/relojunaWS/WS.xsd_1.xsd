@@ -8,6 +8,10 @@
 
 <xs:element name="crearReporteResponse" type="tns:crearReporteResponse"/>
 
+<xs:element name="eliminarEmpleadoFolio" type="tns:eliminarEmpleadoFolio"/>
+
+<xs:element name="eliminarEmpleadoFolioResponse" type="tns:eliminarEmpleadoFolioResponse"/>
+
 <xs:element name="existeEmpleado" type="tns:existeEmpleado"/>
 
 <xs:element name="existeEmpleadoResponse" type="tns:existeEmpleadoResponse"/>
@@ -71,6 +75,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="eliminarEmpleadoFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="crearReporte">
 <xs:sequence/>
 </xs:complexType>
@@ -83,13 +99,27 @@
 
 <xs:complexType name="guardarEmpleado">
 <xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg0" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleadoDto">
+<xs:sequence>
+<xs:element name="admin" type="xs:boolean"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="foto" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="nacimiento" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="psswr" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="guardarEmpleadoResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -102,20 +132,6 @@
 <xs:complexType name="buscarEmpleadoFolioResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="empleadoDto">
-<xs:sequence>
-<xs:element name="admin" type="xs:boolean"/>
-<xs:element name="apellido" type="xs:string" minOccurs="0"/>
-<xs:element name="cedula" type="xs:string" minOccurs="0"/>
-<xs:element name="folio" type="xs:string" minOccurs="0"/>
-<xs:element name="foto" type="xs:base64Binary" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="nacimiento" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="psswr" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
