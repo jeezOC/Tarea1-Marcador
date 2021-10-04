@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -17,60 +18,90 @@
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
          <children>
-            <Label styleClass="clearHeading1" text="REPORTE DE MACAS" />
+            <Label styleClass="clearHeading1" text="REPORTES" />
          </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
+         <children>
+            <Label styleClass="clearHeading2" text="MARCAS:" />
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1100.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="550.0" spacing="15.0">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="450.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
                         <Label styleClass="darkBoxLabel" text="Fecha Inicial:" />
-                        <JFXDatePicker fx:id="dpINI" defaultColor="#7497a7" styleClass="darkTextField" />
+                        <JFXDatePicker fx:id="dpINI" defaultColor="#7497a7" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <Label styleClass="darkBoxLabel" text="Fecha Final:" />
+                        <JFXDatePicker fx:id="dpFin" defaultColor="#7497a7" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="550.0" spacing="15.0">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" spacing="15.0">
                <children>
-                  <HBox alignment="CENTER">
+                  <JFXToggleButton fx:id="tggIsTodosMarcas" onAction="#onAction_tggIsTodosMarcas" styleClass="darkLabel" text="Generar reporte para&#10;todos los empleados" textAlignment="CENTER" toggleColor="#7497a7" toggleLineColor="#698594" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0">
                      <children>
-                        <Label styleClass="darkBoxLabel" text="Fecha Final:" />
-                        <JFXDatePicker fx:id="dpFin" defaultColor="#7497a7" styleClass="darkTextField" />
+                        <Label styleClass="darkBoxLabel" text="FOLIO:" />
+                        <TextField fx:id="txtBuscarMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
                      </children>
                   </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" spacing="15.0">
+               <children>
+                  <JFXButton fx:id="btnGenerarMarcas" onAction="#onAction_btnGenerar" styleClass="BIGButton" text="GENERAR&#10;REPORTE" textAlignment="CENTER" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0">
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1100.0">
+            <Label styleClass="clearHeading2" text="EMPLEADOS:" />
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1100.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" spacing="15.0">
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="1100.0">
+                  <JFXToggleButton fx:id="tggIsTodosEmpleados" onAction="#onAction_tggIsTodosEmpleados" styleClass="darkLabel" text="Generar reporte para&#10;todos los empleados" textAlignment="CENTER" toggleColor="#7497a7" toggleLineColor="#698594" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0">
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="550.0">
-                           <children>
-                              <Label styleClass="darkBoxLabel2" text="FOLIO:" />
-                              <TextField fx:id="txtBuscar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkSearchTextField2" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="550.0">
-                           <children>
-                              <JFXToggleButton fx:id="tggIsTodos" styleClass="darkLabel" text="Generar reporte para&#10;todos los empleados" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1100.0">
-                     <children>
-                        <JFXButton fx:id="btnGenerar" onAction="#onAction_btnGenerar" styleClass="BIGButton" text="GENERAR&#10;REPORTES" textAlignment="CENTER" />
+                        <Label styleClass="darkBoxLabel" text="FOLIO:" />
+                        <TextField fx:id="txtBuscarEpleados" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
                      </children>
                   </HBox>
                </children>
             </VBox>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" spacing="15.0">
+               <children>
+                  <JFXButton fx:id="btnGenerarEmpleados" onAction="#onAction_btnGenerar" styleClass="BIGButton" text="GENERAR&#10;REPORTE" textAlignment="CENTER" />
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </VBox>
