@@ -7,6 +7,7 @@ import cr.ac.una.marcador.util.Respuesta;
 import cr.ac.una.marcador.util.wsConsumer;
 //import cr.ac.una.relojunaws.EmpleadoDto;
 import cr.ac.una.marcador.model.EmpleadoDto;
+import cr.ac.una.marcador.util.AppContext;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -230,34 +231,39 @@ public class BaseViewController extends Controller implements Initializable {
         EmpleadoDto aux = new EmpleadoDto();
      //   aux =  wsConsumer.getInstance().buscarEmpleadoFolio(folio);
         if(wsConsumer.getInstance().getRespuesta().isEstado()){
-            
-              Date date= new Date();
-               Calendar cal = Calendar.getInstance();
-                 cal.setTime(date);
+            Date date= new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
             int month = cal.get(Calendar.MONTH)+1;
-             int today = cal.get(Calendar.DAY_OF_MONTH);
-            System.out.println(month+"-"+today);
+            int today = cal.get(Calendar.DAY_OF_MONTH);
+            
+            String h;
+            if(cal.get(Calendar.HOUR)==0){
+                h = "00";
+            }else{
+                h =String.valueOf(cal.get(Calendar.HOUR));
+            }
+            String m;
+            if(cal.get(Calendar.MINUTE)<10){
+                m = "0"+String.valueOf(cal.get(Calendar.MINUTE));
+            }else{
+                m = String.valueOf(cal.get(Calendar.MINUTE));
+            }
+            String hora = h +":"+m;
 //            wsConsumer.getInstance().crearMarca(folio);
-              aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
-              System.out.println(aux.getNacimiento().toString());
-               new Mensaje().showModal(Alert.AlertType.INFORMATION, "Marcar", getStage(), "Marca realizada correctamente");
+            
+            aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
+            AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(),hora});
             if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
-                FlowController.getInstance().goViewInWindow("birthday");
-        }
-        }
-        else{
+//                FlowController.getInstance().goViewInWindowUncap("birthday");
+                 FlowController.getInstance().goViewInWindowModalUndec("birthday", this.getStage(), false);
+            }else{
+//                FlowController.getInstance().goViewInWindowUncap("bienvenido");
+                FlowController.getInstance().goViewInWindowModalUndec("bienvenido", this.getStage(), false);
+            }
+        }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
         }
-        
-      
-        
-        
-//        if(aux != null){
-//            System.out.println(aux.getEmpleadoFechaNacimiento().toString());
-//            if(aux.getEmpleadoFechaNacimiento().getDay() == today &&  aux.getEmpleadoFechaNacimiento().getMonth() == month) { FlowController.getInstance().goViewInWindowModal("birthday", this.getStage(), Boolean.TRUE);}
-//
-//         }
-        
         nFolio="";
         txtFolio.setText("");
     }

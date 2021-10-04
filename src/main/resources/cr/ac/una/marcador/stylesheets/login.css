@@ -16,7 +16,11 @@
     -TEXTO-ROJO: #F2CED7;
 }
 .darkLoginWindow{
+    
     -fx-background-color: -FONDO-OSCURO-PRIM;
+    -fx-border-color:-TUTULOS-CLARO;
+    -fx-border: 10px;
+
     -fx-alignment: 'CENTER';
     -fx-pref-height: 500px;
     -fx-pref-width: 500px;
@@ -41,7 +45,16 @@
     -fx-text-fill: -FONDO-CLARO-PRIM;
 
     /*-fx-alignment: 'CENTER';*/
-    -fx-pref-height: 40px;
+    /*-fx-pref-height: 40px;*/
+}
+.clearLabel{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 30px;
+    -fx-prompt-text-fill: -TUTULOS-CLARO;
+    -fx-text-fill:  -TUTULOS-CLARO;
+
+    /*-fx-alignment: 'CENTER';*/
+    /*-fx-pref-height: 40px;*/
 }
 .darkBoxLabel{
     -fx-font-family: 'Fira Sans';

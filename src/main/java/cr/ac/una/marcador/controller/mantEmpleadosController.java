@@ -24,8 +24,13 @@ import java.awt.image.RenderedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -37,6 +42,8 @@ import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.Format;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +54,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelFormat;
 import javax.imageio.ImageIO;
 
 public class mantEmpleadosController extends Controller implements Initializable {
@@ -96,7 +104,7 @@ public class mantEmpleadosController extends Controller implements Initializable
     private JFXButton btnNuevo;
     
     @FXML
-    private JFXPasswordField txtContra;
+    private TextField txtContra;
     @FXML
     private JFXButton btnBuscar;
     @FXML
@@ -133,26 +141,28 @@ public class mantEmpleadosController extends Controller implements Initializable
      
     @FXML
     void onAction_btnNuevo(ActionEvent event) {
-clearAll();
-        disableAll(true);
-        if (isNuevo) {
-            txtFolio.setText("");
-            txtFolio.setDisable(true);
-            txtCedula.setDisable(false);
-            txtNombre.setDisable(false);
-            txtApellido.setDisable(false);
-            dpFechaNacimiento.setDisable(false);
-            btnNuevo.setText("GUARDAR");
-            isNuevo = false;
-        } else {
-            txtFolio.setDisable(false);
-            txtCedula.setDisable(true);
-            txtNombre.setDisable(true);
-            txtApellido.setDisable(true);
-            dpFechaNacimiento.setDisable(true);
-            btnNuevo.setText("NUEVO");
-            isNuevo = true;
-        }
+        nuevoEmpleado();
+//        clearAll();
+       
+//        if (isNuevo) {
+//            
+////            txtFolio.setText("");
+//            txtFolio.setDisable(true);
+//            txtCedula.setDisable(false);
+//            txtNombre.setDisable(false);
+//            txtApellido.setDisable(false);
+//            dpFechaNacimiento.setDisable(false);
+//            btnNuevo.setText("EDITAR");
+//            isNuevo = false;
+//        } else {
+//            txtFolio.setDisable(false);
+//            txtCedula.setDisable(true);
+//            txtNombre.setDisable(true);
+//            txtApellido.setDisable(true);
+//            dpFechaNacimiento.setDisable(true);
+//            btnNuevo.setText("NUEVO");
+//            isNuevo = true;
+//        }
     }
 
     @Override
@@ -190,7 +200,9 @@ clearAll();
 
 
     void disableAll(boolean disable){
-        txtFolio.setText("");
+        
+   
+//        txtFolio.setText("");
         txtFolio.setDisable(!disable);
         txtCedula.setDisable(disable);
         txtNombre.setDisable(disable);
@@ -233,11 +245,18 @@ clearAll();
             bindEmpleado(false);
             validarAdministrador();
             validarRequeridos();
+            
         } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar empleado", getStage(), respuesta.getMensaje());
         }
     }
-
+private byte[] convertToBytes(Object object) throws IOException {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(bos)) {
+            out.writeObject(object);
+            return bos.toByteArray();
+        }
+    }
     private void unbindEmpleado() {
         txtFolio.textProperty().unbind();
         txtCedula.textProperty().unbindBidirectional(empleado.cedula);
@@ -248,8 +267,9 @@ clearAll();
         tggEsAdministrador.selectedProperty().unbindBidirectional(empleado.admin);
         imgFotoEmpleado.setImage(null);
     }
+    
 
-    private void bindEmpleado(boolean nuevo) {
+    private void bindEmpleado(boolean nuevo)  {
         if (!nuevo) {
             txtFolio.textProperty().bind(empleado.folio);
 //            try {
@@ -257,7 +277,39 @@ clearAll();
 //            } catch (IOException ex) {
 //                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
 //            }
+//try{
+////        System.out.println(Arrays.toString(empleado.foto));
+////                InputStream in= new ByteArrayInputStream();
+////                System.out.print(in);
+//                OutputStream out = new FileOutputStream(new File("photo.png"));
+//                byte[] cont = empleado.foto;
+//                int s = 0;
+//                    System.out.print(s);
+//                    out.write(cont, 0,empleado.foto.length);
+//                out.close();
+////                in.close();
+//                Image img= new Image("file:photo.jpg");
+//                imgFotoEmpleado.setImage(img);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+            try {
+                //                String fn = new String("c:\\mkyong-new.png");
+//                InputStream is = new ByteArrayInputStream(empleado.foto);
+//                BufferedImage newBi = ImageIO.read(is);
+//                ImageIO.write(newBi, "png", new File(fn));
+//                 } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+
+convert( empleado.foto);
+ System.out.println(empleado.foto);
+            } catch (IOException ex) {
+                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
+        
         txtCedula.textProperty().bindBidirectional(empleado.cedula);
         txtNombre.textProperty().bindBidirectional(empleado.name);
         txtApellido.textProperty().bindBidirectional(empleado.lastname);
@@ -266,6 +318,19 @@ clearAll();
         tggEsAdministrador.selectedProperty().bindBidirectional(empleado.admin);
        
     }
+   public void convert( byte[] data) throws IOException { 
+    File myFile =  new File("foto.png");
+//            System.out.println("filename is " + file);
+            OutputStream out = new FileOutputStream(myFile);
+            try {
+                out.write(data); // Just dump the database content to disk
+                System.out.println(data);
+            }
+            finally {
+                out.close();
+            }
+            System.out.println("Image file written successfully");
+   }
 
     void validarAdministrador() {
         if (tggEsAdministrador.isSelected()) {
@@ -273,7 +338,7 @@ clearAll();
             txtContra.setDisable(false);
         } else {
            requeridos.removeAll(Arrays.asList(txtContra));
-           txtContra.validate();
+//           txtContra.validate();
            txtContra.clear();
            txtContra.setDisable(true);
         }
@@ -329,6 +394,9 @@ clearAll();
     private void onAction_btnBuscar(ActionEvent event) {
         try {
             cargarEmpleado(txtFolio.getText());
+//            disableAll(true);
+//            btnNuevo.setText("EDITAR");
+//            isNuevo = false;
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -368,10 +436,38 @@ clearAll();
     foto = Files.readAllBytes(file.toPath());
 //    foto = Base64.getEncoder().encodeToString(bytes);
     empleado.setFoto(foto);
-    System.out.println(foto);
+    
+//    Image  img = (Image)AppContext.getInstance().get("imagen");
+//    int w = (int)img.getWidth();
+//    int h = (int)img.getHeight();
+//
+//// Create a new Byte Buffer, but we'll use BGRA (1 byte for each channel) //
+//
+//    byte[] buf = new byte[w * h * 4];
+//
+///* Since you can get the output in whatever format with a WritablePixelFormat,
+//   we'll use an already created one for ease-of-use. */
+//
+//    img.getPixelReader().getPixels(0, 0, w, h, PixelFormat.getByteBgraInstance(), buf, 0, w * 4);
+//    empleado.setFoto(buf);
+//    System.out.println(buf);
+    
+    
+    }
+    
+    public static byte[] toByteArray(BufferedImage bi, String format)
+        throws IOException {
+//        BufferedImage bi = ImageIO.read(new File("c:\\test\\google.png"));
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bi, format, baos);
+        byte[] bytes = baos.toByteArray();
+        return bytes;
+
     }
     
     private byte[] foto;
+    
+    
     
 //    private void byteToFile() throws IOException{
 ////    ByteArrayInputStream bais = new ByteArrayInputStream(empleado.getFoto());

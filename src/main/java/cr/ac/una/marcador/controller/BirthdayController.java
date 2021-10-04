@@ -7,6 +7,10 @@ package cr.ac.una.marcador.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
+import cr.ac.una.marcador.util.AppContext;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 
@@ -16,6 +20,7 @@ import animatefx.animation.Flash;
 import animatefx.animation.Pulse;
 import animatefx.animation.Swing;
 import animatefx.animation.Tada;
+import cr.ac.una.marcador.util.FlowController;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
@@ -39,16 +44,37 @@ public class BirthdayController extends Controller implements Initializable {
 
     @FXML
     private VBox root;
+
     @FXML
     private ImageView imvFondo;
+
     @FXML
     private ImageView imvGlobos1;
+
     @FXML
     private ImageView imvGlobos2;
+
     @FXML
     private Label lblSaludo;
+
     @FXML
     private ImageView imvEmp;
+
+    @FXML
+    private Label lblNombreApellido;
+
+    @FXML
+    private Label lblHora;
+
+    @FXML
+    private JFXButton btnCerrrar;
+
+    @FXML
+    void onAction_btnCerrrar(ActionEvent event) {
+        this.getStage().close();
+//        FlowController.getInstance().hide();
+        
+    }
     /**
      * Initializes the controller class.
      */
@@ -111,6 +137,10 @@ public class BirthdayController extends Controller implements Initializable {
     @Override
     public void initialize() {
        iniciarVista();
+        String[] EmpleadoMarca = (String[]) AppContext.getInstance().get("EmpleadoMarca");
+        lblNombreApellido.setText(EmpleadoMarca[0] +" " +EmpleadoMarca[1]);
+        lblHora.setText(EmpleadoMarca[2]);
+        lblSaludo.setText("¡FELIZ CUMPLEAÑOS "+EmpleadoMarca[0]+"!");
     }
 
     @Override

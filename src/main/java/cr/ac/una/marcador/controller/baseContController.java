@@ -111,7 +111,7 @@ public class baseContController extends Controller implements Initializable {
     }
     @FXML
     void onAtion_btnMarcador(ActionEvent event) {
-        FlowController.getInstance().goViewInWindow("baseView");
+        FlowController.getInstance().goViewInWindowModal("baseView",this.getStage(),false);
     }
 
     @Override

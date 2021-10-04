@@ -39,7 +39,7 @@ public class EmpleadoDto {
         this.folio = new SimpleStringProperty();
         this.admin = new SimpleBooleanProperty(false);
         this.nacimiento = new SimpleObjectProperty();
-//        this.foto = new SimpleObjectProperty();
+        this.foto = new byte[2048];
         
     }
     public void cargarDatos(cr.ac.una.relojunaws.EmpleadoDto empleado){

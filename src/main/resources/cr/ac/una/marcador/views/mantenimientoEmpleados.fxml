@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -12,11 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.mantEmpleadosController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.mantEmpleadosController">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
          <children>
-            <Label styleClass="clearHeading2" text="MANTENIMIENTO EMPLEADOS" />
+            <Label styleClass="clearHeading1" text="MANTENIMIENTO EMPLEADOS" />
          </children>
       </VBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1100.0">
@@ -33,10 +32,10 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="30.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0">
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                            <children>
                               <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="FOLIO:" />
-                              <TextField fx:id="txtFolio" styleClass="darkTextField" />
+                              <TextField fx:id="txtFolio" prefWidth="150.0" styleClass="darkTextField" />
                            </children>
                         </HBox>
                         <JFXButton fx:id="btnBuscar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBuscar" styleClass="primaryButton" text="BUSCAR" />
@@ -96,10 +95,10 @@
                         <Insets left="30.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
                            <children>
                               <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkBoxLabel" text="CONTRASEÑA:" />
-                              <JFXPasswordField fx:id="txtContra" prefHeight="40.0" prefWidth="135.0" styleClass="darkTextField" />
+                              <TextField fx:id="txtContra" prefWidth="150.0" styleClass="darkTextField" />
                            </children>
                         </HBox>
                      </children>
@@ -125,9 +124,9 @@
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="700.0" spacing="30.0">
          <children>
-            <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="cancelButton" text="BORRAR" />
-            <JFXButton fx:id="btnGuardar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnGuardar" styleClass="primaryButton" text="GUARDAR" />
-            <JFXButton fx:id="btnNuevo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnNuevo" styleClass="confirmButton" text="NUEVO" />
+            <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="cancelButton" text="ELIMINAR" />
+            <JFXButton fx:id="btnNuevo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnNuevo" styleClass="primaryButton" text="NUEVO" />
+            <JFXButton fx:id="btnGuardar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnGuardar" styleClass="confirmButton" text="GUARDAR" />
          </children>
       </HBox>
    </children>

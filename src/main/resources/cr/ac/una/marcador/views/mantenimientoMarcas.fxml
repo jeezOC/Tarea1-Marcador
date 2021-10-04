@@ -13,9 +13,14 @@
 
 <VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.mantMarcasController">
    <children>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1100.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="550.0" spacing="15.0">
+            <Label styleClass="clearHeading1" text="MANTENIMIENTO MARCAS" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="1100.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="550.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
@@ -25,7 +30,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="550.0" spacing="15.0">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="550.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
@@ -52,12 +57,14 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <ImageView fitHeight="33.0" fitWidth="34.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false" translateX="100.0">
-                     <image>
-                        <Image url="@../icons/excel2.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton fx:id="BtnExcel" buttonType="RAISED" onAction="#BtnExcel" prefHeight="32.0" prefWidth="138.0" style="-fx-background-color: #1D6F42;" text="Reporte en excel" translateX="100.0" />
+                  <JFXButton fx:id="BtnExcel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#BtnExcel" styleClass="confirmButton" text="Reporte en excel" translateX="100.0">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="34.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../icons/EXCEL1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
                </children>
             </HBox>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1100.0">

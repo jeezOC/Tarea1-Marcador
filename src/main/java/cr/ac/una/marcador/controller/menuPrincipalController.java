@@ -39,7 +39,7 @@ public class menuPrincipalController extends Controller implements Initializable
 
     @FXML
     void onAction_btnSalir(ActionEvent event) {
-
+        FlowController.getInstance().salir();
     }
 
     @Override

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.bienvenidaController">
+   <children>
+      <VBox alignment="CENTER" spacing="25.0" styleClass="darkLoginWindow" stylesheets="@../stylesheets/login.css">
+         <children>
+            <Label alignment="CENTER" blendMode="HARD_LIGHT" styleClass="clearLabel" text="¡BIENVENIODO!">
+               <font>
+                  <Font name="Imprint MT Shadow" size="19.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imvEmp" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/USER.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label fx:id="lblNombreApellido" alignment="CENTER" blendMode="HARD_LIGHT" styleClass="clearLabel" text="NOMBRE APELLIDO">
+                     <font>
+                        <Font name="Imprint MT Shadow" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblHora" alignment="CENTER" blendMode="HARD_LIGHT" styleClass="clearLabel" text="00:00">
+                     <font>
+                        <Font name="Imprint MT Shadow" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <JFXButton fx:id="btnCerrrar" onAction="#onAction_btnCerrrar" styleClass="cancelButton" text="CERRAR" />
+         </children>
+      </VBox>
+   </children>
+</VBox>
