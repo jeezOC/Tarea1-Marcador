@@ -272,7 +272,7 @@ private byte[] convertToBytes(Object object) throws IOException {
         txtContra.textProperty().unbindBidirectional(empleado.psswr);        
         dpFechaNacimiento.valueProperty().unbindBidirectional(empleado.nacimiento);
         tggEsAdministrador.selectedProperty().unbindBidirectional(empleado.admin);
-        
+//        imgFotoEmpleado
     }
     
 

@@ -13,6 +13,7 @@ import cr.ac.una.marcador.util.Mensaje;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,6 +62,14 @@ public class mantMarcasController extends Controller implements Initializable {
     
     @FXML
     private void onAction_btnBuscar(ActionEvent event) {
+        String folio = txtBuscar.getText();
+        if(folio!=""&&folio.length()==7){
+            LocalDate fIni = dpINI.getValue();
+            LocalDate fFin = dpFin.getValue();
+            
+           
+        }
+        
     }
     
      private static String ValueOfHeader(int i){

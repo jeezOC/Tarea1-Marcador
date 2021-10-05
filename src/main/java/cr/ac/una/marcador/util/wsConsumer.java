@@ -1,10 +1,12 @@
 package cr.ac.una.marcador.util;
 
 import cr.ac.una.marcador.model.EmpleadoDto;
+import cr.ac.una.marcador.model.MarcaDto;
 import cr.ac.una.relojunaws.Respuesta;
 import java.time.ZoneId;
 import java.util.Base64;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -52,10 +54,7 @@ public class wsConsumer {
         respuesta = port.existeEmpleado(folio);
         return respuesta;
     }
-    public Boolean crearMarca(String folio ){
-//        respuesta = port.login(folio);
-        return respuesta.isEstado();
-    }
+  
 
     
     public EmpleadoDto buscarEmpleadoFolio(String folio){
@@ -134,4 +133,16 @@ public class wsConsumer {
         }
         return cr;
     }
+    //MARCAS
+    public Boolean crearMarca(String folio ){
+//        respuesta = port.login(folio);
+        return respuesta.isEstado();
+    }
+    public List<MarcaDto> buscarMarcasFolioFechas(String folio){
+//        List<cr.ac.una.relojunaws.MarcaDto> listMarcas;
+        cr.ac.una.relojunaws.EmpleadoDto empleadoWebService =  port.buscarEmpleadoFolio(folio);
+        EmpleadoDto empleado = new EmpleadoDto();
+        empleado.cargarDatos(empleadoWebService);
+        return empleado; 
+      
 }
