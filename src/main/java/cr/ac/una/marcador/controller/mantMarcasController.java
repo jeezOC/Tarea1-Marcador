@@ -25,6 +25,7 @@ import javafx.scene.control.Alert;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -57,19 +58,30 @@ public class mantMarcasController extends Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+     List<MarcaDto> listdto = null;
+      EmpleadoDto emp;
+     
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
     @FXML
-    private void onAction_btnBuscar(ActionEvent event) {
+    private void onAction_btnBuscar(ActionEvent event) {   
+        
         String folio = txtBuscar.getText();
+        if(!"".equals(txtBuscar.getText())) {
+            listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);       
+            emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());   
+        }
+        else new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a busvar");
+        
+        
         if(folio!=""&&folio.length()==7){
             LocalDate fIni = dpINI.getValue();
-            LocalDate fFin = dpFin.getValue();
-            
-           
+            LocalDate fFin = dpFin.getValue();          
         }
         
     }
@@ -92,13 +104,12 @@ public class mantMarcasController extends Controller implements Initializable {
     @FXML
     private void BtnExcel(ActionEvent event) {
         if(!"".equals(txtBuscar.getText())) {
-           //  List<MarcaDto> listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(txtBuscar.getText());       
-         //  EmpleadoDto emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
              
             try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {
                 Workbook wb = new XSSFWorkbook();
                 XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
                 Sheet sheet = wb.createSheet("Sheet");
+                sheet.autoSizeColumn(150);
                 Cell cell;
                 Row row = sheet.createRow(0);
                 
@@ -109,35 +120,38 @@ public class mantMarcasController extends Controller implements Initializable {
                 for (int i = 0 ;i < 6;i++){//cabeceras
                     cell = row.createCell(i);
                     cell.setCellStyle(style);
+                    style.setBorderTop(BorderStyle.MEDIUM);
+                    style.setBorderBottom(BorderStyle.MEDIUM);
+                    style.setBorderLeft(BorderStyle.MEDIUM);
+                    style.setBorderRight(BorderStyle.MEDIUM);           
                     cell.setCellValue(ValueOfHeader(i));
                 }
                  XSSFCellStyle style2 = (XSSFCellStyle) wb.createCellStyle();
                 style2.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
                 style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-             //   row.setRowStyle(style);
                 
-              for (int i= 1; i <= 10; i++) {    
+              for (int i= 1; i <= 6; i++) {    
                     row = sheet.createRow(i);
-                   // row.setRowStyle(style);
-                    cell = row.createCell(0); 
+                 for (int k = 1; k <= 6; k++) {   
+                    cell = row.createCell(k-1); 
                     cell.setCellStyle(style2);
-                   // cell.setCellValue(listdto.get(i).getId());
+                    style2.setBorderTop(BorderStyle.MEDIUM);
+                    style2.setBorderBottom(BorderStyle.MEDIUM);
+                    style2.setBorderLeft(BorderStyle.MEDIUM);
+                    style2.setBorderRight(BorderStyle.MEDIUM);                    
                     
-                    cell = row.createCell(1); 
-                    cell.setCellStyle(style2);
-                   // cell.setCellValue(listdto.get(i).);
-                   
-                    cell = row.createCell(2); 
-                    cell.setCellStyle(style2);
-                    
-                    cell = row.createCell(3); 
-                   cell.setCellStyle(style2);
-                    
-                    cell = row.createCell(4); 
-                    cell.setCellStyle(style2);
-                    
-                    cell = row.createCell(5); 
-                    cell.setCellStyle(style2);
+//                 if(k == 1)cell.setCellValue(emp.getFolio());  
+//                    
+//                 if(k == 2) cell.setCellValue(emp.getCedula());
+//                   
+//                 if(k == 3) cell.setCellValue(emp.getNombre());
+//                   
+//                 if(k == 4) cell.setCellValue(emp.getApellido());
+//   
+//                 if(k == 5) cell.setCellValue(listdto.get(i).getHoraEntrada());
+//                 
+//                 if(k == 6) cell.setCellValue(listdto.get(i).getHoraSalida());
+                 }
               }
                 
                 
