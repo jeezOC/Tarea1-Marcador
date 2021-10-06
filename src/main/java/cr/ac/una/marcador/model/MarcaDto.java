@@ -21,9 +21,11 @@ public class MarcaDto {
 
     public MarcaDto(Marca marc) {
         this.id = marc.getMarcaId();
-        this.horaEntrada = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime() ;
+        if(marc.getMarcaHoraEntrada() != null && marc.getMarcaJornada() != null && marc.getMarcaHoraSalida() != null ){
+        this.horaEntrada = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime();
         this.horaSalida = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime();
         this.jornada = marc.getMarcaJornada().toGregorianCalendar().getTime();
+        }
     }
 
     public MarcaDto(Date fecha, Long id_emp, Boolean salida) {
