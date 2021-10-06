@@ -2,8 +2,10 @@ package cr.ac.una.marcador.util;
 
 import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.model.MarcaDto;
+import cr.ac.una.relojunaws.Marca;
 import cr.ac.una.relojunaws.Respuesta;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -140,10 +142,12 @@ public class wsConsumer {
     }
     public List<MarcaDto> buscarMarcasFolioFechas(String folio){
 //        List<cr.ac.una.relojunaws.MarcaDto> listMarcas;
-        cr.ac.una.relojunaws.EmpleadoDto empleadoWebService =  port.buscarEmpleadoFolio(folio);
-        EmpleadoDto empleado = new EmpleadoDto();
-        empleado.cargarDatos(empleadoWebService);
-        return (List<MarcaDto>) empleado; 
+        List<Marca> res =  port.buscarMarcaFolioFechas(folio);
+        List<MarcaDto> listdto = new ArrayList();
+   
+        res.forEach(r -> {listdto.add(new MarcaDto(r));});
+        
+        return (List<MarcaDto>) listdto; 
       
     }
 }

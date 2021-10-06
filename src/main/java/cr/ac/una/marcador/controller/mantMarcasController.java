@@ -10,10 +10,12 @@ import com.jfoenix.controls.JFXDatePicker;
 import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.model.MarcaDto;
 import cr.ac.una.marcador.util.Mensaje;
+import cr.ac.una.marcador.util.wsConsumer;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,31 +91,63 @@ public class mantMarcasController extends Controller implements Initializable {
      
     @FXML
     private void BtnExcel(ActionEvent event) {
-           try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {  
-            Workbook wb = new XSSFWorkbook();  
-            XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle(); 
-            Sheet sheet = wb.createSheet("Sheet");
-             Cell cell;
-            Row row = sheet.createRow(0);  
-           
-            
-             style.setFillForegroundColor(IndexedColors.GREEN.getIndex());  
-             style.setFillPattern(FillPatternType.SOLID_FOREGROUND); 
-//             row.setRowStyle(style);
-            
-             for (int i = 0 ;i < 6;i++){//cabeceras
-                 
-                cell = row.createCell(i); 
-                cell.setCellStyle(style);
-                cell.setCellValue(ValueOfHeader(i));  
-                 
-             }
-               new Mensaje().showModal(Alert.AlertType.INFORMATION, "Resultado satisfactorio" ,this.getStage(),"Se creó el excel solicitado");
-            wb.write(fileOut);  
-            }catch(Exception e) {  
-                System.out.println(e.getMessage());  
+        if(!"".equals(txtBuscar.getText())) {
+           //  List<MarcaDto> listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(txtBuscar.getText());       
+         //  EmpleadoDto emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
+             
+            try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {
+                Workbook wb = new XSSFWorkbook();
+                XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
+                Sheet sheet = wb.createSheet("Sheet");
+                Cell cell;
+                Row row = sheet.createRow(0);
+                
+                style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+                style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+              //  row.setRowStyle(style);
+                
+                for (int i = 0 ;i < 6;i++){//cabeceras
+                    cell = row.createCell(i);
+                    cell.setCellStyle(style);
+                    cell.setCellValue(ValueOfHeader(i));
+                }
+                 XSSFCellStyle style2 = (XSSFCellStyle) wb.createCellStyle();
+                style2.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+                style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+             //   row.setRowStyle(style);
+                
+              for (int i= 1; i <= 10; i++) {    
+                    row = sheet.createRow(i);
+                   // row.setRowStyle(style);
+                    cell = row.createCell(0); 
+                    cell.setCellStyle(style2);
+                   // cell.setCellValue(listdto.get(i).getId());
+                    
+                    cell = row.createCell(1); 
+                    cell.setCellStyle(style2);
+                   // cell.setCellValue(listdto.get(i).);
+                   
+                    cell = row.createCell(2); 
+                    cell.setCellStyle(style2);
+                    
+                    cell = row.createCell(3); 
+                   cell.setCellStyle(style2);
+                    
+                    cell = row.createCell(4); 
+                    cell.setCellStyle(style2);
+                    
+                    cell = row.createCell(5); 
+                    cell.setCellStyle(style2);
+              }
+                
+                
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Resultado satisfactorio" ,this.getStage(),"Se creó el excel solicitado");
+                wb.write(fileOut);
+            }catch(Exception e) {
+                System.out.println(e.getMessage());
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Falla en archivo" ,this.getStage(),e.getMessage());  
             }
+        } else new Mensaje().showModal(Alert.AlertType.ERROR, "Favor ingrese el dato a buscar" ,this.getStage(),"No se puede crear archivo");
         
     }
 
