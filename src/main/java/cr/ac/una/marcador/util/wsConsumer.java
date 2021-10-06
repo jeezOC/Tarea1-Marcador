@@ -160,7 +160,6 @@ public class wsConsumer {
         return (List<MarcaDto>) listdto; 
       
     }
-}
 
     
     
@@ -176,8 +175,8 @@ public class wsConsumer {
            xmlGregCalFromDate(in);
            xmlGregCalFromDate(fi);    
         }
-        
-        return port.crearReporte(nombreAdmin,folioAdmin,tipoReporte,ini,fin);
+        return null;
+//        return port.crearReporte(nombreAdmin,folioAdmin,tipoReporte,ini,fin);
     }
     
     	

@@ -137,6 +137,7 @@
 <xs:element name="tipoReporte" type="xs:int"/>
 <xs:element name="dateIni" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="dateFin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="FolioEmpleado" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
