@@ -2,6 +2,8 @@ package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import cr.ac.una.marcador.model.EmpleadoDto;
+import cr.ac.una.marcador.util.AppContext;
 import cr.ac.una.marcador.util.FlowController;
 import cr.ac.una.marcador.util.Mensaje;
 import cr.ac.una.marcador.util.wsConsumer;
@@ -36,18 +38,31 @@ public class loginController extends Controller implements Initializable {
     @FXML
     void onAction_btnConfirmar(ActionEvent event) {
         
-        try {   
+         try { 
             String folio = txtID.getText();
             String psswrd = txtContra.getText();
 //            
-//            boolean isAdmin = wsConsumer.getInstance().validarFolioContrasena(folio, psswrd);
-//            if(isAdmin){
-//               this.getStage().close();
+            boolean isAdmin = wsConsumer.getInstance().validarFolioContrasena(folio, psswrd);
+            
+             if(isAdmin){
+               this.getStage().close();
+                EmpleadoDto admin ;
+                admin = wsConsumer.getInstance().buscarEmpleadoFolio(folio);    
+                if(admin != null){
+                AppContext.getInstance().set("admin",admin);
                 FlowController.getInstance().hide();
                 FlowController.getInstance().goViewInWindow("baseContainer");
-//            }
+                System.out.println("HOLAAA");
+                }else{ 
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error iniciando sesión." ,this.getStage(),"Ocurrió el siguiente error al consultar el servidor: ");  
+                    
+                }
+                System.out.println("noooo HOLAAA");
+            }else{
+             
+             }
         } catch (Exception ex) {
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error iniciando secion" ,this.getStage(),ex.getMessage());  
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error iniciando sesión." ,this.getStage(),"Ocurrió el siguiente error al consultar el servidor: "+ ex.getMessage());  
             txtID.setText("");
             txtContra.setText("");
         }

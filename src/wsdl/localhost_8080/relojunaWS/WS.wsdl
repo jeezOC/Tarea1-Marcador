@@ -6,9 +6,17 @@
 </types>
 <message name="guardarEmpleado">
 <part name="parameters" element="tns:guardarEmpleado"/>
+<message name="login">
+<part name="parameters" element="tns:login"/>
 </message>
-<message name="guardarEmpleadoResponse">
-<part name="parameters" element="tns:guardarEmpleadoResponse"/>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
+</message>
+<message name="existeEmpleado">
+<part name="parameters" element="tns:existeEmpleado"/>
+</message>
+<message name="existeEmpleadoResponse">
+<part name="parameters" element="tns:existeEmpleadoResponse"/>
 </message>
 <message name="crearReporte">
 <part name="parameters" element="tns:crearReporte"/>
@@ -16,11 +24,17 @@
 <message name="crearReporteResponse">
 <part name="parameters" element="tns:crearReporteResponse"/>
 </message>
-<message name="existeEmpleado">
-<part name="parameters" element="tns:existeEmpleado"/>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
 </message>
-<message name="existeEmpleadoResponse">
-<part name="parameters" element="tns:existeEmpleadoResponse"/>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
+</message>
+<message name="guardarEmpleado">
+<part name="parameters" element="tns:guardarEmpleado"/>
+</message>
+<message name="guardarEmpleadoResponse">
+<part name="parameters" element="tns:guardarEmpleadoResponse"/>
 </message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
@@ -53,17 +67,29 @@
 <part name="parameters" element="tns:buscarMarcaFolioFechasResponse"/>
 </message>
 <portType name="relojunaws">
+
 <operation name="guardarEmpleado">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoRequest" message="tns:guardarEmpleado"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoResponse" message="tns:guardarEmpleadoResponse"/>
+<operation name="login">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginRequest" message="tns:login"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginResponse" message="tns:loginResponse"/>
+</operation>
+<operation name="existeEmpleado">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
 </operation>
 <operation name="crearReporte">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearReporteRequest" message="tns:crearReporte"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearReporteResponse" message="tns:crearReporteResponse"/>
 </operation>
-<operation name="existeEmpleado">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
+<operation name="hello">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloResponse" message="tns:helloResponse"/>
+</operation>
+<operation name="guardarEmpleado">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoRequest" message="tns:guardarEmpleado"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoResponse" message="tns:guardarEmpleadoResponse"/>
 </operation>
 <operation name="login">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginRequest" message="tns:login"/>
@@ -89,6 +115,7 @@
 <binding name="relojunawsPortBinding" type="tns:relojunaws">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="guardarEmpleado">
+<operation name="login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -98,14 +125,6 @@
 </output>
 </operation>
 <operation name="crearReporte">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="existeEmpleado">
 <soap:operation soapAction=""/>
 <input>
@@ -115,7 +134,19 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="existeEmpleado">
+
+<operation name="crearReporte">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="login">
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -134,6 +165,7 @@
 </output>
 </operation>
 <operation name="buscarEmpleadoFolio">
+<operation name="guardarEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

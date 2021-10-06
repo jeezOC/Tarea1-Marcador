@@ -107,7 +107,7 @@ public class baseContController extends Controller implements Initializable {
 
     @FXML
     void onAtion_btnReportes(ActionEvent event) {
-       FlowController.getInstance().goView("reportesView");
+       FlowController.getInstance().goView("reporteView");
     }
     @FXML
     void onAtion_btnMarcador(ActionEvent event) {

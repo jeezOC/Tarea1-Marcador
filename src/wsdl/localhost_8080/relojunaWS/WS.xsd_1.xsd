@@ -131,12 +131,18 @@
 </xs:complexType>
 
 <xs:complexType name="crearReporte">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="adminNombre" type="xs:string" minOccurs="0"/>
+<xs:element name="adminFolio" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoReporte" type="xs:int"/>
+<xs:element name="dateIni" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="dateFin" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="crearReporteResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

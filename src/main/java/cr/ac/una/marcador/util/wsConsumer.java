@@ -4,16 +4,25 @@ import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.model.MarcaDto;
 import cr.ac.una.relojunaws.Marca;
 import cr.ac.una.relojunaws.Respuesta;
+import java.io.IOException;
+import java.io.StringReader;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 public class wsConsumer {
     private static wsConsumer INSTANCE = null;
@@ -135,6 +144,7 @@ public class wsConsumer {
         }
         return cr;
     }
+
     //MARCAS
     public Boolean crearMarca(String folio ){
 //        respuesta = port.login(folio);
@@ -150,4 +160,50 @@ public class wsConsumer {
         return (List<MarcaDto>) listdto; 
       
     }
+}
+
+    
+    
+    public byte[] generarReporteJasper(HashMap<String,Object> datos){
+        String nombreAdmin = (String) datos.get("nombreAdmin");
+        String folioAdmin = (String) datos.get("folioAdmin");
+        int tipoReporte = (int) datos.get("tipo");
+        Date in = (Date) datos.get("ini");
+        Date fi = (Date) datos.get("fin");
+        XMLGregorianCalendar ini = null;
+         XMLGregorianCalendar fin = null;
+        if(in != null || fi != null){
+           xmlGregCalFromDate(in);
+           xmlGregCalFromDate(fi);    
+        }
+        
+        return port.crearReporte(nombreAdmin,folioAdmin,tipoReporte,ini,fin);
+    }
+    
+    	
+public static XMLGregorianCalendar xmlGregCalFromDate(final Date date){
+     try {
+         GregorianCalendar calendar = new GregorianCalendar();
+    calendar.setTime(date);
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(wsConsumer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	return null;
+}
+    
+        
+    private static org.w3c.dom.Document convertStringToDocument(String xmlStr) {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
+    DocumentBuilder builder;  
+    try {  
+        builder = factory.newDocumentBuilder();  
+        org.w3c.dom.Document doc = (org.w3c.dom.Document) builder.parse( new InputSource( new StringReader( xmlStr ))); 
+        return doc;
+    } catch (IOException | ParserConfigurationException | SAXException e) {  
+        e.toString();  
+    } 
+    return null;
+}
+    
 }
