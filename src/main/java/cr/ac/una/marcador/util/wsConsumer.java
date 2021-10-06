@@ -143,6 +143,7 @@ public class wsConsumer {
         cr.ac.una.relojunaws.EmpleadoDto empleadoWebService =  port.buscarEmpleadoFolio(folio);
         EmpleadoDto empleado = new EmpleadoDto();
         empleado.cargarDatos(empleadoWebService);
-        return empleado; 
+        return (List<MarcaDto>) empleado; 
       
+    }
 }
