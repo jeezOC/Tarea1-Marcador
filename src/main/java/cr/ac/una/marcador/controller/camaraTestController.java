@@ -26,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class camaraTestController extends Controller implements Initializable {
     Image imagen;
-    File file;
+    
     @FXML
     private HBox root;
 
@@ -61,7 +61,7 @@ public class camaraTestController extends Controller implements Initializable {
 //        }
 //        webcam.close();
         AppContext.getInstance().set("imagen", imagen);
-        AppContext.getInstance().set("fileImage", file);
+//        AppContext.getInstance().set("fileImage", file);
         AppContext.getInstance().actualizarViewImagen();
         this.getStage().close();
 //        FlowController.getInstance().hide();
@@ -219,17 +219,22 @@ public class camaraTestController extends Controller implements Initializable {
 // indica cual fue la accion de usuario sobre el jfilechooser
         selectorArchivos.showOpenDialog(selectorArchivos);
 //        System.out.println(resultado);
-        file = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
-
+        File file = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
+        Image imagen = new Image(file.toURI().toString());
+        AppContext.getInstance().set("imagen", imagen);
+        AppContext.getInstance().set("fileImage", file);
+        AppContext.getInstance().actualizarViewImagen();
+        //this.getStage().close();
 //// muestra error si es inválido
 //        if ((archivo == null) || (archivo.getName().equals(""))) {
 ////            new Mensaje().show(Alert.AlertType.ERROR, "Nombre de archivo inválido", "El archivo seleccionado es inválido, repita la busqueda, o capture una fotografía.");
 //        } // fin de if
 
         txtSeleccion.setText(file.toURI().toString());
-        imagen = new Image(file.toURI().toString());
+       
         wcView.setPreserveRatio(true);
         wcView.setImage(imagen);
+        
 //        Scanner scn = new Scanner(archivo);
 //        while (scn.hasNext()) {
 //            jtaContenido.insert(scn.nextLine() + "\n", jtaContenido.getText().length());

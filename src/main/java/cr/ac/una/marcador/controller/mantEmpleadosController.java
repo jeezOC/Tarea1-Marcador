@@ -56,6 +56,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelFormat;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class mantEmpleadosController extends Controller implements Initializable {
 
@@ -136,7 +138,22 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @FXML
     void onAction_btnCambiarFoto(ActionEvent event) {
-        FlowController.getInstance().goViewInWindowModal("camaraView",this.getStage(),false);
+        //FlowController.getInstance().goViewInWindowModal("camaraView",this.getStage(),false);
+        
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes ", "jpg","png");
+        selectorArchivos.setFileFilter(filtro);
+
+// indica cual fue la accion de usuario sobre el jfilechooser
+        selectorArchivos.showOpenDialog(selectorArchivos);
+//        System.out.println(resultado);
+        File file = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
+        Image imagen = new Image(file.toURI().toString());
+        AppContext.getInstance().set("imagen", imagen);
+        AppContext.getInstance().set("fileImage", file);
+        AppContext.getInstance().actualizarViewImagen();
+        //this.getStage().close();
     }
 
      

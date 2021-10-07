@@ -3,47 +3,52 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" alignment="CENTER" prefHeight="552.0" prefWidth="610.0" spacing="10.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.ReporteViewController">
+<VBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="emptyBGCard" stylesheets="@../stylesheets/mantenimientoStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.ReporteViewController">
    <children>
       <HBox alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="1100.0" styleClass="clearHeading1" text="REPORTES" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" styleClass="clearHeading2">
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" styleClass="clearHeading2">
          <children>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="1097.0" styleClass="clearHeading2" text="Complete los siguientes datos según sus requerimientos para generar el reporte" />
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Complete los siguientes espacios según sus requerimientos para generar el reporte" />
          </children>
       </HBox>
-      <Separator prefWidth="200.0" />
       <HBox alignment="CENTER">
          <children>
             <VBox prefHeight="102.0" prefWidth="1104.0">
                <children>
                   <HBox prefHeight="102.0" prefWidth="593.0">
                      <children>
-                        <VBox>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1100.0" styleClass="clearHeading2">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1100.0" styleClass="clearHeading2">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="602.0" styleClass="clearHeading2" text="Desea generar un reporte con información de:" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Desea generar un reporte con información de:" textAlignment="CENTER" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1100.0" spacing="50.0">
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1100.0" spacing="50.0">
                                  <children>
-                                    <JFXRadioButton fx:id="tggEmpleados" contentDisplay="CENTER" onAction="#onActionTggEmpleados" prefHeight="66.0" prefWidth="140.0" selected="true" styleClass="darkLabel" text="Empleados">
+                                    <JFXRadioButton fx:id="tggEmpleados" contentDisplay="CENTER" onAction="#onActionTggEmpleados" selected="true" styleClass="darkLabel" text="Empleados">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tggGroupMarcaEmpleado" />
                                        </toggleGroup>
                                     </JFXRadioButton>
-                                    <JFXRadioButton fx:id="tggMarcasDeEmpleados" contentDisplay="CENTER" onAction="#onActionTggMarcasEmpleados" prefHeight="68.0" prefWidth="242.0" styleClass="darkLabel" text="Marcas de empleados" toggleGroup="$tggGroupMarcaEmpleado" />
+                                    <JFXRadioButton fx:id="tggMarcasDeEmpleados" contentDisplay="CENTER" onAction="#onActionTggMarcasEmpleados" styleClass="darkLabel" text="Marcas de empleados" toggleGroup="$tggGroupMarcaEmpleado" />
                                  </children>
                               </HBox>
                            </children>
@@ -56,49 +61,55 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <VBox prefHeight="95.0" prefWidth="1107.0">
+            <VBox prefHeight="100.0" prefWidth="1107.0">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="1014.0" styleClass="clearHeading2" text="Generar reporte para :" textAlignment="CENTER" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Generar reporte para :" textAlignment="CENTER" />
                      </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="600.0" spacing="50.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" spacing="50.0">
                      <children>
-                        <JFXRadioButton fx:id="tggUnEmpleado" contentDisplay="CENTER" onAction="#onActionTggUnEmpleado" prefHeight="65.0" prefWidth="199.0" selected="true" styleClass="darkLabel" text="Un empleado">
+                        <JFXRadioButton fx:id="tggUnEmpleado" contentDisplay="CENTER" onAction="#onActionTggUnEmpleado" selected="true" styleClass="darkLabel" text="Un empleado">
                            <toggleGroup>
                               <ToggleGroup fx:id="tggGroupMuchosUno" />
                            </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="tggTodosLosEmpleados" contentDisplay="CENTER" onAction="#onActionTggTodosEmpleado" prefHeight="60.0" prefWidth="292.0" selected="true" styleClass="darkLabel" text="Todos los empleados" toggleGroup="$tggGroupMuchosUno" />
+                        <JFXRadioButton fx:id="tggTodosLosEmpleados" contentDisplay="CENTER" onAction="#onActionTggTodosEmpleado" selected="true" styleClass="darkLabel" text="Todos los empleados" toggleGroup="$tggGroupMuchosUno" />
                      </children>
                   </HBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox>
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="1100.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="138.0" prefWidth="1100.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="1100.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="68.0" prefWidth="1101.0" styleClass="clearHeading2" text="Rango entre fechas del reporte:" textAlignment="CENTER" />
-                           </children>
-                        </HBox>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Rango entre fechas del reporte:" textAlignment="CENTER" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="1100.0">
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER" spacing="65.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="365.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                            <children>
                               <Label styleClass="darkBoxLabel" text="Fecha Inicial:" />
                               <JFXDatePicker fx:id="dpIni" defaultColor="#7497a7" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="365.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                            <children>
                               <Label styleClass="darkBoxLabel" text="Fecha Final:" />
                               <JFXDatePicker fx:id="dpFin" defaultColor="#7497a7" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
@@ -106,32 +117,38 @@
                         </HBox>
                      </children>
                   </HBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="1100.0">
-         <children>
-            <Label styleClass="darkBoxLabel" text="FOLIO:" />
-            <TextField fx:id="txtFolio" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
-         </children>
-      </HBox>
-      <Separator prefWidth="200.0" />
-      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="1100.0" spacing="150.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="73.0" prefWidth="363.0" spacing="5.0" styleClass="clearHeading1">
-               <children>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="363.0" styleClass="txtLabel" text="Nombre del archivo a generar:" />
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0">
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                      <children>
-                        <Label prefWidth="26.0" styleClass="darkBoxLabel" text="//:" />
-                        <TextField fx:id="txtNombreArchivoMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="235.0" styleClass="darkTextField" />
+                        <Label styleClass="darkBoxLabel" text="FOLIO:" />
+                        <TextField fx:id="txtFolio" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="darkTextField" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <JFXButton fx:id="jfxButtonGenerar" onAction="#onActionBtnGenerar" styleClass="confirmButton" text="Generar" />
          </children>
-      </HBox>
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0" styleClass="clearHeading1">
+         <children>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="26.0" styleClass="clearHeading2" text="Nombre del archivo a generar:" />
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0">
+               <children>
+                  <Label prefWidth="26.0" styleClass="darkBoxLabel" text="//:" />
+                  <TextField fx:id="txtNombreArchivoMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="235.0" styleClass="darkTextField" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
+         <children>
+            <JFXButton fx:id="jfxButtonGenerar" onAction="#onActionBtnGenerar" styleClass="confirmButton" text="Generar Reporte" />
+         </children>
+      </VBox>
    </children>
 </VBox>

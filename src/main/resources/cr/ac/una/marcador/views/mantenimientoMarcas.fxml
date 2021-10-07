@@ -18,9 +18,9 @@
             <Label styleClass="clearHeading1" text="MANTENIMIENTO MARCAS" />
          </children>
       </VBox>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="1100.0">
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
          <children>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="550.0" spacing="15.0">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="550.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
@@ -30,7 +30,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="550.0" spacing="15.0">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="550.0" spacing="15.0">
                <children>
                   <HBox alignment="CENTER">
                      <children>
@@ -46,6 +46,7 @@
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
                <children>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="365.0" />
                   <Label styleClass="darkBoxLabel2" text="FOLIO:" />
                   <TextField fx:id="txtBuscar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkSearchTextField" />
                   <JFXButton fx:id="btnBuscar" alignment="CENTER" ellipsisString="" onAction="#onAction_btnBuscar" styleClass="searchButton">
@@ -57,19 +58,31 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="BtnExcel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#BtnExcel" styleClass="confirmButton" text="Reporte en excel" translateX="100.0">
-                     <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="34.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false">
-                           <image>
-                              <Image url="@../icons/EXCEL1.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></JFXButton>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="350.0">
+                     <children>
+                        <JFXButton fx:id="BtnExcel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#BtnExcel" styleClass="confirmButton" text="Reporte en excel">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="34.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false">
+                                 <image>
+                                    <Image url="@../icons/EXCEL1.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
-            <VBox fx:id="boxView" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
+            <VBox fx:id="boxView" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
                <children>
                   <ListView fx:id="listMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="800.0" styleClass="List" stylesheets="@../stylesheets/mantenimientoStyle.css" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="700.0" spacing="30.0">
+                     <children>
+                        <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="cancelButton" text="ELIMINAR" />
+                        <JFXButton fx:id="btnNuevo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnNuevo" styleClass="primaryButton" text="NUEVA" />
+                        <JFXButton fx:id="btnGuardar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnGuardar" styleClass="confirmButton" text="GUARDAR" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

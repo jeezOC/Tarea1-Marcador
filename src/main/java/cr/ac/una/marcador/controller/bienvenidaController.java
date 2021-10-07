@@ -33,7 +33,7 @@ public class bienvenidaController extends Controller implements Initializable{
 
     @FXML
     void onAction_btnCerrrar(ActionEvent event) {
-
+        this.getStage().close();
     }
 
     @Override

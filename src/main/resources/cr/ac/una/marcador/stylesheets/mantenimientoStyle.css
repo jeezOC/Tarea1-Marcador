@@ -25,7 +25,7 @@
 .leftPanelClear{
 
     -fx-background-color: #515A67;
-    -fx-alignment: CENTER;
+    -fx-alignment: CENTER-LEFT  ;
     -fx-spacing: 15px;
 
     /*-fx-pref-height: 300px;*/

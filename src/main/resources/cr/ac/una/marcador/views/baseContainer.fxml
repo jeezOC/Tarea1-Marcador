@@ -7,7 +7,7 @@
 
 <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="darkMainWindow" stylesheets="@../stylesheets/mantenimientoStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.baseContController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="leftPanelClear" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="leftPanelClear" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="btnMantEmp" onAction="#onAction_btnMantEmp" styleClass="darkButtonLeft" text="MANTENIMIENTO&#10;DE EMPLEADOS" textAlignment="CENTER" />
             <JFXButton fx:id="btnManMarc" onAction="#onAction_btnManMarc" styleClass="darkButtonLeft" text="MANTENIMIENTO &#10;DE MARCAS" textAlignment="CENTER" />
