@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
@@ -18,9 +19,9 @@ import javafx.beans.property.ObjectProperty;
  */
 public class MarcaDto {
     private Long marcaid;
-    private ObjectProperty<LocalDate>  marcahoraEntrada;
-    private ObjectProperty<LocalDate>  marcahoraSalida;
-    private ObjectProperty<LocalDate> marcajornada;
+    private LocalDate  marcahoraEntrada;
+    private LocalDate  marcahoraSalida;
+    private LocalDate marcajornada;
     private Empleado empleadoid;
 
 //    public MarcaDto(Marca marc) {
@@ -33,40 +34,43 @@ public class MarcaDto {
     public MarcaDto(){}
     public MarcaDto(cr.ac.una.relojunaws.Marca marca) {
         this.marcaid = marca.getMarcaId();
-        this.marcahoraEntrada.set(marca.getMarcaHoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        this.marcahoraSalida.set(marca.getMarcaHoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        this.marcajornada.set(marca.getMarcaJornada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        this.marcahoraEntrada = marca.getMarcaHoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.marcahoraSalida = marca.getMarcaHoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.marcajornada = marca.getMarcaJornada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.empleadoid = marca.getEmpleadoId();
     }
 
-    public MarcaDto(LocalDate fecha, Boolean isEntrada) {
+    public void crearMarca(LocalDate fecha, Boolean isEntrada) {
 //          this.empleadoid = emp;
-          if(isEntrada) this.marcahoraEntrada.set(fecha);
-          else this.marcahoraSalida.set(fecha);
+          if(isEntrada) this.marcahoraEntrada=fecha;
+          else this.marcahoraSalida= fecha;
+          
+          this.marcajornada=fecha;
+          
     }
 
-    public LocalDate getMarcahoraEntrada() {
-        return marcahoraEntrada.get();
+    public  LocalDate  getMarcahoraEntrada() {
+        return marcahoraEntrada;
     }
 
     public void setMarcahoraEntrada(LocalDate marcahoraEntrada) {
-        this.marcahoraEntrada.set(marcahoraEntrada);
+        this.marcahoraEntrada= marcahoraEntrada;
     }
 
-    public LocalDate getMarcahoraSalida() {
-        return marcahoraSalida.get();
+    public  LocalDate  getMarcahoraSalida() {
+        return marcahoraSalida;
     }
 
     public void setMarcahoraSalida(LocalDate marcahoraSalida) {
-        this.marcahoraSalida.set(marcahoraSalida);
+        this.marcahoraSalida= marcahoraSalida;
     }
 
-    public LocalDate getMarcajornada() {
-        return marcajornada.get();
+    public LocalDate  getMarcajornada() {
+        return marcajornada;
     }
 
     public void setMarcajornada(LocalDate marcajornada) {
-        this.marcajornada.set( marcajornada);
+        this.marcajornada= marcajornada;
     }
 
     public Long getMarcaid() {

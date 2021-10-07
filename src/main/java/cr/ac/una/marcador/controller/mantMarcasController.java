@@ -151,9 +151,9 @@ public class mantMarcasController extends Controller implements Initializable {
                    
                  if(k == 4) cell.setCellValue(emp.getApellido());
    
-                 if(k == 5) cell.setCellValue(listdto.get(i).getHoraEntrada());
+                 if(k == 5) cell.setCellValue(listdto.get(i).getMarcahoraEntrada());
                  
-                 if(k == 6) cell.setCellValue(listdto.get(i).getHoraSalida());
+                 if(k == 6) cell.setCellValue(listdto.get(i).getMarcahoraSalida());
                  }
               }
             }

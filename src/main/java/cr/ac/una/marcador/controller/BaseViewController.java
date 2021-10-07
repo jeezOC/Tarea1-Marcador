@@ -257,7 +257,10 @@ public class BaseViewController extends Controller implements Initializable {
             aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
             if(aux != null){
             AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(),hora});
-            MarcaDto marcaDto = new MarcaDto(LocalDate.now(),true);
+                System.out.println("======================================"+LocalDate.now()+"======================================");
+            MarcaDto marcaDto = new MarcaDto();
+             marcaDto.crearMarca(LocalDate.now(),true);
+            System.out.println("======================================SIUUUUUUUUUUUUUU======================================");
             
             if(wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()){
             if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 

@@ -161,23 +161,29 @@ public class wsConsumer {
     private cr.ac.una.relojunaws.MarcaDto marcaDtoClientToServer(MarcaDto marcaDto) throws DatatypeConfigurationException{
         cr.ac.una.relojunaws.MarcaDto marcaDtoServidor = new cr.ac.una.relojunaws.MarcaDto();
         marcaDtoServidor.setMarcaid(marcaDto.getMarcaid());
-        
+        if(marcaDto.getMarcahoraEntrada()!=null){
         marcaDtoServidor.setMarcahoraEntrada(
                 DatatypeFactory.newInstance().newXMLGregorianCalendar(
                 GregorianCalendar.from(
                         marcaDto.getMarcahoraEntrada().atStartOfDay(ZoneId.systemDefault()))));
-        
+        }
+        if(marcaDto.getMarcahoraSalida()!=null){
         marcaDtoServidor.setMarcahoraSalida(
                 DatatypeFactory.newInstance().newXMLGregorianCalendar(
                 GregorianCalendar.from(
                         marcaDto.getMarcahoraSalida().atStartOfDay(ZoneId.systemDefault()))));
-        
+        }
+        if(marcaDto.getMarcajornada()!=null){
         marcaDtoServidor.setMarcajornada(
                 DatatypeFactory.newInstance().newXMLGregorianCalendar(
                 GregorianCalendar.from(
                         marcaDto.getMarcajornada().atStartOfDay(ZoneId.systemDefault()))));
-        
+        }
 //        marcaDtoServidor.setEmpleadoid(marcaDto.getEmpleadoid());
+
+//            LocalDate date = LocalDate.now();
+//            GregorianCalendar gcal = GregorianCalendar.from(date.atStartOfDay(ZoneId.systemDefault()));
+//            XMLGregorianCalendar xcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
 //      
         return marcaDtoServidor;
     }
