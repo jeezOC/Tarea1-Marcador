@@ -32,12 +32,12 @@ public class MarcaDto {
 //    }
 
     public MarcaDto(){}
-    public MarcaDto(cr.ac.una.relojunaws.Marca marca) {
-        this.marcaid = marca.getMarcaId();
-        this.marcahoraEntrada = marca.getMarcaHoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.marcahoraSalida = marca.getMarcaHoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.marcajornada = marca.getMarcaJornada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.empleadoid = marca.getEmpleadoId();
+    public MarcaDto(cr.ac.una.relojunaws.MarcaDto marcaDto) {
+        this.marcaid = marcaDto.getMarcaid();
+        this.marcahoraEntrada = marcaDto.getMarcahoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.marcahoraSalida = marcaDto.getMarcahoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.marcajornada = marcaDto.getMarcajornada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.empleadoid = marcaDto.getEmpleadoid();
     }
 
     public void crearMarca(LocalDate fecha, Boolean isEntrada) {

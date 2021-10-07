@@ -2,7 +2,6 @@ package cr.ac.una.marcador.util;
 
 import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.model.MarcaDto;
-import cr.ac.una.relojunaws.Marca;
 import cr.ac.una.relojunaws.Respuesta;
 import java.io.IOException;
 import java.io.StringReader;
@@ -190,12 +189,19 @@ public class wsConsumer {
     
     
     
-    
+    public List<MarcaDto> obtenerTodasMarcas(){
+    List<cr.ac.una.relojunaws.MarcaDto> res =  port.obtenerTodasFechas();
+        List<MarcaDto> listdto = new ArrayList();
+   
+        res.forEach(r -> {listdto.add(new MarcaDto(r));});
+        
+        return (List<MarcaDto>) listdto; 
+    }
     
     
     public List<MarcaDto> buscarMarcasFolioFechas(String folio){
 //        List<cr.ac.una.relojunaws.MarcaDto> listMarcas;
-        List<Marca> res =  port.buscarMarcaFolioFechas(folio);
+       List<cr.ac.una.relojunaws.MarcaDto> res =  port.buscarMarcaFolioFechas(folio);
         List<MarcaDto> listdto = new ArrayList();
    
         res.forEach(r -> {listdto.add(new MarcaDto(r));});

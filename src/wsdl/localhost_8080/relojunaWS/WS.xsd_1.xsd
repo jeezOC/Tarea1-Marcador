@@ -38,8 +38,6 @@
 
 <xs:element name="loginResponse" type="tns:loginResponse"/>
 
-<xs:element name="marca" type="tns:marca"/>
-
 <xs:element name="obtenerTodasFechas" type="tns:obtenerTodasFechas"/>
 
 <xs:element name="obtenerTodasFechasResponse" type="tns:obtenerTodasFechasResponse"/>
@@ -147,17 +145,7 @@
 
 <xs:complexType name="buscarMarcaFolioFechasResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:marca" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="marca">
-<xs:sequence>
-<xs:element name="empleadoId" type="tns:empleado" minOccurs="0"/>
-<xs:element name="marcaHoraEntrada" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="marcaHoraSalida" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="marcaId" type="xs:long" minOccurs="0"/>
-<xs:element name="marcaJornada" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="return" type="tns:marcaDto" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
