@@ -41,7 +41,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Kendall
  */
 public class mantMarcasController extends Controller implements Initializable {
-    EmpleadoDto empleado;
+//    EmpleadoDto empleado;
     MarcaDto marca;
     @FXML
     private VBox root;
@@ -60,7 +60,7 @@ public class mantMarcasController extends Controller implements Initializable {
      */
     
      List<MarcaDto> listdto = null;
-      EmpleadoDto emp;
+      EmpleadoDto emp=new EmpleadoDto();
      
      
     @Override
@@ -73,10 +73,12 @@ public class mantMarcasController extends Controller implements Initializable {
         
         String folio = txtBuscar.getText();
         if(!"".equals(txtBuscar.getText())) {
-            listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);       
-            emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());   
+            
+            emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
+            
+            listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
         }
-        else new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a busvar");
+        else new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a buscar");
         
         
         if(folio!=""&&folio.length()==7){
@@ -130,7 +132,8 @@ public class mantMarcasController extends Controller implements Initializable {
                 style2.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
                 style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
                 
-              for (int i= 1; i <= 6; i++) {    
+                if(!listdto.isEmpty()){
+              for (int i= 1; i < listdto.size(); i++) {    
                     row = sheet.createRow(i);
                  for (int k = 1; k <= 6; k++) {   
                     cell = row.createCell(k-1); 
@@ -140,20 +143,20 @@ public class mantMarcasController extends Controller implements Initializable {
                     style2.setBorderLeft(BorderStyle.MEDIUM);
                     style2.setBorderRight(BorderStyle.MEDIUM);                    
                     
-//                 if(k == 1)cell.setCellValue(emp.getFolio());  
-//                    
-//                 if(k == 2) cell.setCellValue(emp.getCedula());
-//                   
-//                 if(k == 3) cell.setCellValue(emp.getNombre());
-//                   
-//                 if(k == 4) cell.setCellValue(emp.getApellido());
-//   
-//                 if(k == 5) cell.setCellValue(listdto.get(i).getHoraEntrada());
-//                 
-//                 if(k == 6) cell.setCellValue(listdto.get(i).getHoraSalida());
+                 if(k == 1) cell.setCellValue(emp.getFolio());  
+                    
+                 if(k == 2) cell.setCellValue(emp.getCedula());
+                   
+                 if(k == 3) cell.setCellValue(emp.getNombre());
+                   
+                 if(k == 4) cell.setCellValue(emp.getApellido());
+   
+                 if(k == 5) cell.setCellValue(listdto.get(i).getHoraEntrada());
+                 
+                 if(k == 6) cell.setCellValue(listdto.get(i).getHoraSalida());
                  }
               }
-                
+            }
                 
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Resultado satisfactorio" ,this.getStage(),"Se creó el excel solicitado");
                 wb.write(fileOut);
