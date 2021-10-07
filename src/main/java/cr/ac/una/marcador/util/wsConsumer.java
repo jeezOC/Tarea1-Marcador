@@ -209,17 +209,17 @@ public class wsConsumer {
     public byte[] generarReporteJasper(HashMap<String,Object> datos){
         String nombreAdmin = (String) datos.get("nombreAdmin");
         String folioAdmin = (String) datos.get("folioAdmin");
+        String folioEmpleado = (String) datos.get("folioEmpleado");
         int tipoReporte = (int) datos.get("tipo");
         Date in = (Date) datos.get("ini");
         Date fi = (Date) datos.get("fin");
-        XMLGregorianCalendar ini = null;
+        XMLGregorianCalendar ini =  null;
          XMLGregorianCalendar fin = null;
         if(in != null || fi != null){
-           xmlGregCalFromDate(in);
-           xmlGregCalFromDate(fi);    
+           ini = xmlGregCalFromDate(in);
+           fin = xmlGregCalFromDate(fi);    
         }
-        return null;
-//        return port.crearReporte(nombreAdmin,folioAdmin,tipoReporte,ini,fin);
+        return port.crearReporte(nombreAdmin, folioAdmin, tipoReporte, ini, fin, folioEmpleado); //.crearReporte(nombreAdmin,folioAdmin,tipoReporte,ini,fin);
     }
     
     	

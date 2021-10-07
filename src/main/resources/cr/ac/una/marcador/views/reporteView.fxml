@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" alignment="CENTER" prefHeight="548.0" prefWidth="610.0" spacing="10.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.ReporteViewController">
+<VBox fx:id="root" alignment="CENTER" prefHeight="552.0" prefWidth="610.0" spacing="10.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.ReporteViewController">
    <children>
       <HBox alignment="CENTER">
          <children>
