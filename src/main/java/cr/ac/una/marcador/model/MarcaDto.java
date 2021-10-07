@@ -5,71 +5,84 @@
  */
 package cr.ac.una.marcador.model;
 
+import cr.ac.una.relojunaws.Empleado;
 import cr.ac.una.relojunaws.Marca;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
+import javafx.beans.property.ObjectProperty;
 
 /**
  *
  * @author Kendall
  */
 public class MarcaDto {
-    private Date horaEntrada;
-    private Date horaSalida;
-    private Date jornada;
-    private Long id;
-     private Long pkMarca;
+    private Long marcaid;
+    private ObjectProperty<LocalDate>  marcahoraEntrada;
+    private ObjectProperty<LocalDate>  marcahoraSalida;
+    private ObjectProperty<LocalDate> marcajornada;
+    private Empleado empleadoid;
 
-    public MarcaDto(Marca marc) {
-        this.id = marc.getMarcaId();
-        this.horaEntrada = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime() ;
-        this.horaSalida = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime();
-        this.jornada = marc.getMarcaJornada().toGregorianCalendar().getTime();
+//    public MarcaDto(Marca marc) {
+//        this.marcaid = marc.getMarcaId();
+//        this.marcahoraEntrada = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime();
+//        this.marcahoraSalida = marc.getMarcaHoraEntrada().toGregorianCalendar().getTime().getHours();
+//        this.marcajornada = marc.getMarcaJornada().toGregorianCalendar().getTime();
+//    }
+
+    public MarcaDto(){}
+    public MarcaDto(cr.ac.una.relojunaws.Marca marca) {
+        this.marcaid = marca.getMarcaId();
+        this.marcahoraEntrada.set(marca.getMarcaHoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        this.marcahoraSalida.set(marca.getMarcaHoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        this.marcajornada.set(marca.getMarcaJornada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        this.empleadoid = marca.getEmpleadoId();
     }
 
-    public MarcaDto(Date fecha, Long id_emp, Boolean salida) {
-          this.id = id_emp;
-          if(salida) this.horaSalida = fecha;
-          else this.horaEntrada = fecha;
+    public MarcaDto(LocalDate fecha, Boolean isEntrada) {
+//          this.empleadoid = emp;
+          if(isEntrada) this.marcahoraEntrada.set(fecha);
+          else this.marcahoraSalida.set(fecha);
     }
 
-    public Long getPkMarca() {
-        return pkMarca;
+    public LocalDate getMarcahoraEntrada() {
+        return marcahoraEntrada.get();
     }
 
-    public void setPkMarca(Long pkMarca) {
-        this.pkMarca = pkMarca;
+    public void setMarcahoraEntrada(LocalDate marcahoraEntrada) {
+        this.marcahoraEntrada.set(marcahoraEntrada);
     }
 
-    public Long getId() {
-        return id;
+    public LocalDate getMarcahoraSalida() {
+        return marcahoraSalida.get();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMarcahoraSalida(LocalDate marcahoraSalida) {
+        this.marcahoraSalida.set(marcahoraSalida);
     }
 
-    public Date getHoraEntrada() {
-        return horaEntrada;
+    public LocalDate getMarcajornada() {
+        return marcajornada.get();
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
-        this.horaEntrada = horaEntrada;
+    public void setMarcajornada(LocalDate marcajornada) {
+        this.marcajornada.set( marcajornada);
     }
 
-    public Date getHoraSalida() {
-        return horaSalida;
+    public Long getMarcaid() {
+        return marcaid;
     }
 
-    public void setHoraSalida(Date horaSalida) {
-        this.horaSalida = horaSalida;
+    public void setMarcaid(Long marcaid) {
+        this.marcaid = marcaid;
     }
 
-    public Date getJornada() {
-        return jornada;
+    public Empleado getEmpleadoid() {
+        return empleadoid;
     }
 
-    public void setJornada(Date jornada) {
-        this.jornada = jornada;
-    }   
+    public void setEmpleadoid(Empleado empleadoid) {
+        this.empleadoid = empleadoid;
+    }  
     
 }

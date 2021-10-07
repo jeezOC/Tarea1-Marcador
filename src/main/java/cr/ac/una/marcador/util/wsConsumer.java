@@ -146,10 +146,47 @@ public class wsConsumer {
     }
 
     //MARCAS
-    public Boolean crearMarca(String folio ){
-//        respuesta = port.login(folio);
-        return respuesta.isEstado();
+    public Respuesta crearMarca(MarcaDto marcaDto, String folio ) throws DatatypeConfigurationException{
+        
+            cr.ac.una.relojunaws.MarcaDto marca = new cr.ac.una.relojunaws.MarcaDto();
+            marca = marcaDtoClientToServer(marcaDto);
+            
+            
+            respuesta = port.crearMarcaFolio(marca,folio);
+        
+//        respuesta = port.crearMarcaFolio(marcaDto,folio);
+        return respuesta;
     }
+    
+    private cr.ac.una.relojunaws.MarcaDto marcaDtoClientToServer(MarcaDto marcaDto) throws DatatypeConfigurationException{
+        cr.ac.una.relojunaws.MarcaDto marcaDtoServidor = new cr.ac.una.relojunaws.MarcaDto();
+        marcaDtoServidor.setMarcaid(marcaDto.getMarcaid());
+        
+        marcaDtoServidor.setMarcahoraEntrada(
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(
+                GregorianCalendar.from(
+                        marcaDto.getMarcahoraEntrada().atStartOfDay(ZoneId.systemDefault()))));
+        
+        marcaDtoServidor.setMarcahoraSalida(
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(
+                GregorianCalendar.from(
+                        marcaDto.getMarcahoraSalida().atStartOfDay(ZoneId.systemDefault()))));
+        
+        marcaDtoServidor.setMarcajornada(
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(
+                GregorianCalendar.from(
+                        marcaDto.getMarcajornada().atStartOfDay(ZoneId.systemDefault()))));
+        
+//        marcaDtoServidor.setEmpleadoid(marcaDto.getEmpleadoid());
+//      
+        return marcaDtoServidor;
+    }
+    
+    
+    
+    
+    
+    
     public List<MarcaDto> buscarMarcasFolioFechas(String folio){
 //        List<cr.ac.una.relojunaws.MarcaDto> listMarcas;
         List<Marca> res =  port.buscarMarcaFolioFechas(folio);

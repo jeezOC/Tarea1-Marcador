@@ -7,6 +7,7 @@ import cr.ac.una.marcador.util.Respuesta;
 import cr.ac.una.marcador.util.wsConsumer;
 //import cr.ac.una.relojunaws.EmpleadoDto;
 import cr.ac.una.marcador.model.EmpleadoDto;
+import cr.ac.una.marcador.model.MarcaDto;
 import cr.ac.una.marcador.util.AppContext;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,12 +21,14 @@ import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.scene.text.TextAlignment;
+import javax.xml.datatype.DatatypeConfigurationException;
 
 public class BaseViewController extends Controller implements Initializable {
 
@@ -225,10 +228,9 @@ public class BaseViewController extends Controller implements Initializable {
     }
 
     @FXML
-    void onAction_btnConfirmar(ActionEvent event) {
+    void onAction_btnConfirmar(ActionEvent event) throws DatatypeConfigurationException {
         String folio = txtFolio.getText();
         wsConsumer.getInstance().existeEmpleado(folio);
-        EmpleadoDto aux = new EmpleadoDto();
      //   aux =  wsConsumer.getInstance().buscarEmpleadoFolio(folio);
         if(wsConsumer.getInstance().getRespuesta().isEstado()){
             Date date= new Date();
@@ -250,10 +252,14 @@ public class BaseViewController extends Controller implements Initializable {
                 m = String.valueOf(cal.get(Calendar.MINUTE));
             }
             String hora = h +":"+m;
-//            wsConsumer.getInstance().crearMarca(folio);
-            
+//           
+            EmpleadoDto aux = new EmpleadoDto();
             aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
+            if(aux != null){
             AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(),hora});
+            MarcaDto marcaDto = new MarcaDto(LocalDate.now(),true);
+            
+            if(wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()){
             if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
 //                FlowController.getInstance().goViewInWindowUncap("birthday");
                  FlowController.getInstance().goViewInWindowModalUndec("birthday", this.getStage(), false);
@@ -261,6 +267,10 @@ public class BaseViewController extends Controller implements Initializable {
 //                FlowController.getInstance().goViewInWindowUncap("bienvenido");
                 FlowController.getInstance().goViewInWindowModalUndec("bienvenido", this.getStage(), false);
             }
+            }else{
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
+            }
+        }
         }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
         }

@@ -8,6 +8,10 @@
 
 <xs:element name="buscarMarcaFolioFechasResponse" type="tns:buscarMarcaFolioFechasResponse"/>
 
+<xs:element name="crearMarcaFolio" type="tns:crearMarcaFolio"/>
+
+<xs:element name="crearMarcaFolioResponse" type="tns:crearMarcaFolioResponse"/>
+
 <xs:element name="crearReporte" type="tns:crearReporte"/>
 
 <xs:element name="crearReporteResponse" type="tns:crearReporteResponse"/>
@@ -83,6 +87,42 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="crearMarcaFolio">
+<xs:sequence>
+<xs:element name="marca" type="tns:marcaDto" minOccurs="0"/>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="marcaDto">
+<xs:sequence>
+<xs:element name="empleadoid" type="tns:empleado" minOccurs="0"/>
+<xs:element name="marcahoraEntrada" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="marcahoraSalida" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="marcaid" type="xs:long" minOccurs="0"/>
+<xs:element name="marcajornada" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleado">
+<xs:sequence>
+<xs:element name="empleadoApellido" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoCedula" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoFechaNac" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="empleadoFolio" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoFoto" type="xs:base64Binary" minOccurs="0"/>
+<xs:element name="empleadoIsAdmin" type="xs:long" minOccurs="0"/>
+<xs:element name="empleadoNombre" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoPassword" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearMarcaFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="eliminarEmpleadoFolio">
 <xs:sequence>
 <xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
@@ -114,19 +154,6 @@
 <xs:element name="marcaHoraSalida" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="marcaId" type="xs:long" minOccurs="0"/>
 <xs:element name="marcaJornada" type="xs:dateTime" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="empleado">
-<xs:sequence>
-<xs:element name="empleadoApellido" type="xs:string" minOccurs="0"/>
-<xs:element name="empleadoCedula" type="xs:string" minOccurs="0"/>
-<xs:element name="empleadoFechaNac" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="empleadoFolio" type="xs:string" minOccurs="0"/>
-<xs:element name="empleadoFoto" type="xs:base64Binary" minOccurs="0"/>
-<xs:element name="empleadoIsAdmin" type="xs:long" minOccurs="0"/>
-<xs:element name="empleadoNombre" type="xs:string" minOccurs="0"/>
-<xs:element name="empleadoPassword" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
