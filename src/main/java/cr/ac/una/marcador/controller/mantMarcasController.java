@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -55,6 +56,11 @@ public class mantMarcasController extends Controller implements Initializable {
     private JFXButton btnBuscar;
     @FXML
     private JFXButton BtnExcel;
+    @FXML
+    private VBox boxView;
+    @FXML
+    private ListView<String> listMarcas;
+    
     /**
      * Initializes the controller class.
      */
@@ -65,23 +71,23 @@ public class mantMarcasController extends Controller implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+            listMarcas.getItems().add("ENTRADAS/SALIDAS");
     }    
     
     @FXML
     private void onAction_btnBuscar(ActionEvent event) {   
-        
+       
         String folio = txtBuscar.getText();
         if(!"".equals(txtBuscar.getText())) {
             
-            emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
-            
-            listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
+//            emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
+//            listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
+//            listdto.forEach(x -> {listMarcas.getItems().add(x.getMarcahoraEntrada().toString()+"/"+x.getMarcahoraSalida().toString());});
         }
         else new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a buscar");
         
         
-        if(folio!=""&&folio.length()==7){
+        if(!"".equals(folio)&&folio.length()==7){
             LocalDate fIni = dpINI.getValue();
             LocalDate fFin = dpFin.getValue();          
         }

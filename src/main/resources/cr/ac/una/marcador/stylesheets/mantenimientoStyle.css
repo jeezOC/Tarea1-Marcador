@@ -18,14 +18,14 @@
 
 .darkMainWindow{
     -fx-background-color: #40444F;
-    -fx-alignment: 'CENTER';
+    -fx-alignment: CENTER;
     -fx-pref-height: 700px;
     -fx-pref-width: 1300px;
 }
 .leftPanelClear{
 
     -fx-background-color: #515A67;
-    -fx-alignment: 'CENTER-LEFT';
+    -fx-alignment: CENTER;
     -fx-spacing: 15px;
 
     /*-fx-pref-height: 300px;*/
@@ -34,26 +34,26 @@
 }
 .emptyBGCard{
     -fx-background-color: #40444F;
-    -fx-alignment: 'TOP-CENTER';
+    -fx-alignment: TOP_CENTER;
     /*-fx-spacing: 15px;*/
     -fx-pref-height: 700px;
     -fx-pref-width: 1100px;
 }
 .numpadCard{
-    -fx-alignment: 'CENTER';
+    -fx-alignment: CENTER;
     -fx-pref-height: 400px;
     -fx-pref-width: 300px;
 }
 
 .clearCard{
     -fx-background-color: #7497A7;
-    -fx-alignment: 'CENTER';
+    -fx-alignment: CENTER;
     -fx-pref-height: 300px;
     -fx-pref-width: 500px;
 }
 .photoView{
     -fx-background-color:  -FONDO-OSCURO-SEC;
-    -fx-alignment: 'CENTER';
+    -fx-alignment: CENTER;
 
     -fx-pref-height: 200px;
     -fx-pref-width: 200px;
@@ -62,7 +62,7 @@
 }
 .ImageView .image{
     -fx-background-color:  -FONDO-OSCURO-SEC;
-    -fx-alignment: 'CENTER';
+    -fx-alignment: CENTER;
 
     -fx-pref-height: 200px;
     -fx-pref-width: 200px;
@@ -94,7 +94,7 @@
     -fx-prompt-text-fill: #8FADBB;
     -fx-text-fill: #E0EEF6;
 
-    -fx-alignment: 'CENTER';
+    -fx-alignment: CENTER;
     -fx-background-color: #515A67;
     -fx-background-radius:  0 15 15 0 ;
     -fx-pref-height: 40px;
@@ -115,7 +115,7 @@
     -fx-prompt-text-fill: #8FADBB;
     -fx-text-fill: #E0EEF6;
 
-    -fx-alignment: 'CENTER-RIGHT';
+    -fx-alignment: CENTER_RIGHT;
     -fx-background-color: #515A67;
     -fx-background-radius: 15px 0 0 15;
     -fx-pref-height: 40px;
@@ -128,7 +128,7 @@
     -fx-prompt-text-fill: #8FADBB;
     -fx-text-fill: #E0EEF6;
 
-    -fx-alignment: 'CENTER-RIGHT';
+    -fx-alignment: CENTER_RIGHT;
     -fx-background-color: #515A67;
     -fx-background-radius: 15px 0 0 15;
     -fx-pref-height: 50px;
@@ -141,7 +141,7 @@
     -fx-prompt-text-fill: #8FADBB;
     -fx-text-fill: #E0EEF6;
 
-    -fx-alignment: 'CENTER';
+    -fx-alignment: center;
     -fx-background-color: #515A67;
     -fx-background-radius: 0;
     -fx-pref-height: 50px;
@@ -169,7 +169,7 @@
     -fx-prompt-text-fill: #8FADBB;
     -fx-text-fill: #E0EEF6;
 
-    -fx-alignment: 'CENTER';
+    -fx-alignment:center;
     -fx-background-color: #515A67;
     -fx-background-radius: 0 15 15 0;
     -fx-pref-height: 50px;
@@ -203,7 +203,7 @@
     -fx-prompt-text-fill: #8FADBB;
     -fx-text-fill: #E0EEF6;
 
-    -fx-alignment: 'CENTER';
+    -fx-alignment: center;
     -fx-background-color: #515A67;
     -fx-background-radius:  0 15 15 0;
     -fx-pref-height: 50px;
@@ -276,12 +276,12 @@
     -fx-text-fill: #E0EEF6;
 
     -fx-background-color: #515A67;
-    -fx-alignment: 'CENTER';
+    -fx-alignment:center;
     -fx-spacing: 10px;
     -fx-background-radius: 25px;
     -fx-pref-height: 200px;
     -fx-pref-width: 550px;
-    -fx-column-halignment: "CENTER";
+    -fx-column-halignment:center;
     /*-fx-padding: 0 200px 2000px 0;*/
 }
 
@@ -291,11 +291,18 @@
     /*-fx-text-fill: #E0EEF6;*/
 
     -fx-background-color: #515A67;
-    -fx-alignment: 'CENTER';
+    -fx-alignment: center;
     -fx-spacing: 10px;
     -fx-background-radius: 25px;
     -fx-pref-height: 300px;
     -fx-pref-width: 300px;
-    -fx-column-halignment: "CENTER";
+    -fx-column-halignment: center;
     /*-fx-padding: 0 200px 2000px 0;*/
+}
+
+.List{
+    -fx-border-style:solid; 
+    -fx-alignment:center;
+    -fx-background-radius: 25px;
+    
 }
