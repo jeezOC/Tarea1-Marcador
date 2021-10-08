@@ -17,11 +17,7 @@
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="1100.0" styleClass="clearHeading1" text="REPORTES" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" styleClass="clearHeading2">
-         <children>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Complete los siguientes espacios según sus requerimientos para generar el reporte" />
-         </children>
-      </HBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" styleClass="clearHeading2" />
       <HBox alignment="CENTER">
          <children>
             <VBox prefHeight="102.0" prefWidth="1104.0">
@@ -32,7 +28,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1100.0" styleClass="clearHeading2">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Desea generar un reporte con información de:" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" styleClass="clearHeading2" text="Generar un reporte con información de:" textAlignment="CENTER" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
