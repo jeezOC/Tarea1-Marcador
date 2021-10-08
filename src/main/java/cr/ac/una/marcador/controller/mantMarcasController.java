@@ -130,7 +130,7 @@ public class mantMarcasController extends Controller implements Initializable {
     
     @FXML
     private void onAction_btnBuscar(ActionEvent event) {   
-        
+        tableMarcas.getItems().clear();
         String folio = txtBuscar.getText();
          ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
         if(folio.equals("")) {
@@ -155,7 +155,7 @@ public class mantMarcasController extends Controller implements Initializable {
                 }   
             });
             tableMarcas.setItems((ObservableList<MarcaDto>) MarcasForView);
-                    
+                    tableMarcas.refresh();
             BtnExcel.setDisable(false);      
         }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Datos no existentes" ,this.getStage(),"No hay marcas registradas.");
@@ -303,6 +303,9 @@ public class mantMarcasController extends Controller implements Initializable {
     
     private String cantidadEmpleadosRealizaronMarcas(List<MarcaDto> todasMarcas){
         //TODO suerte!
+        if(todasMarcas == null){
+            return "0";
+        }else{
         int i = todasMarcas.stream().
                 collect(Collectors.toCollection(
                 () -> new TreeSet<MarcaDto>((m1,m2) 
@@ -310,6 +313,7 @@ public class mantMarcasController extends Controller implements Initializable {
                 )).size();
         
         return String.valueOf(i);
+       }
     }
     
     private String totalMarcasRealizadas(List<MarcaDto> todasMarcas){
