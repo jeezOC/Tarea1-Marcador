@@ -123,15 +123,11 @@ public class mantMarcasController extends Controller implements Initializable {
     private void onAction_btnBuscar(ActionEvent event) {   
         
         String folio = txtBuscar.getText();
-        if(!folio.equals("")) {
+        if(folio.equals("")) {
+            marcasList = wsConsumer.getInstance().obtenerTodasMarcas();
+        }else{
             emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
             marcasList = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
-            
-        }else{
-            //TODO:
-            marcasList = wsConsumer.getInstance().obtenerTodasMarcas();
-            
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a buscar");
         }
         if(!marcasList.isEmpty()){
             marcasList.forEach(marca -> {
@@ -149,33 +145,31 @@ public class mantMarcasController extends Controller implements Initializable {
             });
             BtnExcel.setDisable(false);      
         }else{
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Empleado ingresado no posee marcas.");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Datos no existentes" ,this.getStage(),"No hay marcas registradas.");
         }
-        
         
         if(!"".equals(folio)&&folio.length()==7){
             LocalDate fIni = dpINI.getValue();
             LocalDate fFin = dpFin.getValue();          
         }
-        
     }
     
-     private static String ValueOfHeader(int i){
-        String head="";
-        
-        switch(i){
-            case 0:  head ="Folio" ; break;        
-            case 1:  head ="Cedula" ; break;
-            case 2:  head ="Nombre" ; break;
-            case 3:  head ="Apellido" ; break;
-            
-            case 4:  head ="Jornada";break;
-            case 5:  head ="Entradas";  break;
-            case 6:  head ="Salidas";break;
-                
-        }
-        return head;
-    } 
+    private static String ValueOfHeader(int i){
+       String head="";
+
+       switch(i){
+           case 0:  head ="Folio" ; break;        
+           case 1:  head ="Cedula" ; break;
+           case 2:  head ="Nombre" ; break;
+           case 3:  head ="Apellido" ; break;
+
+           case 4:  head ="Jornada";break;
+           case 5:  head ="Entradas";  break;
+           case 6:  head ="Salidas";break;
+
+       }
+       return head;
+   } 
      
     @FXML
     private void BtnExcel(ActionEvent event) {
@@ -228,12 +222,12 @@ public class mantMarcasController extends Controller implements Initializable {
                             }
                             if(k == 6) {
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
-                               cell.setCellValue((LocalDateTime) listdto.get(i).getMarcahoraEntrada());
+                               cell.setCellValue((LocalDateTime) marcasList.get(i).getMarcahoraEntrada());
                                cell.setCellStyle(style2);
                             }
                             if(k == 7) {
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
-                               cell.setCellValue((LocalDateTime) listdto.get(i).getMarcahoraSalida());
+                               cell.setCellValue((LocalDateTime) marcasList.get(i).getMarcahoraSalida());
                                cell.setCellStyle(style2);
 
                             }
