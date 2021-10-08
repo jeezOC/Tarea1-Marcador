@@ -129,7 +129,7 @@ public class mantMarcasController extends Controller implements Initializable {
             
         }else{
             //TODO:
-//            marcasList = wsConsumer.getInstance().getAllMarcasFolioFechas(folio);
+            marcasList = wsConsumer.getInstance().obtenerTodasMarcas();
             
             new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a buscar");
         }
