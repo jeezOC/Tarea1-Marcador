@@ -164,13 +164,13 @@ public class wsConsumer {
         marcaDtoServidor.setMarcahoraEntrada(
                 DatatypeFactory.newInstance().newXMLGregorianCalendar(
                 GregorianCalendar.from(
-                        marcaDto.getMarcahoraEntrada().atStartOfDay(ZoneId.systemDefault()))));
+                        marcaDto.getMarcahoraEntrada().atZone(ZoneId.systemDefault()))));
         }
         if(marcaDto.getMarcahoraSalida()!=null){
         marcaDtoServidor.setMarcahoraSalida(
                 DatatypeFactory.newInstance().newXMLGregorianCalendar(
                 GregorianCalendar.from(
-                        marcaDto.getMarcahoraSalida().atStartOfDay(ZoneId.systemDefault()))));
+                        marcaDto.getMarcahoraSalida().atZone(ZoneId.systemDefault()))));
         }
         if(marcaDto.getMarcajornada()!=null){
         marcaDtoServidor.setMarcajornada(
