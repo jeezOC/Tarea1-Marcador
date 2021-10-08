@@ -168,7 +168,6 @@ public class mantMarcasController extends Controller implements Initializable {
             super.updateItem(item, empty);
             if(item == null){
                 setStyle("-fx-fill : green");
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
             }else if(item.getMarcahoraSalida().toString().equals("0000-01-01T00:00")){
                 
                  setStyle("-fx-background-color: #ffd7d1;");
