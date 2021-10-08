@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -45,7 +46,21 @@
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="365.0" />
+                  <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="365.0">
+                     <children>
+                        <JFXButton fx:id="btnInfo" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0">
+                           <graphic>
+                              <ImageView fx:id="imgInfo" disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/INFO.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding></HBox>
                   <Label styleClass="darkBoxLabel2" text="FOLIO:" />
                   <TextField fx:id="txtBuscar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="darkSearchTextField" />
                   <JFXButton fx:id="btnBuscar" alignment="CENTER" ellipsisString="" onAction="#onAction_btnBuscar" styleClass="searchButton">
@@ -82,7 +97,7 @@
                               <Label fx:id="lblCantEmpRealizaronMarcas" alignment="CENTER" prefHeight="35.0" prefWidth="112.0" styleClass="darkSearchTextField" text="0" />
                               <Label alignment="CENTER" styleClass="darkLabel" text="Total de marcas realizadas:" />
                               <Label fx:id="lblTotalMarcasRealizadas" alignment="CENTER" prefHeight="35.0" prefWidth="112.0" styleClass="darkSearchTextField" text="0" />
-                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="272.0" styleClass="darkLabel" text="Total de horas trabajadas&#10;por el/los empleado/s:" textAlignment="CENTER" />
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="272.0" styleClass="darkLabel" text="Total de horas&#10;completas trabajadas:" textAlignment="CENTER" />
                               <Label fx:id="lblTotalHrsTrabajadasTodosEmp" alignment="CENTER" prefHeight="35.0" prefWidth="112.0" styleClass="darkSearchTextField" text="0" />
                               <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="275.0" spacing="30.0" />
                            </children>

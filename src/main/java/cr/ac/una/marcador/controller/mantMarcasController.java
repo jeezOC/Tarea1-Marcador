@@ -16,6 +16,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +31,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -38,7 +40,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -71,15 +75,20 @@ public class mantMarcasController extends Controller implements Initializable {
     private JFXButton btnFiltrar;
     @FXML
     private TextField txtBuscar;
+      @FXML
+    private ImageView imgInfo;
     @FXML
     private JFXButton btnBuscar;
+    
     @FXML
     private JFXButton BtnExcel;
     @FXML
+    private JFXButton btnInfo;
+    @FXML
     private VBox boxView;
-     @FXML
+    @FXML
     private TableView<MarcaDto> tableMarcas;
-     @FXML
+    @FXML
     private TableColumn<MarcaDto, String> clmFolio;
 
     @FXML
@@ -120,13 +129,18 @@ public class mantMarcasController extends Controller implements Initializable {
     private Label lblTotalMarcasRealizadas;
     @FXML
     private Label lblTotalHrsTrabajadasTodosEmp;
-     
+    
+    Tooltip buscarInfo =  new Tooltip("Digite el folio que desea buscar o\ndejelo vacio para buscar en todo el sistema");
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //            listMarcas.getItems().add("Entradas");
 //            listMarcas.getItems().add("SALIDAS");
-            BtnExcel.setDisable(true);
+        
+        btnInfo.setTooltip(buscarInfo);
+//        btnInfo.setDisable(true);
+        BtnExcel.setDisable(true);
+        btnFiltrar.setDisable(true);
 //            cargarStreamsToView();
          
         
@@ -143,11 +157,6 @@ public class mantMarcasController extends Controller implements Initializable {
             marcasList = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
         }
         actualizarTabla(marcasList);
-        
-        if(!"".equals(folio)&&folio.length()==7){
-            LocalDate fIni = dpINI.getValue();
-            LocalDate fFin = dpFin.getValue();          
-        }
     }
     
     private static String ValueOfHeader(int i){
@@ -167,7 +176,8 @@ public class mantMarcasController extends Controller implements Initializable {
        return head;
     } 
     private  List<MarcaDto> FiltrarHora(LocalDateTime ini, LocalDateTime fin ){
-        
+        BtnExcel.setDisable(false);  
+        btnFiltrar.setDisable(false);
         List<MarcaDto> marcasFltradas = marcasList.stream()
               .filter(m-> (!ini.isAfter(m.getMarcahoraEntrada())&& !fin.isBefore(m.getMarcahoraEntrada())) 
                       || (!ini.isAfter(m.getMarcahoraSalida()) && !fin.isBefore(m.getMarcahoraSalida())))
@@ -176,20 +186,28 @@ public class mantMarcasController extends Controller implements Initializable {
     }
     @FXML
     void onAction_btnFiltrar(ActionEvent event) {
-        if(dpINI.getValue()!=null && dpINI.getValue().isBefore(LocalDate.now()) && dpFin.getValue() != null && dpFin.getValue().isBefore(LocalDate.now()) && dpINI.getValue().isBefore(dpFin.getValue())){
-            List<MarcaDto> marcasFltradas = FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay());
-            if(!marcasFltradas.isEmpty()){
-                actualizarTabla(FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay()));
+        if(dpINI.getValue()!=null && dpFin.getValue() != null){
+            if((dpINI.getValue().isBefore(LocalDate.now())||dpINI.getValue().equals(LocalDate.now().getDayOfMonth()) || dpINI.getValue().isBefore(dpFin.getValue()))
+                 && (dpFin.getValue().isBefore(LocalDate.now())||dpINI.getValue().equals(LocalDate.now().getDayOfMonth()))
+                    ||dpINI.getValue().equals(dpFin.getValue()))
+            {   
+                List<MarcaDto> marcasFltradas = FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay());
+                if(!marcasFltradas.isEmpty()){
+                    actualizarTabla(FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay()));
+                }else{
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Marcas no encontradas" ,this.getStage(),"No se encontro ninguna marca en el rango de fechas seleccionado");  
+                }
             }else{
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Marcas no encontradas" ,this.getStage(),"No se encontro ninguna marca en el rango de fechas seleccionado");  
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por Favor seleccione un rango de fechas valido");
             }
         }else{
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por Favor seleccione un rango de fechas valido");  
-
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por Favor seleccione un rango de fechas");
         }
     }
     @FXML
     private void BtnExcel(ActionEvent event) {
+            BtnExcel.setDisable(false);  
+            btnFiltrar.setDisable(false);
             try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {
                 Workbook wb = new XSSFWorkbook();
                 XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
@@ -260,6 +278,7 @@ public class mantMarcasController extends Controller implements Initializable {
 //        }else{
 //            new Mensaje().showModal(Alert.AlertType.ERROR, "Favor ingrese el dato a buscar" ,this.getStage(),"No se puede crear archivo");
 //        }
+           
         
     }
     public void autoSizeColumns(Workbook workbook) {
@@ -294,7 +313,10 @@ public class mantMarcasController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
-     
+//        btnInfo.setTooltip(buscarInfo);
+//        BtnExcel.setDisable(true);
+//        btnFiltrar.setDisable(true);
+
     }
 
     @Override
@@ -363,6 +385,7 @@ public class mantMarcasController extends Controller implements Initializable {
             tableMarcas.setItems((ObservableList<MarcaDto>) MarcasForView);
             tableMarcas.refresh();
             BtnExcel.setDisable(false);  
+            btnFiltrar.setDisable(false);
            
         }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Datos no existentes" ,this.getStage(),"No hay marcas registradas.");

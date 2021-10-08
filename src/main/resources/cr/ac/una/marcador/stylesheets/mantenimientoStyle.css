@@ -109,6 +109,15 @@
     /*-fx-alignment: 'CENTER';*/
     /*-fx-pref-height: 40px;*/
 }
+.darkLabelS{
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #8FADBB;
+    -fx-text-fill: #E0EEF6;
+
+    /*-fx-alignment: 'CENTER';*/
+    /*-fx-pref-height: 40px;*/
+}
 .darkBoxLabel{
     -fx-font-family: 'Fira Sans';
     -fx-font-size: 20px;
