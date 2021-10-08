@@ -201,7 +201,7 @@ public class wsConsumer {
     
     public List<MarcaDto> buscarMarcasFolioFechas(String folio){
 //        List<cr.ac.una.relojunaws.MarcaDto> listMarcas;
-       List<cr.ac.una.relojunaws.MarcaDto> res =  port.buscarMarcaFolioFechas(folio);
+        List<cr.ac.una.relojunaws.MarcaDto> res =  port.buscarMarcaFolioFechas(folio);
         List<MarcaDto> listdto = new ArrayList();
    
         res.forEach(r -> {listdto.add(new MarcaDto(r));});

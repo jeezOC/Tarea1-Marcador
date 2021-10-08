@@ -34,8 +34,8 @@ public class MarcaDto {
     public MarcaDto(){}
     public MarcaDto(cr.ac.una.relojunaws.MarcaDto marcaDto) {
         this.marcaid = marcaDto.getMarcaid();
-        this.marcahoraEntrada = marcaDto.getMarcahoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.marcahoraSalida = marcaDto.getMarcahoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if(marcaDto.getMarcahoraEntrada()!=null)this.marcahoraEntrada = marcaDto.getMarcahoraEntrada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if(marcaDto.getMarcahoraSalida()!=null)this.marcahoraSalida = marcaDto.getMarcahoraSalida().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.marcajornada = marcaDto.getMarcajornada().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.empleadoid = marcaDto.getEmpleadoid();
     }

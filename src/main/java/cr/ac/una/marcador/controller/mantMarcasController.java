@@ -16,17 +16,23 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -63,8 +69,22 @@ public class mantMarcasController extends Controller implements Initializable {
     private JFXButton BtnExcel;
     @FXML
     private VBox boxView;
+     @FXML
+    private TableView<MarcaDto> tableMarcas;
+     @FXML
+    private TableColumn<MarcaDto, String> clmFolio;
+
     @FXML
-    private ListView<String> listMarcas;
+    private TableColumn<MarcaDto, String> clmNombre;
+
+    @FXML
+    private TableColumn<MarcaDto, String> clmJornada;
+
+    @FXML
+    private TableColumn<MarcaDto, String> clmEntrada;
+
+    @FXML
+    private TableColumn<MarcaDto, String> clmSalida;
     
     @FXML
     private JFXButton btnBorrar;
@@ -87,20 +107,40 @@ public class mantMarcasController extends Controller implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            listMarcas.getItems().add("Entradas");
-            listMarcas.getItems().add("SALIDAS");
+//            listMarcas.getItems().add("Entradas");
+//            listMarcas.getItems().add("SALIDAS");
             BtnExcel.setDisable(true);
+         
+         
+        
     }    
     
     @FXML
     private void onAction_btnBuscar(ActionEvent event) {   
-       
+        
         String folio = txtBuscar.getText();
         if(!folio.equals("")) {
             emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
             listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
-            if(listdto.isEmpty()){
-                listdto.forEach(x -> {listMarcas.getItems().add(x.getMarcahoraEntrada().toString()+"/"+x.getMarcahoraSalida().toString());});
+            
+            ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
+            
+            if(!listdto.isEmpty()){
+                listdto.forEach(marca -> {
+                    MarcasForView.add(marca);
+//                    listMarcas.getItems().add(x.getMarcahoraEntrada().toString()+"/"+x.getMarcahoraSalida().toString());
+                });
+                
+                
+                //tableMarcas.getColumns().add(clmFolio);
+               
+//                clmFolio.getCellValueFactory(new PropertyValueFactory<MarcaDto, String>(""));
+//clmNombre;
+                  clmJornada.setCellValueFactory(new PropertyValueFactory<MarcaDto, String>("marcajornada"));
+//clmEntrada;
+//clmSalida;
+                
+                tableMarcas.setItems(MarcasForView);
                 BtnExcel.setDisable(false);
             }else{
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Empleado ingresado no posee marcas.");

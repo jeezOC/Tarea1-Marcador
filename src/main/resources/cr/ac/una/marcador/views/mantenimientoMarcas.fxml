@@ -4,7 +4,8 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -75,7 +76,15 @@
             </HBox>
             <VBox fx:id="boxView" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
                <children>
-                  <ListView fx:id="listMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="800.0" styleClass="List" stylesheets="@../stylesheets/mantenimientoStyle.css" />
+                  <TableView fx:id="tableMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="800.0">
+                    <columns>
+                      <TableColumn fx:id="clmFolio" prefWidth="94.0" text="Folio" />
+                        <TableColumn fx:id="clmNombre" prefWidth="127.0" text="Nombre" />
+                        <TableColumn fx:id="clmJornada" prefWidth="127.0" text="Jornada" />
+                      <TableColumn fx:id="clmEntrada" minWidth="0.0" prefWidth="104.0" text="Entrada" />
+                        <TableColumn fx:id="clmSalida" prefWidth="127.0" text="Salida" />
+                    </columns>
+                  </TableView>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="700.0" spacing="30.0">
                      <children>
                         <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="cancelButton" text="ELIMINAR" />
