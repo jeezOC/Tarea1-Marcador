@@ -228,12 +228,12 @@ public class mantMarcasController extends Controller implements Initializable {
                             }
                             if(k == 6) {
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
-                               cell.setCellValue((LocalDate) marcasList.get(i).getMarcahoraEntrada());
+                               cell.setCellValue((LocalDateTime) listdto.get(i).getMarcahoraEntrada());
                                cell.setCellStyle(style2);
                             }
                             if(k == 7) {
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
-                               cell.setCellValue((LocalDate) marcasList.get(i).getMarcahoraSalida());
+                               cell.setCellValue((LocalDateTime) listdto.get(i).getMarcahoraSalida());
                                cell.setCellStyle(style2);
 
                             }
