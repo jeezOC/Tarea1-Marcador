@@ -43,13 +43,13 @@ public class MarcaDto {
 
     public void crearMarca(LocalDateTime fecha, Boolean isEntrada) {
 //          this.empleadoid = emp;
-          if(isEntrada) {
-              this.marcahoraEntrada=fecha;
-              this.marcajornada=fecha.toLocalDate();
-          }
-          else this.marcahoraSalida= fecha;
-          
-          
+        if(isEntrada) {
+            this.marcahoraEntrada=fecha;
+        }
+        else{
+            this.marcahoraSalida= fecha;
+        }
+        this.marcajornada=fecha.toLocalDate();
           
     }
 

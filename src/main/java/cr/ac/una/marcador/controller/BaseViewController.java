@@ -28,7 +28,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 import javafx.application.Platform;
 import javafx.scene.text.TextAlignment;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -256,28 +258,41 @@ public class BaseViewController extends Controller implements Initializable {
             }
             String hora = h +":"+m;
 //           
-            EmpleadoDto aux = new EmpleadoDto();
-            aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
+            EmpleadoDto aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
             if(aux != null){
-            AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(),hora});
-            MarcaDto marcaDto = new MarcaDto();
-//            List<MarcaDto> = new ArrayList<>();
-            
-            
-            marcaDto.crearMarca(LocalDateTime.now(),true);
-            
-            if(wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()){
-            if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
-//                FlowController.getInstance().goViewInWindowUncap("birthday");
-                 FlowController.getInstance().goViewInWindowModalUndec("birthday", this.getStage(), false);
-            }else{
-//                FlowController.getInstance().goViewInWindowUncap("bienvenido");
-                FlowController.getInstance().goViewInWindowModalUndec("bienvenido", this.getStage(), false);
+                MarcaDto marcaDto = null;
+                Optional<MarcaDto> ultima = null;
+                List<MarcaDto> marcasEmpleado = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
+                
+                if(marcasEmpleado.isEmpty()){
+                    marcaDto.crearMarca(LocalDateTime.now(),true);
+                }else{
+                    ultima = marcasEmpleado.stream()
+                            .filter(x->x.getMarcajornada() == LocalDate.now()).findFirst();
+                    
+                  
+                    marcaDto = ultima.orElse(null);
+                    if(ultima==null){
+                        marcaDto.crearMarca(LocalDateTime.now(),true);
+                    }else{
+                        marcaDto.crearMarca(LocalDateTime.now(),false);
+                    }
+                }
+                if(wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()){
+                    AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(),hora});
+
+                    if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
+        //                FlowController.getInstance().goViewInWindowUncap("birthday");
+                         FlowController.getInstance().goViewInWindowModalUndec("birthday", this.getStage(), false);
+                    }else{
+        //                FlowController.getInstance().goViewInWindowUncap("bienvenido");
+                        FlowController.getInstance().goViewInWindowModalUndec("bienvenido", this.getStage(), false);
+                    }
+                }else{
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
+                }
             }
-            }else{
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
-            }
-        }
+            
         }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
         }
