@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -76,6 +77,9 @@ public class mantMarcasController extends Controller implements Initializable {
 
     @FXML
     private TableColumn<MarcaDto, String> clmNombre;
+    
+    @FXML
+    private TableColumn<MarcaDto, String>clmApellido;
 
     @FXML
     private TableColumn<MarcaDto, String> clmJornada;
@@ -101,7 +105,7 @@ public class mantMarcasController extends Controller implements Initializable {
      * Initializes the controller class.
      */
     
-    List<MarcaDto> listdto=null;
+    List<MarcaDto> marcasList=null;
     EmpleadoDto emp = new EmpleadoDto();
      
      
@@ -121,32 +125,31 @@ public class mantMarcasController extends Controller implements Initializable {
         String folio = txtBuscar.getText();
         if(!folio.equals("")) {
             emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
-            listdto = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
+            marcasList = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
             
-            ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
-            
-            if(!listdto.isEmpty()){
-                listdto.forEach(marca -> {
-                    MarcasForView.add(marca);
-//                    listMarcas.getItems().add(x.getMarcahoraEntrada().toString()+"/"+x.getMarcahoraSalida().toString());
-                });
-                
-                
-                //tableMarcas.getColumns().add(clmFolio);
-               
-//                clmFolio.getCellValueFactory(new PropertyValueFactory<MarcaDto, String>(""));
-//clmNombre;
-                  clmJornada.setCellValueFactory(new PropertyValueFactory<MarcaDto, String>("marcajornada"));
-//clmEntrada;
-//clmSalida;
-                
-                tableMarcas.setItems(MarcasForView);
-                BtnExcel.setDisable(false);
-            }else{
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Empleado ingresado no posee marcas.");
-            }
         }else{
+            //TODO:
+//            marcasList = wsConsumer.getInstance().getAllMarcasFolioFechas(folio);
+            
             new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Favor ingrese el dato a buscar");
+        }
+        if(!marcasList.isEmpty()){
+            marcasList.forEach(marca -> {
+                clmFolio.setCellValueFactory(mark->new SimpleStringProperty(marca.getEmpleadoid().getEmpleadoFolio().toString()));
+                clmNombre.setCellValueFactory(mark->new SimpleStringProperty(marca.getEmpleadoid().getEmpleadoNombre()));
+                clmApellido.setCellValueFactory(mark->new SimpleStringProperty(marca.getEmpleadoid().getEmpleadoApellido()));
+                clmJornada.setCellValueFactory(mark->new SimpleStringProperty(marca.getMarcahoraEntrada().toString()));
+                clmEntrada.setCellValueFactory(mark->new SimpleStringProperty(marca.getMarcajornada().toString()));
+                if(marca.getMarcahoraSalida()!=null){
+                    clmSalida.setCellValueFactory(mark->new SimpleStringProperty(marca.getMarcahoraSalida().toString()));
+                }else{
+                    clmSalida.setCellValueFactory(mark->new SimpleStringProperty("No registrada"));
+                    clmSalida.setStyle(" -fx-text-fill: black");
+                }   
+            });
+            BtnExcel.setDisable(false);      
+        }else{
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Datos insuficientes" ,this.getStage(),"Empleado ingresado no posee marcas.");
         }
         
         
@@ -176,8 +179,7 @@ public class mantMarcasController extends Controller implements Initializable {
      
     @FXML
     private void BtnExcel(ActionEvent event) {
-        if(!"".equals(txtBuscar.getText())) {
-             
+//        if(!"".equals(txtBuscar.getText())) { 
             try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {
                 Workbook wb = new XSSFWorkbook();
                 XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
@@ -201,8 +203,8 @@ public class mantMarcasController extends Controller implements Initializable {
                 style2.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
                 style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
                 
-                if(!listdto.isEmpty()){
-                    for (int i= 1; i < listdto.size(); i++) {    
+                if(!marcasList.isEmpty()){
+                    for (int i= 1; i < marcasList.size(); i++) {    
                         row = sheet.createRow(i);
                         for (int k = 1; k <= 7; k++) {   
                             cell = row.createCell(k-1); 
@@ -222,16 +224,16 @@ public class mantMarcasController extends Controller implements Initializable {
 
                             if(k == 5){
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy"));
-                               cell.setCellValue(listdto.get(i).getMarcajornada());
+                               cell.setCellValue(marcasList.get(i).getMarcajornada());
                             }
                             if(k == 6) {
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
-                               cell.setCellValue((LocalDate) listdto.get(i).getMarcahoraEntrada());
+                               cell.setCellValue((LocalDate) marcasList.get(i).getMarcahoraEntrada());
                                cell.setCellStyle(style2);
                             }
                             if(k == 7) {
                                style2.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
-                               cell.setCellValue((LocalDate) listdto.get(i).getMarcahoraSalida());
+                               cell.setCellValue((LocalDate) marcasList.get(i).getMarcahoraSalida());
                                cell.setCellStyle(style2);
 
                             }
@@ -245,9 +247,9 @@ public class mantMarcasController extends Controller implements Initializable {
                 System.out.println(e.getMessage());
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Falla en archivo" ,this.getStage(),e.getMessage());  
             }
-        }else{
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Favor ingrese el dato a buscar" ,this.getStage(),"No se puede crear archivo");
-        }
+//        }else{
+//            new Mensaje().showModal(Alert.AlertType.ERROR, "Favor ingrese el dato a buscar" ,this.getStage(),"No se puede crear archivo");
+//        }
         
     }
     public void autoSizeColumns(Workbook workbook) {

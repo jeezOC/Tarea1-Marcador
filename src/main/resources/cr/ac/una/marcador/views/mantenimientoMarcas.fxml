@@ -80,6 +80,7 @@
                     <columns>
                       <TableColumn fx:id="clmFolio" prefWidth="94.0" text="Folio" />
                         <TableColumn fx:id="clmNombre" prefWidth="127.0" text="Nombre" />
+                        <TableColumn fx:id="clmApellido" prefWidth="127.0" text="Apellido" />
                         <TableColumn fx:id="clmJornada" prefWidth="127.0" text="Jornada" />
                       <TableColumn fx:id="clmEntrada" minWidth="0.0" prefWidth="104.0" text="Entrada" />
                         <TableColumn fx:id="clmSalida" prefWidth="127.0" text="Salida" />
