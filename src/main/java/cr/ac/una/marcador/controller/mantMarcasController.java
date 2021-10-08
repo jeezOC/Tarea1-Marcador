@@ -21,7 +21,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -186,7 +188,6 @@ public class mantMarcasController extends Controller implements Initializable {
      
     @FXML
     private void BtnExcel(ActionEvent event) {
-//        if(!"".equals(txtBuscar.getText())) { 
             try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {
                 Workbook wb = new XSSFWorkbook();
                 XSSFCellStyle style = (XSSFCellStyle) wb.createCellStyle();
@@ -301,12 +302,12 @@ public class mantMarcasController extends Controller implements Initializable {
     
     ////////////////////// Streams ////////////////////////
     
-    private String cantidadEmpleadosRealizaronMarcas(List<MarcaDto> todasMarcas){
+    private String cantidadEmpleadosRealizaronMarcas(){
         //TODO suerte!
-        if(todasMarcas == null){
+        if(marcasList == null){
             return "0";
         }else{
-        int i = todasMarcas.stream().
+        int i = marcasList.stream().
                 collect(Collectors.toCollection(
                 () -> new TreeSet<MarcaDto>((m1,m2) 
                         -> m1.getEmpleadoid().getEmpleadoFolio().compareTo(m2.getEmpleadoid().getEmpleadoFolio()))
@@ -316,24 +317,24 @@ public class mantMarcasController extends Controller implements Initializable {
        }
     }
     
-    private String totalMarcasRealizadas(List<MarcaDto> todasMarcas){
-        //TODO suerte!
-        
-        
-        return "";
+    private String totalMarcasRealizadas(){
+          Long totalEntradas = marcasList.stream().filter(m-> m.getMarcahoraEntrada() != null).count();
+          Long totalSalidas = marcasList.stream().filter(m-> m.getMarcahoraSalida() != null).count();
+        return String.valueOf(totalEntradas + totalSalidas);
     }
     
-    private String totalHorasTrabajadasPorTodosEmpleados(List<MarcaDto> todasMarcas){
-        //TODO suerte!
+    private String totalHorasTrabajadasPorTodosEmpleados(){
+           
+
+        Integer h_porjornada = marcasList.stream().mapToInt(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour()).sum();        
         
-        
-        return "";
+        return h_porjornada.toString();
     }
     
     private void cargarStreamsToView(List<MarcaDto> todasMarcas){
-        lblCantEmpRealizaronMarcas.setText(cantidadEmpleadosRealizaronMarcas(todasMarcas));
-        lblTotalMarcasRealizadas.setText(totalMarcasRealizadas(todasMarcas));
-        lblTotalHrsTrabajadasTodosEmp.setText(totalHorasTrabajadasPorTodosEmpleados(todasMarcas));
+        lblCantEmpRealizaronMarcas.setText(cantidadEmpleadosRealizaronMarcas());
+        lblTotalMarcasRealizadas.setText(totalMarcasRealizadas());
+        lblTotalHrsTrabajadasTodosEmp.setText(totalHorasTrabajadasPorTodosEmpleados());
         
     }
     
