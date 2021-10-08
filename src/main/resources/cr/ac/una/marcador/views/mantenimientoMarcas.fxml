@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.mantMarcasController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="emptyBGCard" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.marcador.controller.mantMarcasController">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1100.0">
          <children>
@@ -76,16 +76,36 @@
             </HBox>
             <VBox fx:id="boxView" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0" stylesheets="@../stylesheets/mantenimientoStyle.css">
                <children>
-                  <TableView fx:id="tableMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="800.0">
-                    <columns>
-                      <TableColumn fx:id="clmFolio" prefWidth="94.0" text="Folio" />
-                        <TableColumn fx:id="clmNombre" prefWidth="127.0" text="Nombre" />
-                        <TableColumn fx:id="clmApellido" prefWidth="127.0" text="Apellido" />
-                        <TableColumn fx:id="clmJornada" prefWidth="127.0" text="Jornada" />
-                      <TableColumn fx:id="clmEntrada" minWidth="0.0" prefWidth="104.0" text="Entrada" />
-                        <TableColumn fx:id="clmSalida" prefWidth="127.0" text="Salida" />
-                    </columns>
-                  </TableView>
+                  <HBox>
+                     <children>
+                        <TableView fx:id="tableMarcas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="709.0">
+                          <columns>
+                            <TableColumn fx:id="clmFolio" prefWidth="94.0" text="Folio" />
+                              <TableColumn fx:id="clmNombre" prefWidth="127.0" text="Nombre" />
+                              <TableColumn fx:id="clmApellido" prefWidth="127.0" text="Apellido" />
+                              <TableColumn fx:id="clmJornada" prefWidth="127.0" text="Jornada" />
+                            <TableColumn fx:id="clmEntrada" minWidth="0.0" prefWidth="104.0" text="Entrada" />
+                              <TableColumn fx:id="clmSalida" prefWidth="127.0" text="Salida" />
+                          </columns>
+                        </TableView>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="383.0" styleClass="darkLabel" text="Cantidad de empleados " />
+                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="383.0" styleClass="darkLabel" text="que realizaron marcas:" />
+                              <Label fx:id="lblCantEmpRealizaronMarcas" alignment="CENTER" prefHeight="35.0" prefWidth="112.0" styleClass="darkSearchTextField" text="0" />
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="49.0" prefWidth="383.0" styleClass="darkLabel" text="Total de marcas realizadas:" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="lblTotalMarcasRealizadas" alignment="CENTER" prefHeight="35.0" prefWidth="112.0" styleClass="darkSearchTextField" text="0" />
+                              <Label alignment="CENTER" prefHeight="51.0" prefWidth="384.0" styleClass="darkLabel" text="Total de horas trabajadas por" />
+                              <Label alignment="CENTER" prefHeight="51.0" prefWidth="384.0" styleClass="darkLabel" text=" todos los empleados:" />
+                              <Label fx:id="lblTotalHrsTrabajadasTodosEmp" alignment="CENTER" prefHeight="35.0" prefWidth="112.0" styleClass="darkSearchTextField" text="0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="700.0" spacing="30.0">
                      <children>
                         <JFXButton fx:id="btnBorrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAction_btnBorrar" styleClass="cancelButton" text="ELIMINAR" />
