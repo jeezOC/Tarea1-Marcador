@@ -123,6 +123,7 @@ public class mantMarcasController extends Controller implements Initializable {
     private void onAction_btnBuscar(ActionEvent event) {   
         
         String folio = txtBuscar.getText();
+         ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
         if(folio.equals("")) {
             marcasList = wsConsumer.getInstance().obtenerTodasMarcas();
         }else{
@@ -131,18 +132,21 @@ public class mantMarcasController extends Controller implements Initializable {
         }
         if(!marcasList.isEmpty()){
             marcasList.forEach(marca -> {
-                clmFolio.setCellValueFactory(mark->new SimpleStringProperty(marca.getEmpleadoid().getEmpleadoFolio().toString()));
-                clmNombre.setCellValueFactory(mark->new SimpleStringProperty(marca.getEmpleadoid().getEmpleadoNombre()));
-                clmApellido.setCellValueFactory(mark->new SimpleStringProperty(marca.getEmpleadoid().getEmpleadoApellido()));
-                clmJornada.setCellValueFactory(mark->new SimpleStringProperty(marca.getMarcahoraEntrada().toString()));
-                clmEntrada.setCellValueFactory(mark->new SimpleStringProperty(marca.getMarcajornada().toString()));
+                MarcasForView.add(marca);
+                clmFolio.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoFolio()));
+                clmNombre.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoNombre()));
+                clmApellido.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoApellido()));
+                clmJornada.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcahoraEntrada().toString()));
+                clmEntrada.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcajornada().toString()));
                 if(marca.getMarcahoraSalida()!=null){
-                    clmSalida.setCellValueFactory(mark->new SimpleStringProperty(marca.getMarcahoraSalida().toString()));
+                    clmSalida.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcahoraSalida().toString()));
                 }else{
                     clmSalida.setCellValueFactory(mark->new SimpleStringProperty("No registrada"));
                     clmSalida.setStyle(" -fx-text-fill: black");
                 }   
             });
+            tableMarcas.setItems((ObservableList<MarcaDto>) MarcasForView);
+                    
             BtnExcel.setDisable(false);      
         }else{
             new Mensaje().showModal(Alert.AlertType.ERROR, "Datos no existentes" ,this.getStage(),"No hay marcas registradas.");
