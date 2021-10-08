@@ -68,6 +68,8 @@ public class mantMarcasController extends Controller implements Initializable {
     @FXML
     private JFXDatePicker dpFin;
     @FXML
+    private JFXButton btnFiltrar;
+    @FXML
     private TextField txtBuscar;
     @FXML
     private JFXButton btnBuscar;
@@ -125,7 +127,7 @@ public class mantMarcasController extends Controller implements Initializable {
 //            listMarcas.getItems().add("Entradas");
 //            listMarcas.getItems().add("SALIDAS");
             BtnExcel.setDisable(true);
-            cargarStreamsToView(wsConsumer.getInstance().obtenerTodasMarcas());
+//            cargarStreamsToView();
          
         
     }
@@ -134,34 +136,13 @@ public class mantMarcasController extends Controller implements Initializable {
     private void onAction_btnBuscar(ActionEvent event) {   
         tableMarcas.getItems().clear();
         String folio = txtBuscar.getText();
-         ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
         if(folio.equals("")) {
             marcasList = wsConsumer.getInstance().obtenerTodasMarcas();
         }else{
             emp = wsConsumer.getInstance().buscarEmpleadoFolio(txtBuscar.getText());
             marcasList = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
         }
-        if(!marcasList.isEmpty()){
-            marcasList.forEach(marca -> {
-                MarcasForView.add(marca);
-                clmFolio.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoFolio()));
-                clmNombre.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoNombre()));
-                clmApellido.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoApellido()));
-                clmJornada.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcahoraEntrada().toString()));
-                clmEntrada.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcajornada().toString()));
-                if(marca.getMarcahoraSalida()!=null){
-                    clmSalida.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcahoraSalida().toString()));
-                }else{
-                    clmSalida.setCellValueFactory(mark->new SimpleStringProperty("No registrada"));
-                    clmSalida.setStyle(" -fx-text-fill: black");
-                }   
-            });
-            tableMarcas.setItems((ObservableList<MarcaDto>) MarcasForView);
-                    tableMarcas.refresh();
-            BtnExcel.setDisable(false);      
-        }else{
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Datos no existentes" ,this.getStage(),"No hay marcas registradas.");
-        }
+        actualizarTabla(marcasList);
         
         if(!"".equals(folio)&&folio.length()==7){
             LocalDate fIni = dpINI.getValue();
@@ -184,8 +165,29 @@ public class mantMarcasController extends Controller implements Initializable {
 
        }
        return head;
-   } 
-     
+    } 
+    private  List<MarcaDto> FiltrarHora(LocalDateTime ini, LocalDateTime fin ){
+        
+        List<MarcaDto> marcasFltradas = marcasList.stream()
+              .filter(m-> (!ini.isAfter(m.getMarcahoraEntrada())&& !fin.isBefore(m.getMarcahoraEntrada())) 
+                      || (!ini.isAfter(m.getMarcahoraSalida()) && !fin.isBefore(m.getMarcahoraSalida())))
+              .collect(Collectors.toList());
+        return marcasFltradas;
+    }
+    @FXML
+    void onAction_btnFiltrar(ActionEvent event) {
+        if(dpINI.getValue()!=null && dpINI.getValue().isBefore(LocalDate.now()) && dpFin.getValue() != null && dpFin.getValue().isBefore(LocalDate.now()) && dpINI.getValue().isBefore(dpFin.getValue())){
+            List<MarcaDto> marcasFltradas = FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay());
+            if(!marcasFltradas.isEmpty()){
+                actualizarTabla(FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay()));
+            }else{
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Marcas no encontradas" ,this.getStage(),"No se encontro ninguna marca en el rango de fechas seleccionado");  
+            }
+        }else{
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por Favor seleccione un rango de fechas valido");  
+
+        }
+    }
     @FXML
     private void BtnExcel(ActionEvent event) {
             try (OutputStream fileOut = new FileOutputStream("Reporte"+txtBuscar.getText()+".xlsx")) {
@@ -325,17 +327,46 @@ public class mantMarcasController extends Controller implements Initializable {
     
     private String totalHorasTrabajadasPorTodosEmpleados(){
            
-
-        Integer h_porjornada = marcasList.stream().mapToInt(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour()).sum();        
+        Long totalEntradas = marcasList.stream().filter(m-> m.getMarcahoraEntrada() != null).mapToLong(m-> m.getMarcahoraEntrada().getHour()).sum();
+        Long totalSalidas = marcasList.stream().filter(m-> m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour()).sum();
+        //Integer h_porjornada = marcasList.stream().mapToInt(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour()).sum();        
         
-        return h_porjornada.toString();
+        return String.valueOf(totalSalidas-totalEntradas);
     }
     
-    private void cargarStreamsToView(List<MarcaDto> todasMarcas){
+    private void cargarStreamsToView(){
         lblCantEmpRealizaronMarcas.setText(cantidadEmpleadosRealizaronMarcas());
         lblTotalMarcasRealizadas.setText(totalMarcasRealizadas());
         lblTotalHrsTrabajadasTodosEmp.setText(totalHorasTrabajadasPorTodosEmpleados());
         
+    }
+    private void actualizarTabla(List<MarcaDto> marcasList){
+        tableMarcas.getItems().clear();
+        String folio = txtBuscar.getText();
+        cargarStreamsToView();
+        ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
+        
+        if(!marcasList.isEmpty()){
+            marcasList.forEach(marca -> {
+                if(marca.getMarcahoraSalida()==null){
+                    marca.setMarcahoraSalida(LocalDateTime.of(0, 1, 1, 0, 0, 0));
+                }   
+                MarcasForView.add(marca);
+            });
+            
+            clmFolio.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoFolio()));
+            clmNombre.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoNombre()));
+            clmApellido.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getEmpleadoid().getEmpleadoApellido()));
+            clmJornada.setCellValueFactory(mark->new SimpleStringProperty(mark.getValue().getMarcajornada().toString()));
+            clmEntrada.setCellValueFactory(mark->new SimpleStringProperty(String.valueOf(mark.getValue().getMarcahoraEntrada())));
+            clmSalida.setCellValueFactory(mark->new SimpleStringProperty(String.valueOf(mark.getValue().getMarcahoraSalida())));
+            tableMarcas.setItems((ObservableList<MarcaDto>) MarcasForView);
+            tableMarcas.refresh();
+            BtnExcel.setDisable(false);  
+           
+        }else{
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Datos no existentes" ,this.getStage(),"No hay marcas registradas.");
+        }
     }
     
     

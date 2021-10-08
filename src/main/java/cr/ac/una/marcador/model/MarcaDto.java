@@ -92,5 +92,8 @@ public class MarcaDto {
     public void setEmpleadoid(Empleado empleadoid) {
         this.empleadoid = empleadoid;
     }  
+     public String getInconsistencia() {
+        return "No registrada";
+    }
     
 }
