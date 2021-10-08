@@ -48,8 +48,8 @@ public class bienvenidaController extends Controller implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String[] EmpleadoMarca = (String[]) AppContext.getInstance().get("EmpleadoMarca");
-        lblNombreApellido.setText(EmpleadoMarca[0]);
-        lblHora.setText(EmpleadoMarca[1]);
+        lblNombreApellido.setText(EmpleadoMarca[0] +" " +EmpleadoMarca[1]);
+        lblHora.setText(EmpleadoMarca[2]);
     }
 
 }

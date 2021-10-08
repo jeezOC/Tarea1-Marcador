@@ -11,7 +11,7 @@
    <children>
       <VBox alignment="CENTER" spacing="25.0" styleClass="darkLoginWindow" stylesheets="@../stylesheets/login.css">
          <children>
-            <Label alignment="CENTER" blendMode="HARD_LIGHT" styleClass="clearLabel" text="¡BIENVENIODO!">
+            <Label alignment="CENTER" blendMode="HARD_LIGHT" styleClass="clearLabel" text="¡BIENVENIDO!">
                <font>
                   <Font name="Imprint MT Shadow" size="19.0" />
                </font>

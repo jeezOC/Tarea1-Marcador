@@ -23,9 +23,11 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.scene.text.TextAlignment;
@@ -259,7 +261,10 @@ public class BaseViewController extends Controller implements Initializable {
             if(aux != null){
             AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(),hora});
             MarcaDto marcaDto = new MarcaDto();
-             marcaDto.crearMarca(LocalDateTime.now(),true);
+//            List<MarcaDto> = new ArrayList<>();
+            
+            
+            marcaDto.crearMarca(LocalDateTime.now(),true);
             
             if(wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()){
             if(aux.getNacimiento().getDayOfMonth() == today &&  aux.getNacimiento().getMonthValue() == month){ 
