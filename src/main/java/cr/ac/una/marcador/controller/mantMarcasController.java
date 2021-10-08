@@ -40,6 +40,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.TextField;
@@ -160,6 +161,28 @@ public class mantMarcasController extends Controller implements Initializable {
             marcasList = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
         }
         actualizarTabla(marcasList);
+        
+        tableMarcas.setRowFactory(row->new TableRow<MarcaDto>(){
+        @Override
+        public void updateItem(MarcaDto item,boolean empty){
+            super.updateItem(item, empty);
+            if(item == null){
+                setStyle("-fx-fill : green");
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
+            }else if(item.getMarcahoraSalida().toString().equals("0000-01-01T00:00")){
+                
+                 setStyle("-fx-background-color: #ffd7d1;");
+//                    setStyle("-fx-background-color: #baffba;");
+            }else{
+                    setStyle("-fx-background-color: #baffba;");
+            }
+            
+//           setStyle("-fx-fill : yellow");
+        }
+        
+        });
+        
+        tableMarcas.refresh();
     }
     
     private static String ValueOfHeader(int i){
