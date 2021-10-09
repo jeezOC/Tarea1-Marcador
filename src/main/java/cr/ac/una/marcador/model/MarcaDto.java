@@ -6,7 +6,6 @@
 package cr.ac.una.marcador.model;
 
 import cr.ac.una.relojunaws.Empleado;
-import cr.ac.una.relojunaws.Marca;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

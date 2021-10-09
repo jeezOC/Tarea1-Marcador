@@ -253,5 +253,12 @@ public static XMLGregorianCalendar xmlGregCalFromDate(final Date date){
     } 
     return null;
 }
+
+    public cr.ac.una.marcador.util.Respuesta eliminarMarcaId(Long marcaid) {
+        respuesta = port.eliminarMarcaId(marcaid);
+        return new cr.ac.una.marcador.util.Respuesta(respuesta.isEstado(), convertirCodigos(respuesta),respuesta.getMensaje(),respuesta.getMensajeInterno());
+    
+        
+    }
     
 }

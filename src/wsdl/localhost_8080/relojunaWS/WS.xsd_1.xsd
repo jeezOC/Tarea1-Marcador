@@ -20,6 +20,10 @@
 
 <xs:element name="eliminarEmpleadoFolioResponse" type="tns:eliminarEmpleadoFolioResponse"/>
 
+<xs:element name="eliminarMarcaId" type="tns:eliminarMarcaId"/>
+
+<xs:element name="eliminarMarcaIdResponse" type="tns:eliminarMarcaIdResponse"/>
+
 <xs:element name="empleado" type="tns:empleado"/>
 
 <xs:element name="existeEmpleado" type="tns:existeEmpleado"/>
@@ -89,6 +93,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="eliminarEmpleadoFolio">
+<xs:sequence>
+<xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="crearMarcaFolio">
 <xs:sequence>
 <xs:element name="marca" type="tns:marcaDto" minOccurs="0"/>
@@ -125,13 +141,13 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarEmpleadoFolio">
+<xs:complexType name="eliminarMarcaId">
 <xs:sequence>
-<xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
+<xs:element name="marcaId" type="xs:long" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarEmpleadoFolioResponse">
+<xs:complexType name="eliminarMarcaIdResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:respuesta" minOccurs="0"/>
 </xs:sequence>

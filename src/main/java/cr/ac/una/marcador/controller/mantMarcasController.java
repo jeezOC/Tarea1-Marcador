@@ -12,7 +12,9 @@ import cr.ac.una.marcador.model.MarcaDto;
 import cr.ac.una.marcador.util.AppContext;
 import cr.ac.una.marcador.util.FlowController;
 import cr.ac.una.marcador.util.Mensaje;
+import cr.ac.una.marcador.util.Respuesta;
 import cr.ac.una.marcador.util.wsConsumer;
+import java.awt.Event;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -29,6 +31,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TreeSet;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import javafx.beans.property.SimpleStringProperty;
@@ -162,10 +166,9 @@ public class mantMarcasController extends Controller implements Initializable {
         btnFiltrar.setDisable(true);
     }
     
-    @FXML
-    private void onAction_btnBuscar(ActionEvent event) {  
-        indexes.clear();
-        tableMarcas.getItems().clear();
+    
+    private void buscar(){
+    tableMarcas.getItems().clear();
         String folio = txtBuscar.getText();
         if(folio.equals("")) {
             marcasList = wsConsumer.getInstance().obtenerTodasMarcas();
@@ -174,6 +177,11 @@ public class mantMarcasController extends Controller implements Initializable {
             marcasList = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
         }
         actualizarTabla(marcasList);
+    }
+    
+    @FXML
+    private void onAction_btnBuscar(ActionEvent event) {   
+        buscar();
         
     }
     
@@ -323,9 +331,38 @@ public class mantMarcasController extends Controller implements Initializable {
         }
     }
 }
+    
+    
+    
     @FXML
     void onAction_btnBorrar(ActionEvent event) {
 
+        //TODO
+        
+        MarcaDto toDelete=(MarcaDto) tableMarcas.getFocusModel().getFocusedItem();
+        
+        try {
+            if (toDelete.getMarcaid() == null) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar marca", getStage(), "Debe seleccionar el empleado que desea eliminar.");
+            } else {
+                
+                if(new Mensaje().showConfirmation("Eliminar marca", getStage(), "¿Desea eliminar la marca seleccionada?")){
+                Respuesta respuesta  = wsConsumer.getInstance().eliminarMarcaId(toDelete.getMarcaid());
+                
+                if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar marca", getStage(), respuesta.getMensaje());
+                } else {
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar marca", getStage(), "Marca eliminada correctamente.");
+                    //actualizar
+                    buscar();
+                }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, "Error eliminando la marca.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar marca", getStage(), "Ocurrió un error eliminando la marca.");
+        }
+        
     }
     @FXML
     void onAction_btnEditar(ActionEvent event) {
