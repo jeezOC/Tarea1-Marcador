@@ -3,7 +3,9 @@
 package cr.ac.una.marcador.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.util.AppContext;
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -11,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -39,6 +42,11 @@ public class bienvenidaController extends Controller implements Initializable{
     @Override
     public void initialize() {
         String[] EmpleadoMarca = (String[]) AppContext.getInstance().get("EmpleadoMarca");
+        EmpleadoDto empleado = (EmpleadoDto) AppContext.getInstance().get("empMarcador");
+        if(empleado.getFoto()!=null){
+            Image image = new Image(new ByteArrayInputStream(empleado.getFoto()));
+            imvEmp.setImage(image);
+        }
         lblNombreApellido.setText(EmpleadoMarca[0] +" " +EmpleadoMarca[1]);
         lblHora.setText(EmpleadoMarca[2]);
     }

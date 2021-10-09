@@ -313,7 +313,7 @@ public class BaseViewController extends Controller implements Initializable {
                 }
                 if (wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()) {
                     AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(), hora});
-
+                    AppContext.getInstance().set("empMarcador", aux);
                     if (aux.getNacimiento().getDayOfMonth() == today && aux.getNacimiento().getMonthValue() == month) {
                         FlowController.getInstance().goViewInWindowModalUndec("birthday", this.getStage(), false);
                     } else {

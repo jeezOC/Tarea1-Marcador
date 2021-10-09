@@ -204,7 +204,7 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imgFotoEmpleado.setImage(image);
+        imgFotoEmpleado.setImage(null);
         AppContext.getInstance().set("ViewImagePrincipal",imgFotoEmpleado);
 //        imgFotoEmpleado.setImage((Image)  AppContext.getInstance().get("imagen"));
         disableAll(true);
@@ -272,7 +272,7 @@ public class mantEmpleadosController extends Controller implements Initializable
         }
     }
     private void unbindEmpleado() {
-//        imgFotoEmpleado.setImage(image);
+           imgFotoEmpleado.setImage(null);
         txtFolio.textProperty().unbind();
         txtCedula.textProperty().unbindBidirectional(empleado.cedula);
         txtNombre.textProperty().unbindBidirectional(empleado.name);
@@ -280,6 +280,10 @@ public class mantEmpleadosController extends Controller implements Initializable
         txtContra.textProperty().unbindBidirectional(empleado.psswr);        
         dpFechaNacimiento.valueProperty().unbindBidirectional(empleado.nacimiento);
         tggEsAdministrador.selectedProperty().unbindBidirectional(empleado.admin);
+        if(empleado.getFoto()!=null){
+            Image image = new Image(new ByteArrayInputStream(empleado.getFoto()));
+            imgFotoEmpleado.setImage(null);
+        }
 //        imgFotoEmpleado
     }
     

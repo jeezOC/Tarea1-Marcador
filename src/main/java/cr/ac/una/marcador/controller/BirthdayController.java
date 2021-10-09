@@ -20,13 +20,16 @@ import animatefx.animation.Flash;
 import animatefx.animation.Pulse;
 import animatefx.animation.Swing;
 import animatefx.animation.Tada;
+import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.util.FlowController;
+import java.io.ByteArrayInputStream;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -133,6 +136,11 @@ public class BirthdayController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+        EmpleadoDto empleado = (EmpleadoDto) AppContext.getInstance().get("empMarcador");
+        if(empleado.getFoto()!=null){
+            Image image = new Image(new ByteArrayInputStream(empleado.getFoto()));
+            imvEmp.setImage(image);
+        }
        iniciarVista();
         String[] EmpleadoMarca = (String[]) AppContext.getInstance().get("EmpleadoMarca");
         lblNombreApellido.setText(EmpleadoMarca[0] +" " +EmpleadoMarca[1]);
