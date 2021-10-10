@@ -91,32 +91,27 @@ public class correccionMarcasController extends Controller implements Initializa
     }
     @FXML
     void onAction_btnConfirmar(ActionEvent event) throws DatatypeConfigurationException {
-        
-            int he = Integer.valueOf(txtHE.getText());
-            int me = Integer.valueOf(txtME.getText());
-            int hs = Integer.valueOf(txtHS.getText());
-            int ms = Integer.valueOf(txtMS.getText());
-            LocalDateTime entrada = dpFechaNueva.getValue().atTime(he , me);
-            LocalDateTime salida = dpFechaNueva.getValue().atTime(hs , ms);
-            if (aux != null) {
-                MarcaDto marcaDto = new MarcaDto();
-                List<MarcaDto> marcasEmpleado = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
-                if (marcasEmpleado.isEmpty()) {
-//                    marcaDto.crearMarca(LocalDateTime.now(), true);
-                    marcaSeleccionada.setMarcajornada(dpFechaNueva.getValue());
-                    marcaSeleccionada.setMarcahoraEntrada(entrada);
-                    marcaSeleccionada.setMarcahoraSalida(salida);
-                    if (wsConsumer.getInstance().crearMarca(marcaDto, folio).isEstado()){
-                        new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
+        folio = txtBuscar.getText();
+        int he = Integer.valueOf(txtHE.getText());
+        int me = Integer.valueOf(txtME.getText());
+        int hs = Integer.valueOf(txtHS.getText());
+        int ms = Integer.valueOf(txtMS.getText());
 
-                    }else{
-                        new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
-
-                    }
-                }
-            }
-
-        
+        LocalDateTime entrada = dpFechaNueva.getValue().atTime(he , me);
+        LocalDateTime salida = dpFechaNueva.getValue().atTime(hs , ms);
+        if (marcaSeleccionada == null) {
+            marcaSeleccionada = new MarcaDto();
+        }
+        LocalDate ld =dpFechaNueva.valueProperty().getValue();
+        marcaSeleccionada.setMarcajornada((LocalDate)ld);
+        marcaSeleccionada.setMarcahoraEntrada(entrada);
+        marcaSeleccionada.setMarcahoraSalida(salida);
+        if (wsConsumer.getInstance().crearMarca(marcaSeleccionada, folio).isEstado()){
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
+        }else{
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Marcar", getStage(), wsConsumer.getInstance().getRespuesta().getMensaje());
+        }
+//       
     }
    
 
@@ -129,7 +124,6 @@ public class correccionMarcasController extends Controller implements Initializa
 
     @Override
     public void initialize() {
-        marcaSeleccionada = new MarcaDto();
         marcaSeleccionada = new MarcaDto();
         marcaSeleccionada = (MarcaDto)AppContext.getInstance().get("marcaSeleccionada");
         if(marcaSeleccionada!=null){
@@ -159,9 +153,9 @@ public class correccionMarcasController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         marcaSeleccionada = new MarcaDto();
-        marcaSeleccionada = new MarcaDto();
         marcaSeleccionada = (MarcaDto)AppContext.getInstance().get("marcaSeleccionada");
         if(marcaSeleccionada!=null){
+            aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
             txtBuscar.setText(marcaSeleccionada.getEmpleadoid().getEmpleadoFolio());
             dpFechaNueva.setValue(marcaSeleccionada.getMarcajornada());
             txtHE.setText(String.valueOf(marcaSeleccionada.getMarcahoraEntrada().getHour()));

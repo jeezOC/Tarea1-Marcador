@@ -132,7 +132,7 @@ public class mantMarcasController extends Controller implements Initializable {
         tableMarcas.requestFocus();
         tableMarcas.getSelectionModel().select(primeraIncon);
         tableMarcas.getFocusModel().focus(primeraIncon);
-        if(cont>indexes.size()){
+        if(cont>=indexes.size()){
             cont = 0;
         }else{
             cont++;
@@ -155,20 +155,16 @@ public class mantMarcasController extends Controller implements Initializable {
     List<Integer> indexes = new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//            listMarcas.getItems().add("Entradas");
-//            listMarcas.getItems().add("SALIDAS");
+        indexes.clear();
         tableMarcas.refresh();
         btnInfo.setTooltip(buscarInfo);
-//        btnInfo.setDisable(true);
         BtnExcel.setDisable(true);
         btnFiltrar.setDisable(true);
-//            cargarStreamsToView();
-         
-        
     }
     
     @FXML
-    private void onAction_btnBuscar(ActionEvent event) {   
+    private void onAction_btnBuscar(ActionEvent event) {  
+        indexes.clear();
         tableMarcas.getItems().clear();
         String folio = txtBuscar.getText();
         if(folio.equals("")) {
@@ -331,12 +327,6 @@ public class mantMarcasController extends Controller implements Initializable {
     void onAction_btnBorrar(ActionEvent event) {
 
     }
-
-    @FXML
-    void onAction_btnGuardar(ActionEvent event) {
-
-    }
-
     @FXML
     void onAction_btnEditar(ActionEvent event) {
         MarcaDto marcaSeleccionada = (MarcaDto) tableMarcas.getFocusModel().getFocusedItem();
@@ -355,6 +345,7 @@ public class mantMarcasController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+        indexes.clear();
         tableMarcas.refresh();
 //        btnInfo.setTooltip(buscarInfo);
 //        BtnExcel.setDisable(true);
