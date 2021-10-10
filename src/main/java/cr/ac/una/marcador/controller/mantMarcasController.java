@@ -14,9 +14,12 @@ import cr.ac.una.marcador.util.wsConsumer;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -179,29 +182,38 @@ public class mantMarcasController extends Controller implements Initializable {
         BtnExcel.setDisable(false);  
         btnFiltrar.setDisable(false);
         List<MarcaDto> marcasFltradas = marcasList.stream()
+//                 .filter(m-> (ini.equals(m.getMarcahoraEntrada())&& fin.equals(m.getMarcahoraSalida())))
+//              .collect(Collectors.toList());
               .filter(m-> (!ini.isAfter(m.getMarcahoraEntrada())&& !fin.isBefore(m.getMarcahoraEntrada())) 
                       || (!ini.isAfter(m.getMarcahoraSalida()) && !fin.isBefore(m.getMarcahoraSalida())))
               .collect(Collectors.toList());
         return marcasFltradas;
     }
+       private Date convertLocaDateToDate(LocalDate ld){
+         return Date.from(ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
     @FXML
     void onAction_btnFiltrar(ActionEvent event) {
         if(dpINI.getValue()!=null && dpFin.getValue() != null){
-            if((dpINI.getValue().isBefore(LocalDate.now())||dpINI.getValue().equals(LocalDate.now().getDayOfMonth()) || dpINI.getValue().isBefore(dpFin.getValue()))
-                 && (dpFin.getValue().isBefore(LocalDate.now())||dpINI.getValue().equals(LocalDate.now().getDayOfMonth()))
-                    ||dpINI.getValue().equals(dpFin.getValue()))
-            {   
-                List<MarcaDto> marcasFltradas = FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay());
-                if(!marcasFltradas.isEmpty()){
-                    actualizarTabla(FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay()));
+            Date ini = convertLocaDateToDate(dpINI.getValue());
+            Date fin = convertLocaDateToDate(dpFin.getValue());
+            if(!ini.equals(fin)){
+                if(ini.before(fin)){
+                    List<MarcaDto> marcasFltradas = FiltrarHora(dpINI.getValue().atStartOfDay(),dpFin.getValue().atTime(23,59));
+                    if(!marcasFltradas.isEmpty()){
+                        actualizarTabla(FiltrarHora(dpINI.getValue().atStartOfDay(), dpFin.getValue().atStartOfDay()));
+                    }else{
+                        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Marcas no encontradas" ,this.getStage(),"No se encontro ninguna marca en el rango de fechas seleccionado");  
+                    }
                 }else{
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Marcas no encontradas" ,this.getStage(),"No se encontro ninguna marca en el rango de fechas seleccionado");  
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por favor seleccione un rango de fechas valido");
                 }
             }else{
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por Favor seleccione un rango de fechas valido");
+                new Mensaje().show(Alert.AlertType.ERROR, "Validar datos", "Debe seleccionar un rango de fechas valido\nTome en cuenta que el rango fechas se extiende\nde las 00:00 del dia inicial a las 00:00 del dia final.");
+
             }
         }else{
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por Favor seleccione un rango de fechas");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Rango de fechas invalido" ,this.getStage(),"Por favor seleccione un rango de fechas");
         }
     }
     @FXML

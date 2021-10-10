@@ -98,8 +98,8 @@ public class reporteMarcasController extends Controller implements Initializable
     
     private Date convertLocaDateToDate(LocalDate ld){
         ZoneId z = ZoneId.of("America/Costa_Rica");
-        System.out.println(z);
-        ZonedDateTime zdt = dpIni.getValue().atStartOfDay(z);
+//        System.out.println(z);
+        ZonedDateTime zdt = ld.atStartOfDay(z);
         Instant instant = zdt.toInstant();
         return Date.from(instant);
     }
@@ -111,11 +111,11 @@ public class reporteMarcasController extends Controller implements Initializable
 
         
         if(dpFin.getValue()!=null || dpIni.getValue()!=null){
-        Date ini = convertLocaDateToDate(dpIni.getValue());
-        Date fin = convertLocaDateToDate(dpFin.getValue());
-        HashMap<String,Object> datos = new HashMap<>();
-        datos.put("nombreAdmin",admin.getNombre()+" "+admin.getApellido());
-        datos.put("folioAdmin", admin.getFolio());
+            Date ini = convertLocaDateToDate(dpIni.getValue());
+            Date fin = convertLocaDateToDate(dpFin.getValue());
+            HashMap<String,Object> datos = new HashMap<>();
+            datos.put("nombreAdmin",admin.getNombre()+" "+admin.getApellido());
+            datos.put("folioAdmin", admin.getFolio());
         
         if(ini.after(fin)){
             new Mensaje().showModal(Alert.AlertType.INFORMATION, "Validar datos", this.getStage(), "La fecha de inicio no puede ser mayor que la fechas final.");

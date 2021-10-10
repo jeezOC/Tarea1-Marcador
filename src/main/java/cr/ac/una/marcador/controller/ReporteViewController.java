@@ -131,30 +131,35 @@ public class ReporteViewController extends Controller implements Initializable {
             }
 
         } else {
-            if (dpFin.getValue() != null || dpIni.getValue() != null) {
+            if (dpFin.getValue() != null && dpIni.getValue() != null) {
                 Date ini = convertLocaDateToDate(dpIni.getValue());
                 Date fin = convertLocaDateToDate(dpFin.getValue());
-
-                if (ini.after(fin)) {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Validar datos", this.getStage(), "La fecha de inicio no puede ser mayor que la fechas final.");
-                    return false;
-                } else {
-                    datos.put("ini", ini);
-                    datos.put("fin", fin);
-                    if (tggUnEmpleado.isSelected()) {
-                        if (txtFolio.getText().isBlank()) {
-                            new Mensaje().show(Alert.AlertType.ERROR, "Validar datos", "Debe ingresar el folio de un empleado folio.");
-                            return false;
-                        } else {
-
-                            datos.put("tipo", 3);
-                            return true;
-
-                        }
+                if(!ini.equals(fin)){
+                    if (ini.after(fin)) {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Validar datos", this.getStage(), "La fecha de inicio no puede ser mayor que la fechas final.");
+                        return false;
                     } else {
-                        datos.put("tipo", 4);
-                        return true;
-                    }
+                        datos.put("ini", ini);
+                        datos.put("fin", fin);
+                        if (tggUnEmpleado.isSelected()) {
+                            if (txtFolio.getText().isBlank()) {
+                                new Mensaje().show(Alert.AlertType.ERROR, "Validar datos", "Debe ingresar el folio de un empleado folio.");
+                                return false;
+                            } else {
+
+                                datos.put("tipo", 3);
+                                return true;
+
+                            }
+                        } else {
+                            datos.put("tipo", 4);
+                            return true;
+                        }
+                }
+                }else{
+                    new Mensaje().show(Alert.AlertType.ERROR, "Validar datos", "Debe seleccionar un rango de fechas valido\nTome en cuenta que el rango fechas se extiende\nde las 00:00 del dia inicial a las 00:00 del dia final.");
+                    return false;
+   
                 }
             } else {
                 new Mensaje().show(Alert.AlertType.ERROR, "Validar datos", "Debe ingresar ambas fechas para consultar.");
