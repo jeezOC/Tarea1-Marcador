@@ -298,18 +298,17 @@ public class BaseViewController extends Controller implements Initializable {
                             if (diferenciaHorasEntrada.intValue() > 12) {
                                 bandera = true;
                             }
-                        } else {
-                            if (marcaDto.getMarcahoraSalida() != null) {
+                        }else if (marcaDto.getMarcahoraSalida() != null) {
                                 diferenciaHorasSalida = HOURS.between(marcaDto.getMarcahoraSalida(), LocalDateTime.now());
                                 if (diferenciaHorasSalida > 12) {
                                     bandera = true;
                                 }
                             }
-                        }
+                        
 
                         if (bandera) {                               //Valida las 12 horas
                             marcaDto = new MarcaDto();
-                        marcaDto.crearMarca(LocalDateTime.now(), true);   
+                            marcaDto.crearMarca(LocalDateTime.now(), true);   
                         } else {
                             marcaDto.crearMarca(LocalDateTime.now(), false);
                         }

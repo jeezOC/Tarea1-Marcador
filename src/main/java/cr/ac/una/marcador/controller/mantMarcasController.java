@@ -349,11 +349,12 @@ public class mantMarcasController extends Controller implements Initializable {
     
     private String totalHorasTrabajadasPorTodosEmpleados(){
            
-        Long totalEntradas = marcasList.stream().filter(m-> m.getMarcahoraEntrada() != null).mapToLong(m-> m.getMarcahoraEntrada().getHour()).sum();
-        Long totalSalidas = marcasList.stream().filter(m-> m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour()).sum();
+        Long totalEntradas = marcasList.stream().filter(m-> m.getMarcahoraEntrada() != null
+        && m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour() ).sum();
+//        Long totalSalidas = marcasList.stream().filter(m-> m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour()).sum();
         //Integer h_porjornada = marcasList.stream().mapToInt(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour()).sum();        
         
-        return String.valueOf(totalSalidas-totalEntradas);
+        return String.valueOf(totalEntradas);
     }
     
     private void cargarStreamsToView(){
