@@ -132,14 +132,16 @@ public class mantMarcasController extends Controller implements Initializable {
     int cont = 0;
     @FXML
     void onAction_btnSig(ActionEvent event) {
-        int primeraIncon = indexes.get(cont);
-        tableMarcas.requestFocus();
-        tableMarcas.getSelectionModel().select(primeraIncon);
-        tableMarcas.getFocusModel().focus(primeraIncon);
-        if(cont>=indexes.size()){
-            cont = 0;
-        }else{
-            cont++;
+        if(!indexes.isEmpty()){
+            int primeraIncon = indexes.get(cont);
+            tableMarcas.requestFocus();
+            tableMarcas.getSelectionModel().select(primeraIncon);
+            tableMarcas.getFocusModel().focus(primeraIncon);
+            if(cont>=indexes.size()){
+                cont = 0;
+            }else{
+                cont++;
+            }
         }
     }
     /**
