@@ -93,18 +93,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarEmpleadoFolio">
-<xs:sequence>
-<xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="eliminarEmpleadoFolioResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="crearMarcaFolio">
 <xs:sequence>
 <xs:element name="marca" type="tns:marcaDto" minOccurs="0"/>
@@ -148,6 +136,18 @@
 </xs:complexType>
 
 <xs:complexType name="eliminarMarcaIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:respuesta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoFolio">
+<xs:sequence>
+<xs:element name="empleadofolio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarEmpleadoFolioResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:respuesta" minOccurs="0"/>
 </xs:sequence>
@@ -205,7 +205,7 @@
 <xs:element name="empleadoCedula" type="xs:string" minOccurs="0"/>
 <xs:element name="empleadoFechaNacimiento" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="empleadoFolio" type="xs:string" minOccurs="0"/>
-<xs:element name="empleadoFoto" type="xs:string" minOccurs="0"/>
+<xs:element name="empleadoFoto" type="xs:base64Binary" minOccurs="0"/>
 <xs:element name="empleadoId" type="xs:long" minOccurs="0"/>
 <xs:element name="empleadoNombre" type="xs:string" minOccurs="0"/>
 <xs:element name="empleadoPassword" type="xs:string" minOccurs="0"/>

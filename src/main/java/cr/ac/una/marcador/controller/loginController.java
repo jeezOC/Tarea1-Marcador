@@ -44,7 +44,7 @@ public class loginController extends Controller implements Initializable {
 //            
             boolean isAdmin = wsConsumer.getInstance().validarFolioContrasena(folio, psswrd);
             
-             if(isAdmin){
+            if(isAdmin){
                this.getStage().close();
                 EmpleadoDto admin ;
                 admin = wsConsumer.getInstance().buscarEmpleadoFolio(folio);    
@@ -52,15 +52,13 @@ public class loginController extends Controller implements Initializable {
                 AppContext.getInstance().set("admin",admin);
                 FlowController.getInstance().hide();
                 FlowController.getInstance().goViewInWindow("baseContainer");
-                System.out.println("HOLAAA");
                 }else{ 
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Error iniciando sesión." ,this.getStage(),"Ocurrió el siguiente error al consultar el servidor: ");  
                     
                 }
-                System.out.println("noooo HOLAAA");
             }else{
-             
-             }
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error iniciando sesión." ,this.getStage(),"Datos incorrectos");
+            }
         } catch (Exception ex) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error iniciando sesión." ,this.getStage(),"Ocurrió el siguiente error al consultar el servidor: "+ ex.getMessage());  
             txtID.setText("");

@@ -72,7 +72,6 @@ public class BirthdayController extends Controller implements Initializable {
     @FXML
     void onAction_btnCerrrar(ActionEvent event) {
         this.getStage().close();
-//        FlowController.getInstance().hide();
         
     }
     /**
@@ -98,14 +97,12 @@ public class BirthdayController extends Controller implements Initializable {
             mover(imvGlobos2,550,-550);
             mover(imvGlobos1,550,-550);
             
-                afx.setCycleCount(50);
-             afx.play();
-             afx2.setCycleCount(50);
-             afx2.play();   
+            afx.setCycleCount(50);
+            afx.play();
+            afx2.setCycleCount(50);
+            afx2.play();   
     }
-    
-                //ANIMACIONES
-    
+    //ANIMACIONES
      public void mover(Node c,double fromY, double toY){
       TranslateTransition t = new TranslateTransition();
          t.setNode(c);

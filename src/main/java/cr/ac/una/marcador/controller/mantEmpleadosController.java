@@ -111,12 +111,11 @@ public class mantEmpleadosController extends Controller implements Initializable
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnGuardar;
+    File archivo;
     
     Image image = new Image("file:/cr/ac/una/mantenimiento/icons/USER.png");
     @FXML
     void onAction_btnBorrar(ActionEvent event) throws IOException {
-//        imageToByte();
-
         try {
             if (empleado.getFolio()== null) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar empleado", getStage(), "Debe cargar el empleado que desea eliminar.");
@@ -138,49 +137,42 @@ public class mantEmpleadosController extends Controller implements Initializable
 
     @FXML
     void onAction_btnCambiarFoto(ActionEvent event) {
-        //FlowController.getInstance().goViewInWindowModal("camaraView",this.getStage(),false);
         
         JFileChooser selectorArchivos = new JFileChooser();
         selectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes ", "jpg","png");
         selectorArchivos.setFileFilter(filtro);
 
-// indica cual fue la accion de usuario sobre el jfilechooser
         selectorArchivos.showOpenDialog(selectorArchivos);
-//        System.out.println(resultado);
         File file = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
+        System.out.println("archivo"+file.toString());
         Image imagen = new Image(file.toURI().toString());
+        
+        
+         try
+            {
+                BufferedImage bufferimage;
+                bufferimage = ImageIO.read(file);
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                ImageIO.write(bufferimage , "jpg" , output);
+                byte[] data = output.toByteArray();
+                System.out.println("dasdas"+data);
+                empleado.setFoto(data);
+            }
+            catch(IOException ex)
+            {
+                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE , null , ex);
+            }
+        
         AppContext.getInstance().set("imagen", imagen);
         AppContext.getInstance().set("fileImage", file);
         AppContext.getInstance().actualizarViewImagen();
-        //this.getStage().close();
     }
 
      
     @FXML
     void onAction_btnNuevo(ActionEvent event) {
         nuevoEmpleado();
-//        clearAll();
-       
-//        if (isNuevo) {
-//            
-////            txtFolio.setText("");
-//            txtFolio.setDisable(true);
-//            txtCedula.setDisable(false);
-//            txtNombre.setDisable(false);
-//            txtApellido.setDisable(false);
-//            dpFechaNacimiento.setDisable(false);
-//            btnNuevo.setText("EDITAR");
-//            isNuevo = false;
-//        } else {
-//            txtFolio.setDisable(false);
-//            txtCedula.setDisable(true);
-//            txtNombre.setDisable(true);
-//            txtApellido.setDisable(true);
-//            dpFechaNacimiento.setDisable(true);
-//            btnNuevo.setText("NUEVO");
-//            isNuevo = true;
-//        }
     }
 
     @Override
@@ -202,7 +194,6 @@ public class mantEmpleadosController extends Controller implements Initializable
         txtApellido.setDisable(false);
         txtContra.setDisable(true);
         dpFechaNacimiento.setDisable(false);
-        
 //        imgFotoEmpleado.setImage((Image)  AppContext.getInstance().get("imagen"));
     }
 
@@ -273,7 +264,7 @@ public class mantEmpleadosController extends Controller implements Initializable
             new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar empleado", getStage(), respuesta.getMensaje());
         }
     }
-private byte[] convertToBytes(Object object) throws IOException {
+    private byte[] convertToBytes(Object object) throws IOException {
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutput out = new ObjectOutputStream(bos)) {
             out.writeObject(object);
@@ -281,7 +272,7 @@ private byte[] convertToBytes(Object object) throws IOException {
         }
     }
     private void unbindEmpleado() {
-        imgFotoEmpleado.setImage(image);
+//        imgFotoEmpleado.setImage(image);
         txtFolio.textProperty().unbind();
         txtCedula.textProperty().unbindBidirectional(empleado.cedula);
         txtNombre.textProperty().unbindBidirectional(empleado.name);
@@ -296,46 +287,6 @@ private byte[] convertToBytes(Object object) throws IOException {
     private void bindEmpleado(boolean nuevo)  {
         if (!nuevo) {
             txtFolio.textProperty().bind(empleado.folio);
-//            try {
-////                byteToFile();
-//            } catch (IOException ex) {
-//                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//try{
-////        System.out.println(Arrays.toString(empleado.foto));
-////                InputStream in= new ByteArrayInputStream();
-////                System.out.print(in);
-//                OutputStream out = new FileOutputStream(new File("photo.png"));
-//                byte[] cont = empleado.foto;
-//                int s = 0;
-//                    System.out.print(s);
-//                    out.write(cont, 0,empleado.foto.length);
-//                out.close();
-////                in.close();
-//                Image img= new Image("file:photo.jpg");
-//                imgFotoEmpleado.setImage(img);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            try {
-//                  javafx.scene.image.Image ima = (Image)  AppContext.getInstance().get("imagen");
-
-//                javafx.scene.image.Image ima= new Image(new ByteArrayInputStream(empleado.foto));
-                //                String fn = new String("c:\\mkyong-new.png");
-//                InputStream is = new ByteArrayInputStream(empleado.foto);
-//                BufferedImage newBi = ImageIO.read(is);
-//                ImageIO.write(newBi, "png", new File(fn));
-//                 } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                imgFotoEmpleado.setImage(ima);
-
-//convert( empleado.foto);
-// System.out.println(empleado.foto);
-//            } catch (IOException ex) {
-//                Logger.getLogger(mantEmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-            
         }
         
         txtCedula.textProperty().bindBidirectional(empleado.cedula);
@@ -344,6 +295,12 @@ private byte[] convertToBytes(Object object) throws IOException {
         txtContra.textProperty().bindBidirectional(empleado.psswr);
         dpFechaNacimiento.valueProperty().bindBidirectional(empleado.nacimiento);
         tggEsAdministrador.selectedProperty().bindBidirectional(empleado.admin);
+        
+        if(empleado.getFoto()!=null){
+            Image image = new Image(new ByteArrayInputStream(empleado.getFoto()));
+            imgFotoEmpleado.setImage(image);
+        }
+        
        
     }
    public void convert( byte[] data) throws IOException { 
@@ -438,8 +395,9 @@ private byte[] convertToBytes(Object object) throws IOException {
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar empleado", getStage(), invalidos);
             } else { 
-                imageToByte();
-                Thread.sleep(2000);
+                Image im = (Image)AppContext.getInstance().get("imagen");
+                System.out.println(im.toString());
+                
                 Respuesta respuesta = wsConsumer.getInstance().guardarEmpleado(empleado);
                 if (!respuesta.getEstado()) {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar empleado", getStage(), respuesta.getMensaje());

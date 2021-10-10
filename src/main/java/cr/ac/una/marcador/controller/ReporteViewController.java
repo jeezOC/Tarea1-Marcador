@@ -101,9 +101,9 @@ public class ReporteViewController extends Controller implements Initializable {
             out.write(bytes);
             return true;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(reporteMarcasController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReporteViewController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(reporteMarcasController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReporteViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -176,11 +176,6 @@ public class ReporteViewController extends Controller implements Initializable {
     private Date convertLocaDateToDate(LocalDate ld) {
         
         return Date.from(ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-//        ZoneId z = ZoneId.of("America/Costa_Rica");
-//        System.out.println(z);
-//        ZonedDateTime zdt = dpIni.getValue().atStartOfDay(z);
-//        Instant instant = zdt.toInstant();
-//        return Date.from(instant);
     }
 
     @Override

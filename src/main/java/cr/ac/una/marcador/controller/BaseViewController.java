@@ -246,7 +246,6 @@ public class BaseViewController extends Controller implements Initializable {
     void onAction_btnConfirmar(ActionEvent event) throws DatatypeConfigurationException {
         String folio = txtFolio.getText();
         wsConsumer.getInstance().existeEmpleado(folio);
-        //   aux =  wsConsumer.getInstance().buscarEmpleadoFolio(folio);
         if (wsConsumer.getInstance().getRespuesta().isEstado()) {
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
@@ -267,11 +266,9 @@ public class BaseViewController extends Controller implements Initializable {
                 m = String.valueOf(cal.get(Calendar.MINUTE));
             }
             String hora = h + ":" + m;
-//           
             EmpleadoDto aux = wsConsumer.getInstance().buscarEmpleadoFolio(folio);
             if (aux != null) {
                 MarcaDto marcaDto = new MarcaDto();
-//                Optional<MarcaDto> ultima = null;
                 List<MarcaDto> marcasEmpleado = wsConsumer.getInstance().buscarMarcasFolioFechas(folio);
 
                 if (marcasEmpleado.isEmpty()) {
@@ -318,10 +315,8 @@ public class BaseViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("EmpleadoMarca", new String[]{aux.getNombre(), aux.getApellido(), hora});
 
                     if (aux.getNacimiento().getDayOfMonth() == today && aux.getNacimiento().getMonthValue() == month) {
-                        //                FlowController.getInstance().goViewInWindowUncap("birthday");
                         FlowController.getInstance().goViewInWindowModalUndec("birthday", this.getStage(), false);
                     } else {
-                        //                FlowController.getInstance().goViewInWindowUncap("bienvenido");
                         FlowController.getInstance().goViewInWindowModalUndec("bienvenido", this.getStage(), false);
                     }
                 } else {

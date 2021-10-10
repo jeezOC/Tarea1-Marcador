@@ -10,35 +10,23 @@
 <message name="loginResponse">
 <part name="parameters" element="tns:loginResponse"/>
 </message>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
-</message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
-</message>
 <message name="guardarEmpleado">
 <part name="parameters" element="tns:guardarEmpleado"/>
 </message>
 <message name="guardarEmpleadoResponse">
 <part name="parameters" element="tns:guardarEmpleadoResponse"/>
 </message>
-<message name="buscarMarcaFolioFechas">
-<part name="parameters" element="tns:buscarMarcaFolioFechas"/>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
 </message>
-<message name="buscarMarcaFolioFechasResponse">
-<part name="parameters" element="tns:buscarMarcaFolioFechasResponse"/>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
 </message>
-<message name="eliminarEmpleadoFolio">
-<part name="parameters" element="tns:eliminarEmpleadoFolio"/>
+<message name="existeEmpleado">
+<part name="parameters" element="tns:existeEmpleado"/>
 </message>
-<message name="eliminarEmpleadoFolioResponse">
-<part name="parameters" element="tns:eliminarEmpleadoFolioResponse"/>
-</message>
-<message name="buscarEmpleadoFolio">
-<part name="parameters" element="tns:buscarEmpleadoFolio"/>
-</message>
-<message name="buscarEmpleadoFolioResponse">
-<part name="parameters" element="tns:buscarEmpleadoFolioResponse"/>
+<message name="existeEmpleadoResponse">
+<part name="parameters" element="tns:existeEmpleadoResponse"/>
 </message>
 <message name="crearReporte">
 <part name="parameters" element="tns:crearReporte"/>
@@ -58,42 +46,46 @@
 <message name="crearMarcaFolioResponse">
 <part name="parameters" element="tns:crearMarcaFolioResponse"/>
 </message>
-<message name="existeEmpleado">
-<part name="parameters" element="tns:existeEmpleado"/>
-</message>
-<message name="existeEmpleadoResponse">
-<part name="parameters" element="tns:existeEmpleadoResponse"/>
-</message>
 <message name="eliminarMarcaId">
 <part name="parameters" element="tns:eliminarMarcaId"/>
 </message>
 <message name="eliminarMarcaIdResponse">
 <part name="parameters" element="tns:eliminarMarcaIdResponse"/>
 </message>
+<message name="buscarEmpleadoFolio">
+<part name="parameters" element="tns:buscarEmpleadoFolio"/>
+</message>
+<message name="buscarEmpleadoFolioResponse">
+<part name="parameters" element="tns:buscarEmpleadoFolioResponse"/>
+</message>
+<message name="eliminarEmpleadoFolio">
+<part name="parameters" element="tns:eliminarEmpleadoFolio"/>
+</message>
+<message name="eliminarEmpleadoFolioResponse">
+<part name="parameters" element="tns:eliminarEmpleadoFolioResponse"/>
+</message>
+<message name="buscarMarcaFolioFechas">
+<part name="parameters" element="tns:buscarMarcaFolioFechas"/>
+</message>
+<message name="buscarMarcaFolioFechasResponse">
+<part name="parameters" element="tns:buscarMarcaFolioFechasResponse"/>
+</message>
 <portType name="relojunaws">
 <operation name="login">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginRequest" message="tns:login"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/loginResponse" message="tns:loginResponse"/>
 </operation>
-<operation name="hello">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloResponse" message="tns:helloResponse"/>
-</operation>
 <operation name="guardarEmpleado">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoRequest" message="tns:guardarEmpleado"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/guardarEmpleadoResponse" message="tns:guardarEmpleadoResponse"/>
 </operation>
-<operation name="buscarMarcaFolioFechas">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarMarcaFolioFechasRequest" message="tns:buscarMarcaFolioFechas"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarMarcaFolioFechasResponse" message="tns:buscarMarcaFolioFechasResponse"/>
+<operation name="hello">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/helloResponse" message="tns:helloResponse"/>
 </operation>
-<operation name="eliminarEmpleadoFolio">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarEmpleadoFolioRequest" message="tns:eliminarEmpleadoFolio"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarEmpleadoFolioResponse" message="tns:eliminarEmpleadoFolioResponse"/>
-</operation>
-<operation name="buscarEmpleadoFolio">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioRequest" message="tns:buscarEmpleadoFolio"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioResponse" message="tns:buscarEmpleadoFolioResponse"/>
+<operation name="existeEmpleado">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
 </operation>
 <operation name="crearReporte">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearReporteRequest" message="tns:crearReporte"/>
@@ -107,27 +99,26 @@
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearMarcaFolioRequest" message="tns:crearMarcaFolio"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/crearMarcaFolioResponse" message="tns:crearMarcaFolioResponse"/>
 </operation>
-<operation name="existeEmpleado">
-<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoRequest" message="tns:existeEmpleado"/>
-<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/existeEmpleadoResponse" message="tns:existeEmpleadoResponse"/>
-</operation>
 <operation name="eliminarMarcaId">
 <input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarMarcaIdRequest" message="tns:eliminarMarcaId"/>
 <output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarMarcaIdResponse" message="tns:eliminarMarcaIdResponse"/>
+</operation>
+<operation name="buscarEmpleadoFolio">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioRequest" message="tns:buscarEmpleadoFolio"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarEmpleadoFolioResponse" message="tns:buscarEmpleadoFolioResponse"/>
+</operation>
+<operation name="eliminarEmpleadoFolio">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarEmpleadoFolioRequest" message="tns:eliminarEmpleadoFolio"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/eliminarEmpleadoFolioResponse" message="tns:eliminarEmpleadoFolioResponse"/>
+</operation>
+<operation name="buscarMarcaFolioFechas">
+<input wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarMarcaFolioFechasRequest" message="tns:buscarMarcaFolioFechas"/>
+<output wsam:Action="http://relojunaws.una.ac.cr/relojunaws/buscarMarcaFolioFechasResponse" message="tns:buscarMarcaFolioFechasResponse"/>
 </operation>
 </portType>
 <binding name="relojunawsPortBinding" type="tns:relojunaws">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="login">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -145,7 +136,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="buscarMarcaFolioFechas">
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -154,16 +145,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="eliminarEmpleadoFolio">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="buscarEmpleadoFolio">
+<operation name="existeEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -199,7 +181,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="existeEmpleado">
+<operation name="eliminarMarcaId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -208,7 +190,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="eliminarMarcaId">
+<operation name="buscarEmpleadoFolio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="eliminarEmpleadoFolio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="buscarMarcaFolioFechas">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

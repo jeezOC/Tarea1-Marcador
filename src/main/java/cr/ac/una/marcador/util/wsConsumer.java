@@ -100,7 +100,7 @@ public class wsConsumer {
         empleadoDtoServidor.setEmpleadoApellido(empleado.lastname.getValue());
         empleadoDtoServidor.setEmpleadoCedula(empleado.cedula.getValue());
         empleadoDtoServidor.setEmpleadoFolio(empleado.folio.getValue());
-        empleadoDtoServidor.setEmpleadoFoto(Base64.getEncoder().encodeToString(empleado.getFoto()));
+        empleadoDtoServidor.setEmpleadoFoto(empleado.getFoto());
         
         //Conversion de fecha---
         GregorianCalendar gcal = GregorianCalendar.from(empleado.getNacimiento().atStartOfDay(ZoneId.systemDefault()));

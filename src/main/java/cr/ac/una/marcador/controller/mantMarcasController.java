@@ -207,8 +207,6 @@ public class mantMarcasController extends Controller implements Initializable {
         BtnExcel.setDisable(false);  
         btnFiltrar.setDisable(false);
         List<MarcaDto> marcasFltradas = marcasList.stream()
-//                 .filter(m-> (ini.equals(m.getMarcahoraEntrada())&& fin.equals(m.getMarcahoraSalida())))
-//              .collect(Collectors.toList());
               .filter(m-> (!ini.isAfter(m.getMarcahoraEntrada())&& !fin.isBefore(m.getMarcahoraEntrada())) 
                       || (!ini.isAfter(m.getMarcahoraSalida()) && !fin.isBefore(m.getMarcahoraSalida())))
               .collect(Collectors.toList());
@@ -312,11 +310,6 @@ public class mantMarcasController extends Controller implements Initializable {
                 System.out.println(e.getMessage());
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Falla en archivo" ,this.getStage(),e.getMessage());  
             }
-//        }else{
-//            new Mensaje().showModal(Alert.AlertType.ERROR, "Favor ingrese el dato a buscar" ,this.getStage(),"No se puede crear archivo");
-//        }
-           
-        
     }
     public void autoSizeColumns(Workbook workbook) {
     int numberOfSheets = workbook.getNumberOfSheets();
@@ -423,9 +416,7 @@ public class mantMarcasController extends Controller implements Initializable {
     private String totalHorasTrabajadasPorTodosEmpleados(){
            
         Long totalEntradas = marcasList.stream().filter(m-> m.getMarcahoraEntrada() != null
-        && m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour() ).sum();
-//        Long totalSalidas = marcasList.stream().filter(m-> m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour()).sum();
-        //Integer h_porjornada = marcasList.stream().mapToInt(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour()).sum();        
+        && m.getMarcahoraSalida() != null).mapToLong(m-> m.getMarcahoraSalida().getHour() - m.getMarcahoraEntrada().getHour() ).sum();     
         
         return String.valueOf(totalEntradas);
     }

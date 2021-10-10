@@ -24,7 +24,7 @@ public class EmpleadoDto {
     public SimpleBooleanProperty admin;
     public ObjectProperty<LocalDate> nacimiento;
     public SimpleStringProperty psswr;
-    public byte[] foto;
+    public ObjectProperty<byte[]> foto;
     public Long id;
     
     public Boolean modificado = false;
@@ -39,7 +39,7 @@ public class EmpleadoDto {
         this.folio = new SimpleStringProperty();
         this.admin = new SimpleBooleanProperty(false);
         this.nacimiento = new SimpleObjectProperty();
-        this.foto = new byte[2048];
+        this.foto = new SimpleObjectProperty();
         
     }
     public void cargarDatos(cr.ac.una.relojunaws.EmpleadoDto empleado){
@@ -51,7 +51,7 @@ public class EmpleadoDto {
         this.admin.setValue(empleado.isEmpleadoAdmin());
         this.nacimiento.set(empleado.getEmpleadoFechaNacimiento().toGregorianCalendar().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         this.psswr.set(empleado.getEmpleadoPassword());
-        this.foto = empleado.getEmpleadoFoto().getBytes();
+        this.foto.set(empleado.getEmpleadoFoto());
 //        this.marc = (List<MarcaDto>) new MarcaDto ((Marca) empleado.getMarca());
     }    
     
@@ -103,16 +103,6 @@ public class EmpleadoDto {
         this.admin.setValue(isAdmin.equalsIgnoreCase("S"));
     }
     
-    
-/*
-    public List<MarcaDto> getMarc() {
-        return marc;
-    }
-
-    public void setMarc(List<MarcaDto> marc) {
-        this.marc = marc;
-    }
-     */
 
     public LocalDate getNacimiento() {
         return nacimiento.get();
@@ -121,10 +111,10 @@ public class EmpleadoDto {
         this.nacimiento.set(fechaNac);
     }
     public byte[] getFoto() {
-        return foto;
+        return foto.getValue();
     }
     public void setFoto(byte[] fotoByte) {
-        this.foto=(fotoByte);
+        this.foto.set(fotoByte);
     }
     
         public Boolean getModificado() {
