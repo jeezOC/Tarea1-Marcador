@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import cr.ac.una.marcador.model.EmpleadoDto;
 import cr.ac.una.marcador.model.MarcaDto;
+import cr.ac.una.marcador.util.AppContext;
+import cr.ac.una.marcador.util.FlowController;
 import cr.ac.una.marcador.util.Mensaje;
 import cr.ac.una.marcador.util.wsConsumer;
 import java.io.FileOutputStream;
@@ -20,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -120,7 +123,21 @@ public class mantMarcasController extends Controller implements Initializable {
     private JFXButton btnGuardar;
 
  
-    
+    @FXML
+    private JFXButton btnSig;
+    int cont = 0;
+    @FXML
+    void onAction_btnSig(ActionEvent event) {
+        int primeraIncon = indexes.get(cont);
+        tableMarcas.requestFocus();
+        tableMarcas.getSelectionModel().select(primeraIncon);
+        tableMarcas.getFocusModel().focus(primeraIncon);
+        if(cont>indexes.size()){
+            cont = 0;
+        }else{
+            cont++;
+        }
+    }
     /**
      * Initializes the controller class.
      */
@@ -135,12 +152,12 @@ public class mantMarcasController extends Controller implements Initializable {
     private Label lblTotalHrsTrabajadasTodosEmp;
     
     Tooltip buscarInfo =  new Tooltip("Digite el folio que desea buscar o\ndejelo vacio para buscar en todo el sistema");
-     
+    List<Integer> indexes = new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //            listMarcas.getItems().add("Entradas");
 //            listMarcas.getItems().add("SALIDAS");
-        
+        tableMarcas.refresh();
         btnInfo.setTooltip(buscarInfo);
 //        btnInfo.setDisable(true);
         BtnExcel.setDisable(true);
@@ -162,26 +179,6 @@ public class mantMarcasController extends Controller implements Initializable {
         }
         actualizarTabla(marcasList);
         
-        tableMarcas.setRowFactory(row->new TableRow<MarcaDto>(){
-        @Override
-        public void updateItem(MarcaDto item,boolean empty){
-            super.updateItem(item, empty);
-            if(item == null){
-                setStyle("-fx-fill : green");
-            }else if(item.getMarcahoraSalida().toString().equals("0000-01-01T00:00")){
-                
-                 setStyle("-fx-background-color: #ffd7d1;");
-//                    setStyle("-fx-background-color: #baffba;");
-            }else{
-                    setStyle("-fx-background-color: #baffba;");
-            }
-            
-//           setStyle("-fx-fill : yellow");
-        }
-        
-        });
-        
-        tableMarcas.refresh();
     }
     
     private static String ValueOfHeader(int i){
@@ -341,12 +338,24 @@ public class mantMarcasController extends Controller implements Initializable {
     }
 
     @FXML
-    void onAction_btnNuevo(ActionEvent event) {
+    void onAction_btnEditar(ActionEvent event) {
+        MarcaDto marcaSeleccionada = (MarcaDto) tableMarcas.getFocusModel().getFocusedItem();
+        AppContext.getInstance().set("marcaSeleccionada", marcaSeleccionada);
+        
+        FlowController.getInstance().goViewInWindowModalUndec("correccionMarcas", this.getStage(), false);
 
+
+    }
+    @FXML
+    private JFXButton btnNueva;
+    @FXML
+    void onAction_btnNueva(ActionEvent event) {
+        FlowController.getInstance().goViewInWindowModalUndec("correccionMarcas", this.getStage(), false);
     }
 
     @Override
     public void initialize() {
+        tableMarcas.refresh();
 //        btnInfo.setTooltip(buscarInfo);
 //        BtnExcel.setDisable(true);
 //        btnFiltrar.setDisable(true);
@@ -399,6 +408,7 @@ public class mantMarcasController extends Controller implements Initializable {
     }
     private void actualizarTabla(List<MarcaDto> marcasList){
         tableMarcas.getItems().clear();
+        indexes.clear();
         String folio = txtBuscar.getText();
         cargarStreamsToView();
         ObservableList<MarcaDto> MarcasForView =FXCollections.observableArrayList ();
@@ -418,6 +428,24 @@ public class mantMarcasController extends Controller implements Initializable {
             clmEntrada.setCellValueFactory(mark->new SimpleStringProperty(String.valueOf(mark.getValue().getMarcahoraEntrada())));
             clmSalida.setCellValueFactory(mark->new SimpleStringProperty(String.valueOf(mark.getValue().getMarcahoraSalida())));
             tableMarcas.setItems((ObservableList<MarcaDto>) MarcasForView);
+            tableMarcas.setRowFactory(row->new TableRow<MarcaDto>(){
+            @Override
+            public void updateItem(MarcaDto item,boolean empty){
+                super.updateItem(item, empty);
+                if(item == null){
+                    setStyle("-fx-fill : green");
+                }else if(item.getMarcahoraSalida().toString().equals("0000-01-01T00:00")){
+                    indexes.add(getIndex());
+                    setStyle("-fx-background-color: #ffd7d1;");
+    //                    setStyle("-fx-background-color: #baffba;");
+                }else{
+                     setStyle("-fx-background-color: #baffba;");
+                }
+
+    //           setStyle("-fx-fill : yellow");
+            }
+
+            });
             tableMarcas.refresh();
             BtnExcel.setDisable(false);  
             btnFiltrar.setDisable(false);
